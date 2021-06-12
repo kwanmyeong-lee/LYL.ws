@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+D:\recture\workspace_list\LYL.ws\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1670895942.index
+1207807750.index
+3328839002.index
+2922516764.index
+2116188945.index
+1464109682.index
