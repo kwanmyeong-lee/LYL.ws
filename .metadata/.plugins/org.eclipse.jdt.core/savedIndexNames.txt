@@ -2,5 +2,4 @@ INDEX VERSION 1.131+C:\Users\93061\OneDrive\Desktop\GitHub\LYL.ws\.metadata\.plu
 3986271912.index
 3440177156.index
 1702481872.index
-1281132319.index
 1250979189.index

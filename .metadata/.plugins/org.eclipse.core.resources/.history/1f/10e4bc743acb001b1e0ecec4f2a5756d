@@ -2,6 +2,5 @@
     pageEncoding="UTF-8"%>
 <%@ include file="top.jsp"%>
 
-<h1>테스트_aaa</h1>
 
-<%@ include file="bottom.jsp" %>
+
