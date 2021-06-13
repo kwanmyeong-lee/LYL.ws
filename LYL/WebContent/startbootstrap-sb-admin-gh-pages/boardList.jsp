@@ -10,10 +10,11 @@
 		padding-top: 20px;
 	}
 	.titleH{
+		clear: both;
 		width: 300px;
 		height: 50px;
 		margin: 10px auto;
-		background: #0d6efd;
+		background: #212529;
 		border-radius: 30px;
 	}
 	.titleH h3{
@@ -47,9 +48,22 @@
 		border-radius: 30px;
 		text-align: center;
 	}
+	
+	.upload{
+		width: 90px;
+		height: 40px;
+		float: right;
+		color: white;
+		font-weight: bold;
+		border-radius: 30px;
+		background: #0d6efd;
+		border: 0px;
+		
+	}
 </style>
 
 <div class="listBody">
+	<button class="upload">글쓰기</button>
 	<div class="titleH"><h3>게시판</h3></div>
 	<table class="box2">
 		<colgroup>
