@@ -464,4 +464,4 @@ insert into video values(video_seq.nextval,'뉴욕에 또다시 퍼진 바이러스, 알렉스 
 --select * from mycomment;
 --select * from bobycom;
 --select * from video;   
-select * from theme;
+--select * from theme;
