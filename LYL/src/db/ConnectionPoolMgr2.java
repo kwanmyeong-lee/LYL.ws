@@ -19,8 +19,8 @@ public class ConnectionPoolMgr2 {
 		
 		try {
 			ctx=new InitialContext();
-			//ds=(DataSource)ctx.lookup("java:comp/env/jdbc/oracledb");
-			ds=(DataSource)ctx.lookup("java:comp/env/jdbc/oracledb1");
+			ds=(DataSource)ctx.lookup("java:comp/env/jdbc/oracledb");
+			//ds=(DataSource)ctx.lookup("java:comp/env/jdbc/oracledb1");
 		}catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -28,7 +28,7 @@ public class ConnectionPoolMgr2 {
 	
 	public Connection getConnection() throws SQLException {
 		Connection conn = ds.getConnection();
-		System.out.println("db¿¬°á¼º°ø, conn = "+conn);		
+		System.out.println("dbì—°ê²°, conn = "+conn);		
 		return conn;
 	}
 	

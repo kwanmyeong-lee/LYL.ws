@@ -467,7 +467,7 @@ insert into video values(video_seq.nextval, '스포츠 선수를 울게 만든 순간들', de
 insert into video values(video_seq.nextval, '의도치 않게 발생한 놀라운 스포츠 순간들', default,default,'https://youtu.be/embed/rMPTkPlFhwo', default, default, '스포츠 선수들도 놀란 순간들', 4, 1,'http://img.youtube.com/vi/rMPTkPlFhwo/maxresdefault.jpg');
 insert into video values(video_seq.nextval, '믿기지 않는 스포츠 선수들의 괴력', default,default,'https://youtu.be/embed/Eaad-9jEfdo', default, default, '스포츠 선수가 자신의 한계를 넘어설 때', 4, 1,'http://img.youtube.com/vi/Eaad-9jEfdo/maxresdefault.jpg');
 
-
+commit;
 
 
 --비디오 정보--
@@ -480,5 +480,6 @@ insert into video values(video_seq.nextval, '믿기지 않는 스포츠 선수들의 괴력', 
 --select * from myboard;
 --select * from mycomment;
 --select * from bobycom;
---select * from video;   
+--select * from video;  
 --select * from theme;
+select * from video where vidtheme=1;
