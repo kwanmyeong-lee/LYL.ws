@@ -1,8 +1,8 @@
 --전체 테이블, 시퀀스 삭제--
 drop table myuser CASCADE CONSTRAINTS;
 drop table video CASCADE CONSTRAINTS;
-drop table comment CASCADE CONSTRAINTS;
-drop table board CASCADE CONSTRAINTS;
+drop table mycomment CASCADE CONSTRAINTS;
+drop table myboard CASCADE CONSTRAINTS;
 drop table bobycom CASCADE CONSTRAINTS;
 drop table commentlike CASCADE CONSTRAINTS;
 drop table watchrecord CASCADE CONSTRAINTS;
@@ -13,35 +13,35 @@ drop table hint CASCADE CONSTRAINTS;
 drop table subscrib CASCADE CONSTRAINTS;
 drop sequence myuser_seq;
 drop sequence video_seq;
-drop sequence comment_seq;
+drop sequence mycomment_seq;
 drop sequence bobycom_seq;
-drop sequence board_seq;
+drop sequence myboard_seq;
 -- 전체 테이블, 시퀀스 삭제--
 
 --시퀀스---
 create sequence myuser_seq
 start with 1
-increment by 1;
+increment by 1
 nocache;
 
 create sequence video_seq
 start with 1
-increment by 1;
+increment by 1
 nocache;
 
-create sequence comment_seq
+create sequence mycomment_seq
 start with 1
-increment by 1;
+increment by 1
 nocache;
 
 create sequence bobycom_seq
 start with 1
-increment by 1;
+increment by 1
 nocache;
 
-create sequence board_seq
+create sequence myboard_seq
 start with 1
-increment by 1;
+increment by 1
 nocache;
 --시퀀스----
 
@@ -57,42 +57,41 @@ CREATE TABLE MYUSER (
 	userSub NUMBER DEFAULT 0 /* 구독자수 */
 );
 
-CREATE UNIQUE INDEX PK_USER
-	ON USER (
+CREATE UNIQUE INDEX PK_MYUSER
+	ON MYUSER (
 		userNo ASC
 	);
 
-ALTER TABLE USER
+ALTER TABLE MYUSER
 	ADD
-		CONSTRAINT PK_USER
+		CONSTRAINT PK_MYUSER
 		PRIMARY KEY (
 			userNo
 		);
 
-
 /* 시청 기록 */
 CREATE TABLE WATCHRECORD (
-	userNo NUMBER, /* 크리에이터 */
-	vidNo NUMBER, /* 영상 번호 */
-	watchDate TIMESTAMP DEFAULT sysdate /* 시청 날짜 */
+	userNo NUMBER NOT NULL, /* 크리에이터 */
+	vidNo NUMBER NOT NULL, /* 영상 번호 */
+	watchDate TIMESTAMP DEFAULT sysdate NOT NULL /* 시청 날짜 */
 );
 
 /* 영상좋아요 */
 CREATE TABLE VIDEOLIKE (
-	vidNo NUMBER, /* 영상 번호 */
-	userNo NUMBER /* 크리에이터 */
+	vidNo NUMBER NOT NULL, /* 영상 번호 */
+	userNo NUMBER NOT NULL /* 크리에이터 */
 );
 
 /* 나중에볼 동영상 */
 CREATE TABLE AFTERVIDEO (
-	userNo NUMBER, /* 크리에이터 */
-	vidNo NUMBER /* 영상 번호 */
+	userNo NUMBER NOT NULL, /* 크리에이터 */
+	vidNo NUMBER NOT NULL /* 영상 번호 */
 );
 
 /* 댓글좋아요 */
 CREATE TABLE COMMENTLIKE (
-	comNo NUMBER, /* 댓글 번호 */
-	userNo NUMBER /* 크리에이터 */
+	comNo NUMBER NOT NULL, /* 댓글 번호 */
+	userNo NUMBER NOT NULL /* 크리에이터 */
 );
 
 /* 태마별 영상 */
@@ -132,7 +131,6 @@ CREATE TABLE VIDEO (
 	userNo NUMBER /* 크리에이터 */
 );
 
-
 CREATE UNIQUE INDEX PK_VIDEO
 	ON VIDEO (
 		vidNo ASC
@@ -146,7 +144,7 @@ ALTER TABLE VIDEO
 		);
 
 /* 영상댓글 */
-CREATE TABLE COMMENT (
+CREATE TABLE MYCOMMENT (
 	comNo NUMBER NOT NULL, /* 댓글 번호 */
 	comCon VARCHAR2(255), /* 내용 */
 	comDate TIMESTAMP DEFAULT sysdate, /* 날짜 */
@@ -160,14 +158,14 @@ CREATE TABLE COMMENT (
 	comGroup NUMBER /* 댓글 그룹 번호 */
 );
 
-CREATE UNIQUE INDEX PK_COMMENT
-	ON COMMENT (
+CREATE UNIQUE INDEX PK_MYCOMMENT
+	ON MYCOMMENT (
 		comNo ASC
 	);
 
-ALTER TABLE COMMENT
+ALTER TABLE MYCOMMENT
 	ADD
-		CONSTRAINT PK_COMMENT
+		CONSTRAINT PK_MYCOMMENT
 		PRIMARY KEY (
 			comNo
 		);
@@ -187,7 +185,6 @@ CREATE TABLE BOBYCOM (
 	userNo NUMBER /* 크리에이터 */
 );
 
-
 CREATE UNIQUE INDEX PK_BOBYCOM
 	ON BOBYCOM (
 		bcNo ASC
@@ -201,7 +198,7 @@ ALTER TABLE BOBYCOM
 		);
 
 /* 게시판 */
-CREATE TABLE BOARD (
+CREATE TABLE MYBOARD (
 	boNo NUMBER NOT NULL, /* 번호 */
 	boTitle VARCHAR2(255) NOT NULL, /* 제목 */
 	boCon CLOB, /* 내용 */
@@ -217,14 +214,14 @@ CREATE TABLE BOARD (
 	boGroupNo NUMBER /* 게시글 그룹번호 */
 );
 
-CREATE UNIQUE INDEX PK_BOARD
-	ON BOARD (
+CREATE UNIQUE INDEX PK_MYBOARD
+	ON MYBOARD (
 		boNo ASC
 	);
 
-ALTER TABLE BOARD
+ALTER TABLE MYBOARD
 	ADD
-		CONSTRAINT PK_BOARD
+		CONSTRAINT PK_MYBOARD
 		PRIMARY KEY (
 			boNo
 		);
@@ -233,16 +230,16 @@ ALTER TABLE BOARD
 CREATE TABLE HINT (
 	hintQuest VARCHAR2(255) NOT NULL, /* 질문 */
 	hintAns VARCHAR2(255) NOT NULL, /* 답 */
-	userNo NUMBER /* 크리에이터 */
+	userNo NUMBER NOT NULL /* 크리에이터 */
 );
 
 ALTER TABLE WATCHRECORD
 	ADD
-		CONSTRAINT FK_USER_TO_WATCHRECORD
+		CONSTRAINT FK_MYUSER_TO_WATCHRECORD
 		FOREIGN KEY (
 			userNo
 		)
-		REFERENCES USER (
+		REFERENCES MYUSER (
 			userNo
 		);
 
@@ -268,21 +265,21 @@ ALTER TABLE VIDEOLIKE
 
 ALTER TABLE VIDEOLIKE
 	ADD
-		CONSTRAINT FK_USER_TO_VIDEOLIKE
+		CONSTRAINT FK_MYUSER_TO_VIDEOLIKE
 		FOREIGN KEY (
 			userNo
 		)
-		REFERENCES USER (
+		REFERENCES MYUSER (
 			userNo
 		);
 
 ALTER TABLE AFTERVIDEO
 	ADD
-		CONSTRAINT FK_USER_TO_AFTERVIDEO
+		CONSTRAINT FK_MYUSER_TO_AFTERVIDEO
 		FOREIGN KEY (
 			userNo
 		)
-		REFERENCES USER (
+		REFERENCES MYUSER (
 			userNo
 		);
 
@@ -298,57 +295,57 @@ ALTER TABLE AFTERVIDEO
 
 ALTER TABLE COMMENTLIKE
 	ADD
-		CONSTRAINT FK_COMMENT_TO_COMMENTLIKE
+		CONSTRAINT FK_MYCOMMENT_TO_COMMENTLIKE
 		FOREIGN KEY (
 			comNo
 		)
-		REFERENCES COMMENT (
+		REFERENCES MYCOMMENT (
 			comNo
 		);
 
 ALTER TABLE COMMENTLIKE
 	ADD
-		CONSTRAINT FK_USER_TO_COMMENTLIKE
+		CONSTRAINT FK_MYUSER_TO_COMMENTLIKE
 		FOREIGN KEY (
 			userNo
 		)
-		REFERENCES USER (
+		REFERENCES MYUSER (
 			userNo
 		);
 
 ALTER TABLE SUBSCRIB
 	ADD
-		CONSTRAINT FK_USER_TO_SUBSCRIB
+		CONSTRAINT FK_MYUSER_TO_SUBSCRIB
 		FOREIGN KEY (
 			userNo2
 		)
-		REFERENCES USER (
+		REFERENCES MYUSER (
 			userNo
 		);
 
 ALTER TABLE SUBSCRIB
 	ADD
-		CONSTRAINT FK_USER_TO_SUBSCRIB2
+		CONSTRAINT FK_MYUSER_TO_SUBSCRIB2
 		FOREIGN KEY (
 			userNo
 		)
-		REFERENCES USER (
+		REFERENCES MYUSER (
 			userNo
 		);
 
 ALTER TABLE VIDEO
 	ADD
-		CONSTRAINT FK_USER_TO_VIDEO
+		CONSTRAINT FK_MYUSER_TO_VIDEO
 		FOREIGN KEY (
 			userNo
 		)
-		REFERENCES USER (
+		REFERENCES MYUSER (
 			userNo
 		);
 
-ALTER TABLE COMMENT
+ALTER TABLE MYCOMMENT
 	ADD
-		CONSTRAINT FK_VIDEO_TO_COMMENT
+		CONSTRAINT FK_VIDEO_TO_MYCOMMENT
 		FOREIGN KEY (
 			vidNo
 		)
@@ -356,65 +353,62 @@ ALTER TABLE COMMENT
 			vidNo
 		);
 
-ALTER TABLE COMMENT
+ALTER TABLE MYCOMMENT
 	ADD
-		CONSTRAINT FK_USER_TO_COMMENT
+		CONSTRAINT FK_MYUSER_TO_MYCOMMENT
 		FOREIGN KEY (
 			userNo
 		)
-		REFERENCES USER (
+		REFERENCES MYUSER (
 			userNo
 		);
 
 ALTER TABLE BOBYCOM
 	ADD
-		CONSTRAINT FK_BOARD_TO_BOBYCOM
+		CONSTRAINT FK_MYBOARD_TO_BOBYCOM
 		FOREIGN KEY (
 			boNo
 		)
-		REFERENCES BOARD (
+		REFERENCES MYBOARD (
 			boNo
 		);
 
 ALTER TABLE BOBYCOM
 	ADD
-		CONSTRAINT FK_USER_TO_BOBYCOM
+		CONSTRAINT FK_MYUSER_TO_BOBYCOM
 		FOREIGN KEY (
 			userNo
 		)
-		REFERENCES USER (
+		REFERENCES MYUSER (
 			userNo
 		);
 
-ALTER TABLE BOARD
+ALTER TABLE MYBOARD
 	ADD
-		CONSTRAINT FK_USER_TO_BOARD
+		CONSTRAINT FK_MYUSER_TO_MYBOARD
 		FOREIGN KEY (
 			userNo
 		)
-		REFERENCES USER (
+		REFERENCES MYUSER (
 			userNo
 		);
 
-ALTER TABLE BOARD
+ALTER TABLE MYBOARD
 	ADD
-		CONSTRAINT FK_USER_TO_BOARD2
+		CONSTRAINT FK_MYUSER_TO_MYBOARD2
 		FOREIGN KEY (
 			userNo2
 		)
-		REFERENCES USER (
+		REFERENCES MYUSER (
 			userNo
 		);
 
 ALTER TABLE HINT
 	ADD
-		CONSTRAINT FK_USER_TO_HINT
+		CONSTRAINT FK_MYUSER_TO_HINT
 		FOREIGN KEY (
 			userNo
 		)
-		REFERENCES USER (
+		REFERENCES MYUSER (
 			userNo
 		);
-        
-        
-
