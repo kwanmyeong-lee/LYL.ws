@@ -437,6 +437,22 @@ insert into video values(video_seq.nextval,'2021년PC온라인게임순위 전세계TOP10',
 insert into video values(video_seq.nextval,'게임판 사고사례는 게임보다 더 황당하다 [2021 2분기 이왜진 게임뉴스]',default,default,'https://www.youtube.com/embed/0eiDYPxnt4c',default,default,'30년차 테트리스 고인물 / BTS마저 찌바르는 겜덕력 / 추신수 빠른무한 / 일본 국민게임에서 일본 때려잡는 한국인 / 삼탈워 참수 사태 등',1,1,'http://img.youtube.com/vi/0eiDYPxnt4c/maxresdefault.jpg');
 insert into video values(video_seq.nextval,'뉴욕에 또다시 퍼진 바이러스, 알렉스 머서는 죽어야만 한다 - 프로토타입 2 스토리 한눈에 보기',default,default,'https://www.youtube.com/embed/12280TgSiwU',default,default,'※ 게임 구매',1,1,'http://img.youtube.com/vi/12280TgSiwU/maxresdefault.jpg');
 insert into video values(video_seq.nextval,'영상 제목',default,default,'video/lala.mp4',default,default,'내용',1,1,'thumbnail/lala.png');
+
+insert into video values(video_seq.nextval,'정말... 이 영화가 개봉한다고...?',default,default,'https://www.youtube.com/embed/R7HGsxi47l8',default,default,'*본 영상은 유료광고를 포함하고 있습니다.',2,1,'http://img.youtube.com/vi/R7HGsxi47l8/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'10,000명 몽골 대군을 막아낸 산골 마을 사냥꾼의 전설 [영화리뷰 결말포함]',default,default,'https://www.youtube.com/embed/aH9BWyAP2JI',default,default,'[ 라이징 호크, 2019 ]',2,1,'http://img.youtube.com/vi/aH9BWyAP2JI/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'너무 무서워 관객이 3명 기절한 영화 (영화리뷰 결말포함)',default,default,'https://www.youtube.com/embed/I8nZ3VhpLJw',default,default,'틀딱이 소개하는 영화리뷰 시작합니다.',2,1,'http://img.youtube.com/vi/I8nZ3VhpLJw/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'영화 속 ''조정석'' 웃긴장면 모음 ZIP',default,default,'https://www.youtube.com/embed/j5jbymJVGT4',default,default,'영화는 [엑시트], [건축학개론], [형]입니다. 안녕하세요 ''영화에미치다'' 매드무비입니다.',2,1,'http://img.youtube.com/vi/j5jbymJVGT4/maxresdefault.jpg');
+
+insert into video values(video_seq.nextval,'뉴욕에 또다시 퍼진 바이러스, 알렉스 머서는 죽어야만 한다 - 프로토타입 2 스토리 한눈에 보기',default,default,'https://www.youtube.com/embed/12280TgSiwU',default,default,'※ 게임 구매',3,1,'http://img.youtube.com/vi/12280TgSiwU/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'뉴욕에 또다시 퍼진 바이러스, 알렉스 머서는 죽어야만 한다 - 프로토타입 2 스토리 한눈에 보기',default,default,'https://www.youtube.com/embed/12280TgSiwU',default,default,'※ 게임 구매',3,1,'http://img.youtube.com/vi/12280TgSiwU/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'뉴욕에 또다시 퍼진 바이러스, 알렉스 머서는 죽어야만 한다 - 프로토타입 2 스토리 한눈에 보기',default,default,'https://www.youtube.com/embed/12280TgSiwU',default,default,'※ 게임 구매',3,1,'http://img.youtube.com/vi/12280TgSiwU/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'뉴욕에 또다시 퍼진 바이러스, 알렉스 머서는 죽어야만 한다 - 프로토타입 2 스토리 한눈에 보기',default,default,'https://www.youtube.com/embed/12280TgSiwU',default,default,'※ 게임 구매',3,1,'http://img.youtube.com/vi/12280TgSiwU/maxresdefault.jpg');
+
+insert into video values(video_seq.nextval,'뉴욕에 또다시 퍼진 바이러스, 알렉스 머서는 죽어야만 한다 - 프로토타입 2 스토리 한눈에 보기',default,default,'https://www.youtube.com/embed/12280TgSiwU',default,default,'※ 게임 구매',4,1,'http://img.youtube.com/vi/12280TgSiwU/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'뉴욕에 또다시 퍼진 바이러스, 알렉스 머서는 죽어야만 한다 - 프로토타입 2 스토리 한눈에 보기',default,default,'https://www.youtube.com/embed/12280TgSiwU',default,default,'※ 게임 구매',4,1,'http://img.youtube.com/vi/12280TgSiwU/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'뉴욕에 또다시 퍼진 바이러스, 알렉스 머서는 죽어야만 한다 - 프로토타입 2 스토리 한눈에 보기',default,default,'https://www.youtube.com/embed/12280TgSiwU',default,default,'※ 게임 구매',4,1,'http://img.youtube.com/vi/12280TgSiwU/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'뉴욕에 또다시 퍼진 바이러스, 알렉스 머서는 죽어야만 한다 - 프로토타입 2 스토리 한눈에 보기',default,default,'https://www.youtube.com/embed/12280TgSiwU',default,default,'※ 게임 구매',4,1,'http://img.youtube.com/vi/12280TgSiwU/maxresdefault.jpg');
+
 --비디오 정보--
 
 
@@ -448,3 +464,4 @@ insert into video values(video_seq.nextval,'영상 제목',default,default,'video/la
 --select * from mycomment;
 --select * from bobycom;
 --select * from video;   
+select * from theme;
