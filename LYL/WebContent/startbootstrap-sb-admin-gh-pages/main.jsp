@@ -1,7 +1,17 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="video.VideoVO"%>
+<%@page import="java.util.List"%>
+<%@page import="video.VideoService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <link href="css/videoStyles.css" rel="stylesheet">
 <%@ include file="top.jsp"%>
+<%
+	VideoService vs = new VideoService();
+	List<VideoVO> list = new ArrayList<>(); 
+	list=vs.videoThemaList(1);
+	
+%>
 <script>
 	$(window)
 			.scroll(
