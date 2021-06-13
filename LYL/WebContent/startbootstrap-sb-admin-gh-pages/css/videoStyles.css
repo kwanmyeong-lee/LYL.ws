@@ -20,9 +20,6 @@ header {
 	text-align: center;
 }
 
-main {
-	width: 1250px;
-}
 
 #carouselExampleCaptions {
 	width: 1200px;
@@ -31,6 +28,10 @@ main {
 
 #fe {
 	background: rgba(0, 0, 0, 85%);
+}
+
+main {
+	width: 1250px;
 }
 
 .video_main_list {

@@ -16,6 +16,7 @@ drop sequence video_seq;
 drop sequence mycomment_seq;
 drop sequence bobycom_seq;
 drop sequence myboard_seq;
+drop sequence theme_seq;
 -- 전체 테이블, 시퀀스 삭제--
 
 --시퀀스---
@@ -40,6 +41,11 @@ increment by 1
 nocache;
 
 create sequence myboard_seq
+start with 1
+increment by 1
+nocache;
+
+create sequence theme_seq
 start with 1
 increment by 1
 nocache;
@@ -123,12 +129,14 @@ CREATE TABLE VIDEO (
 	vidNo NUMBER NOT NULL, /* 영상 번호 */
 	vidTitle VARCHAR2(255) NOT NULL, /* 제목 */
 	vidHits NUMBER DEFAULT 0, /* 조회수 */
-	vidCom VARCHAR2(255) DEFAULT 0, /* 댓글 */
+	vidCom NUMBER DEFAULT 0, /* 댓글 */
+	vidurl VARCHAR2(255) NOT NULL, /* 영상경로 */
 	vidLike NUMBER DEFAULT 0, /* 좋아요 */
 	vidDate TIMESTAMP DEFAULT sysdate, /* 업로드 시간 */
 	vidEx VARCHAR2(255), /* 영상 설명 */
 	vidTheme NUMBER NOT NULL, /* 태마 번호 */
-	userNo NUMBER /* 크리에이터 */
+	userNo NUMBER, /* 크리에이터 */
+	vidThu VARCHAR2(255) NOT NULL /* 썸네일경로 */
 );
 
 CREATE UNIQUE INDEX PK_VIDEO
@@ -412,3 +420,31 @@ ALTER TABLE HINT
 		REFERENCES MYUSER (
 			userNo
 		);
+        
+--유저 정보--        
+insert into myuser values(myuser_seq.nextval,'admin','admin','admin',01000000000,'lyl@gmail.com',default,default);
+--유저 정보--
+
+--테마 정보--
+insert into theme values(theme_seq.nextval,'게임');
+insert into theme values(theme_seq.nextval,'영화');
+insert into theme values(theme_seq.nextval,'학습');
+insert into theme values(theme_seq.nextval,'스포츠');
+--테마 정보--
+
+--비디오 정보--
+insert into video values(video_seq.nextval,'2021년PC온라인게임순위 전세계TOP10',default,default,'https://www.youtube.com/embed/XDB-ew_nFjo',default,default,'2021년 PC 온라인게임순위 (1월통합)',1,1,'http://img.youtube.com/vi/XDB-ew_nFjo/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'게임판 사고사례는 게임보다 더 황당하다 [2021 2분기 이왜진 게임뉴스]',default,default,'https://www.youtube.com/embed/0eiDYPxnt4c',default,default,'30년차 테트리스 고인물 / BTS마저 찌바르는 겜덕력 / 추신수 빠른무한 / 일본 국민게임에서 일본 때려잡는 한국인 / 삼탈워 참수 사태 등',1,1,'http://img.youtube.com/vi/0eiDYPxnt4c/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'뉴욕에 또다시 퍼진 바이러스, 알렉스 머서는 죽어야만 한다 - 프로토타입 2 스토리 한눈에 보기',default,default,'https://www.youtube.com/embed/12280TgSiwU',default,default,'※ 게임 구매',1,1,'http://img.youtube.com/vi/12280TgSiwU/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'영상 제목',default,default,'video/lala.mp4',default,default,'내용',1,1,'thumbnail/lala.png');
+--비디오 정보--
+
+
+
+
+--테이블 확인
+--select * from myuser;
+--select * from myboard;
+--select * from mycomment;
+--select * from bobycom;
+--select * from video;   
