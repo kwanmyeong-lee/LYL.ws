@@ -90,6 +90,6 @@
 	</div>
 
 	<iframe id="player" width="640" height="360"
-		src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
+		src="video/alal.mp4"></iframe>
 
 	<%@ include file="bottom.jsp"%>
