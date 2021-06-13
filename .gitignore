@@ -7,3 +7,4 @@ Servers/Tomcat v9.0 Server at localhost-config/catalina.properties
 Servers/Tomcat v9.0 Server at localhost-config/catalina.policy
 Servers/.settings/org.eclipse.wst.server.core.prefs
 Servers/.project
+.settings
