@@ -24,40 +24,29 @@
 </div>
 <div class="container ">
 	<div class="justify-content">
-		<div class="col-me-10 ">
-			<div class="d-inline-flex" id="playList">
-				<iframe id="player" width="640" height="360"
-					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
+		<div class="col-me-10">
+			<div class="d-inline-flex me-5">
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe class="embed-responsive-item"
+						src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
+						allowfullscreen></iframe>
+				</div>
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe class="embed-responsive-item"
+						src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
+						allowfullscreen></iframe>
+				</div>
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe class="embed-responsive-item"
+						src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
+						allowfullscreen></iframe>
+				</div>
 			</div>
-			<div class="d-inline-flex" id="playList">
-				<iframe id="player" width="640" height="360"
-					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
-			</div>
-			<div class="d-inline-flex" id="playList">
-				<iframe id="player" width="640" height="360"
-					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
-			</div>
-			<div class="d-inline-flex" id="playList">
-				<iframe id="player" width="640" height="360"
-					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
-			</div>
-			<div class="d-inline-flex" id="playList">
-				<iframe id="player" width="640" height="360"
-					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
-			</div>
-			<div class="d-inline-flex" id="playList">
-				<iframe id="player" width="640" height="360"
-					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
-			</div>
-			<div class="d-inline-flex" id="playList">
-				<iframe id="player" width="640" height="360"
-					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
-			</div>
-
-
 		</div>
 	</div>
 </div>
+
+
 
 
 <%@ include file="bottom.jsp"%>
