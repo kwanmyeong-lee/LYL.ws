@@ -13,7 +13,7 @@ import db.ConnectionPoolMgr2;
 public class VideoDAO {
 	ConnectionPoolMgr2 pool;
 		
-	VideoDAO(){
+	public VideoDAO(){
 		pool= new ConnectionPoolMgr2();
 	}
 	
@@ -32,10 +32,10 @@ public class VideoDAO {
 			rs=ps.executeQuery();
 			
 			
-			VideoVO vvo = new VideoVO();
+			
 			
 			while(rs.next()) {
-				System.out.println("sss");
+				VideoVO vvo = new VideoVO();
 				vvo.setVidNo(rs.getInt(1));
 				vvo.setVidTitle(rs.getString(2));
 				vvo.setVidHits(rs.getInt(3));
@@ -51,7 +51,6 @@ public class VideoDAO {
 				list.add(vvo);
 				
 			}
-			System.out.println(list.size());
 			return list;
 		}finally {
 			pool.dbClose(rs,ps,conn);

@@ -1,3 +1,4 @@
+<%@page import="video.VideoDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="video.VideoVO"%>
 <%@page import="java.util.List"%>
@@ -7,33 +8,41 @@
 <link href="css/videoStyles.css" rel="stylesheet">
 <%@ include file="top.jsp"%>
 <%
-	VideoService vs = new VideoService();
+	VideoService vs = new VideoService();	
 	List<VideoVO> list = new ArrayList<>(); 
 	list=vs.videoThemaList(1);
-			
 %>
+
 <script>
 	$(window)
 			.scroll(
 					function() {
 						var videoinfo = '<div class="video_info"></div>';
-						var a = '<img class="main_Thumbnail" src="http://img.youtube.com/vi/lgPi5GhEj0c/maxresdefault.jpg">';
-						var videotitle = '<p class="video_tilte">title</p>';
-						var uploaderid = '<p class="video_uploaderid">id</p>';
-						var videohits = '<p class="video_hits">조회수</p>';
-
+						
 						if ($(window).scrollTop() == $(document).height()
 								- $(window).height()) {
 							$("main").append('<div class="video_main_list">');
 							$(".video_main_list").last().prepend('<h1>테마<h1>');
-							for (var i = 0; i < 4; i++) {
+							<%for (int i = 0; i < 4; i++) {
+								VideoVO vvo =list.get(i);
+								String title= vvo.getVidTitle();
+								if(title.length()>15){
+									title=title.substring(0, 15);
+									title+="...";
+								}
+							%>											
+								var a = '<img class="main_Thumbnail" src=<%=vvo.getVidThu()%>>';
+								var videotitle = '<p class="video_tilte"><%=title%></p>';
+								var uploaderid = '<p class="video_uploaderid"><%=vvo.getUserNo()%></p>';
+								var videohits = '<p class="video_hits">조회수 <%=vvo.getVidHits() %></p>';
+								
 								$('.video_main_list').last().append(videoinfo);
 								$('.video_info').last().append(a);
 								$('.video_info').last().append(videotitle);
 								$('.video_info').last().append(uploaderid);
 								$('.video_info').last().append(videohits);
 
-							}
+							<%}%>
 
 						}
 					});
@@ -102,4 +111,6 @@
 	<iframe id="player" width="640" height="360"
 		src="https://www.youtube.com/embed/4TWR90KJl84"></iframe>
 	<img src="thumbnail/lala.png">
+	
+	
 	<%@ include file="bottom.jsp"%>

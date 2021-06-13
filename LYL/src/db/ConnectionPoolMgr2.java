@@ -28,7 +28,7 @@ public class ConnectionPoolMgr2 {
 	
 	public Connection getConnection() throws SQLException {
 		Connection conn = ds.getConnection();
-		System.out.println("db���Ἲ��, conn = "+conn);		
+		System.out.println("db연결, conn = "+conn);		
 		return conn;
 	}
 	
