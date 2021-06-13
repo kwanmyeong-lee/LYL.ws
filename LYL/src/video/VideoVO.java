@@ -16,7 +16,6 @@ public class VideoVO {
 	private String vidThu; /* 썸네일경로 */
 	
 	public VideoVO() {
-		super();
 	}
 
 	public VideoVO(int vidNo, String vidTitle, int vidHits, int vidCom, String vidurl, int vidLike, Timestamp vidDate,
