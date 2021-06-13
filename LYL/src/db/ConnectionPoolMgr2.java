@@ -28,8 +28,7 @@ public class ConnectionPoolMgr2 {
 	
 	public Connection getConnection() throws SQLException {
 		Connection conn = ds.getConnection();
-		System.out.println("db?—°ê²? ?—¬ë¶?, conn = "+conn);
-		
+		System.out.println("db¿¬°á¼º°ø, conn = "+conn);		
 		return conn;
 	}
 	
