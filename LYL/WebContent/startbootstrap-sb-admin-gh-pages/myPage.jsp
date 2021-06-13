@@ -2,12 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="top.jsp"%>
 <style>
-iframe {
-	width: 1200px;
-	height: 500px;
-	margin: 0 5px;
-}
-
 .video_main_list {
 	display: inline-block;
 	height: 300px;
@@ -118,26 +112,26 @@ iframe {
 	</div>
 </div>
 
-<div class="container ">
-	<div class="justify-content">
+<div class="container">
+	<div class="justify-content-center">
 		<div class="col-me-10">
 			<div class="d-inline-flex me-5">
 
+				<iframe class="col me-2" id="player" width="640" height="360"
+					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
+
 				<iframe id="player" width="640" height="360"
 					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
-				<iframe id="player" width="640" height="360"
-					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
-				<div class="video"></div>
 			</div>
 		</div>
 	</div>
 </div>
-
+<hr>
+<h1>영상</h1>
+<hr>
 <div class="container ">
-	<div class="justify-content">
-		<div class="col-me-10">
-			<div class="d-inline-flex me-5" id="video"></div>
-		</div>
+	<div class="justify-content ms-5">
+		<div id="video"></div>
 	</div>
 </div>
 
