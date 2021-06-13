@@ -10,7 +10,11 @@
 	VideoService vs = new VideoService();
 	List<VideoVO> list = new ArrayList<>(); 
 	list=vs.videoThemaList(1);
+<<<<<<< HEAD
 			
+=======
+	
+>>>>>>> parent of 7a70172 (videolist)
 %>
 <script>
 	$(window)
