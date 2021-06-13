@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="top.jsp"%>
 
+
 <h1 class="mt-4">마이페이지</h1>
 
 
@@ -24,32 +25,39 @@
 <div class="container ">
 	<div class="justify-content">
 		<div class="col-me-10 ">
-			<div class="d-inline-flex"
-				style="background: red; width: 100px; height: 100px">ddddd</div>
-			<div class="d-inline-flex"
-				style="background: red; width: 100px; height: 100px">ddddd</div>
-			<div class="d-inline-flex"
-				style="background: red; width: 100px; height: 100px">ddddd</div>
-			<div class="d-inline-flex"
-				style="background: red; width: 100px; height: 100px">ddddd</div>
-			<div class="d-inline-flex"
-				style="background: red; width: 100px; height: 100px">ddddd</div>
-			<div class="d-inline-flex"
-				style="background: red; width: 100px; height: 100px">ddddd</div>
-			<div class="d-inline-flex"
-				style="background: red; width: 100px; height: 100px">ddddd</div>
-			<div class="d-inline-flex"
-				style="background: red; width: 100px; height: 100px">ddddd</div>
-			<div class="d-inline-flex"
-				style="background: red; width: 100px; height: 100px">ddddd</div>
-			<div class="d-inline-flex"
-				style="background: red; width: 100px; height: 100px">ddddd</div>
-			<div class="d-inline-flex"
-				style="background: red; width: 100px; height: 100px">ddddd</div>
-			<div class="d-inline-flex"
-				style="background: red; width: 100px; height: 100px">ddddd</div>
+			<div class="d-inline-flex" id="playList">
+				<iframe id="player" width="640" height="360"
+					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
+			</div>
+			<div class="d-inline-flex" id="playList">
+				<iframe id="player" width="640" height="360"
+					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
+			</div>
+			<div class="d-inline-flex" id="playList">
+				<iframe id="player" width="640" height="360"
+					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
+			</div>
+			<div class="d-inline-flex" id="playList">
+				<iframe id="player" width="640" height="360"
+					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
+			</div>
+			<div class="d-inline-flex" id="playList">
+				<iframe id="player" width="640" height="360"
+					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
+			</div>
+			<div class="d-inline-flex" id="playList">
+				<iframe id="player" width="640" height="360"
+					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
+			</div>
+			<div class="d-inline-flex" id="playList">
+				<iframe id="player" width="640" height="360"
+					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
+			</div>
+
+
 		</div>
 	</div>
 </div>
+
 
 <%@ include file="bottom.jsp"%>
