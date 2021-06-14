@@ -52,7 +52,7 @@ nocache;
 --시퀀스----
 
 /* 회원 정보 */
-CREATE TABLE MYUSER (
+CREATE TABLE MYUSER (    
 	userNo NUMBER NOT NULL, /* 크리에이터 */
 	userId VARCHAR2(100) NOT NULL, /* 아이디 */
 	userPwd VARCHAR2(100) NOT NULL, /* 비밀번호 */
@@ -60,7 +60,9 @@ CREATE TABLE MYUSER (
 	userPhone NUMBER NOT NULL, /* 폰번호 */
 	userEmail VARCHAR2(255) NOT NULL, /* 이메일 */
 	userJoin TIMESTAMP DEFAULT sysdate, /* 가입일 */
-	userSub NUMBER DEFAULT 0 /* 구독자수 */
+	userSub NUMBER DEFAULT 0, /* 구독자수 */
+    userImg varchar(255) default NULL /* 유저이미지*/
+    
 );
 
 CREATE UNIQUE INDEX PK_MYUSER
@@ -422,8 +424,9 @@ ALTER TABLE HINT
 		);
         
 --유저 정보--        
-insert into myuser values(myuser_seq.nextval,'admin','admin','admin',01000000000,'lyl@gmail.com',default,default);
+insert into myuser values(myuser_seq.nextval,'admin','admin','admin',01000000000,'lyl@gmail.com',default,default,default);
 --유저 정보--
+
 
 --테마 정보--
 insert into theme values(theme_seq.nextval,'게임');
