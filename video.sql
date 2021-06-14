@@ -432,8 +432,8 @@ insert into theme values(theme_seq.nextval,'학습');
 insert into theme values(theme_seq.nextval,'스포츠');
 --테마 정보--
 
---비디오 정보--
 
+--비디오 정보--
 --게임 no 1--
 insert into video values(video_seq.nextval,'2021년PC온라인게임순위 전세계TOP10',default,default,'https://www.youtube.com/embed/XDB-ew_nFjo',default,default,'2021년 PC 온라인게임순위 (1월통합)',1,1,'http://img.youtube.com/vi/XDB-ew_nFjo/maxresdefault.jpg');
 insert into video values(video_seq.nextval,'게임판 사고사례는 게임보다 더 황당하다 [2021 2분기 이왜진 게임뉴스]',default,default,'https://www.youtube.com/embed/0eiDYPxnt4c',default,default,'30년차 테트리스 고인물 / BTS마저 찌바르는 겜덕력 / 추신수 빠른무한 / 일본 국민게임에서 일본 때려잡는 한국인 / 삼탈워 참수 사태 등',1,1,'http://img.youtube.com/vi/0eiDYPxnt4c/maxresdefault.jpg');
@@ -467,13 +467,10 @@ insert into video values(video_seq.nextval, '스포츠 선수를 울게 만든 순간들', de
 insert into video values(video_seq.nextval, '의도치 않게 발생한 놀라운 스포츠 순간들', default,default,'https://youtu.be/embed/rMPTkPlFhwo', default, default, '스포츠 선수들도 놀란 순간들', 4, 1,'http://img.youtube.com/vi/rMPTkPlFhwo/maxresdefault.jpg');
 insert into video values(video_seq.nextval, '믿기지 않는 스포츠 선수들의 괴력', default,default,'https://youtu.be/embed/Eaad-9jEfdo', default, default, '스포츠 선수가 자신의 한계를 넘어설 때', 4, 1,'http://img.youtube.com/vi/Eaad-9jEfdo/maxresdefault.jpg');
 
-
-
-
 --비디오 정보--
 
 
-
+commit;
 
 --테이블 확인
 --select * from myuser;

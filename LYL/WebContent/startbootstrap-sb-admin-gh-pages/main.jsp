@@ -1,3 +1,5 @@
+<%@page import="theme.ThemeService"%>
+<%@page import="theme.ThemeVO"%>
 <%@page import="video.VideoDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="video.VideoVO"%>
@@ -8,44 +10,78 @@
 <link href="css/videoStyles.css" rel="stylesheet">
 <%@ include file="top.jsp"%>
 <%
-	VideoService vs = new VideoService();	
+	VideoService vs = new VideoService();
+	ThemeService ts = new ThemeService();
+	
 	List<VideoVO> list = new ArrayList<>(); 
+	List<ThemeVO> themelist = ts.selectAllTheme();
+	ThemeVO[] tvo = new ThemeVO[themelist.size()];
+	%>
+	<script type="text/javascript">
+		var scThName = new Array();
+		var scVidImg = new Array();
+		var scVidTitle = new Array();
+		var scVidUserId = new Array();
+		var scVidHits = new Array();
+		var scThSize = <%=themelist.size()%>;
+	</script>
+	<%
+	for(int i =0; i<themelist.size(); i++){
+		tvo[i] = themelist.get(i);
+	%>
+		<script type="text/javascript">
+			scThName.push('<%=tvo[i].getThName()%>');
+		</script>
+	<% 
+	}
 	list=vs.videoThemaList(1);
 %>
-
 <script>
+	var scThNum =0;
+	
 	$(window)
 			.scroll(
 					function() {
 						var videoinfo = '<div class="video_info"></div>';
 						
+						
 						if ($(window).scrollTop() == $(document).height()
 								- $(window).height()) {
-							$("main").append('<div class="video_main_list">');
-							$(".video_main_list").last().prepend('<h1>테마<h1>');
-							<%for (int i = 0; i < 4; i++) {
-								VideoVO vvo =list.get(i);
-								String title= vvo.getVidTitle();
-								if(title.length()>15){
-									title=title.substring(0, 15);
-									title+="...";
-								}
-							%>											
-								var a = '<img class="main_Thumbnail" src=<%=vvo.getVidThu()%>>';
-								var videotitle = '<p class="video_tilte"><%=title%></p>';
-								var uploaderid = '<p class="video_uploaderid"><%=vvo.getUserNo()%></p>';
-								var videohits = '<p class="video_hits">조회수 <%=vvo.getVidHits() %></p>';
-								
-								$('.video_main_list').last().append(videoinfo);
-								$('.video_info').last().append(a);
-								$('.video_info').last().append(videotitle);
-								$('.video_info').last().append(uploaderid);
-								$('.video_info').last().append(videohits);
+							if(scThSize!=0 && scThNum < scThSize){ 	
+							
+							
+								$("main").append('<div class="video_main_list">');
+								$(".video_main_list").last().prepend('<h1>'+scThName[scThNum++]+'<h1>');
+								<%for (int i = 0; i < 4; i++) {
+									VideoVO vvo =list.get(i);
+									String title= vvo.getVidTitle();
+									if(title.length()>15){
+										title=title.substring(0, 15);
+										title+="...";
+									}
+								%>							
 
-							<%}%>
+									var a = '<img class="main_Thumbnail" src=<%=vvo.getVidThu()%>>';
+									var videotitle = '<p class="video_tilte"><%=title%></p>';
+									var uploaderid = '<p class="video_uploaderid"><%=vvo.getUserNo()%></p>';
+									var videohits = '<p class="video_hits">조회수 <%=vvo.getVidHits() %></p>';
+									
+									$('.video_main_list').last().append(videoinfo);
+									$('.video_info').last().append(a);
+									$('.video_info').last().append(videotitle);
+									$('.video_info').last().append(uploaderid);
+									$('.video_info').last().append(videohits);
+
+								<%}%>
+								
+								
+							}
 
 						}
 					});
+	
+		
+	
 </script>
 
 <body>
@@ -110,7 +146,7 @@
 
 	<iframe id="player" width="640" height="360"
 		src="https://www.youtube.com/embed/4TWR90KJl84"></iframe>
-	<img src="thumbnail/lala.png">
+	
 	
 	
 	<%@ include file="bottom.jsp"%>
