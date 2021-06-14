@@ -7,7 +7,8 @@
 			String sql = "";
 			ps=conn.prepareStatement(sql);
 			
-		
+			
+
 		}finally {
 			pool.dbClose(ps, conn);
 		}
@@ -24,6 +25,14 @@
 			String sql = "";
 			ps=conn.prepareStatement(sql);
 			
+
+
+
+			rs=ps.executeQuery();
+			
+			while(rs.next()) {
+				
+			}
 		
 		}finally {
 			pool.dbClose(rs, ps, conn);
