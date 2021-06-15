@@ -61,8 +61,10 @@ CREATE TABLE MYUSER (
 	userEmail VARCHAR2(255) NOT NULL, /* 이메일 */
 	userJoin TIMESTAMP DEFAULT sysdate, /* 가입일 */
 	userSub NUMBER DEFAULT 0, /* 구독자수 */
-    userImg varchar(255) default NULL /* 유저이미지*/
-    
+    userImgName varchar(255)  NULL ,/* 유저이미지이름*/
+    userImgSize number default 0, /*유저이미지사이즈*/
+    userImgOriName varchar(255) null, /*이미지 변경전 파일명*/
+    userDelFalg char default 'N' /*삭제 Flag*/     
 );
 
 CREATE UNIQUE INDEX PK_MYUSER
@@ -424,7 +426,7 @@ ALTER TABLE HINT
 		);
         
 --유저 정보--        
-insert into myuser values(myuser_seq.nextval,'admin','admin','admin',01000000000,'lyl@gmail.com',default,default,default);
+insert into myuser values(myuser_seq.nextval,'admin','admin','admin',01000000000,'lyl@gmail.com',default,default,null,default,null, default );
 --유저 정보--
 
 
