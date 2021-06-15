@@ -11,7 +11,7 @@ import db.ConnectionPoolMgr2;
 public class MyuserDAO {
 	private ConnectionPoolMgr2 pool;
 
-	MyuserDAO() {
+	public MyuserDAO() {
 		pool = new ConnectionPoolMgr2();
 	}
 
@@ -37,9 +37,13 @@ public class MyuserDAO {
 				String userEmail = rs.getString("userEmail");
 				Timestamp userJoin = rs.getTimestamp("userJoin");
 				int userSub = rs.getInt("userSub");
-				String userImg = rs.getString("userImg");
+				String userImgName = rs.getString("userImgName");
+				int userImgSize = rs.getInt("userImgSize");
+				String userImgOriName = rs.getString("userImgOriName");
+				String userDelFalg = rs.getString("userDelFalg");
 
-				vo = new MyuserVO(userNo, userId, userPwd, userName, userPhone, userEmail, userJoin, userSub, userImg);
+				vo = new MyuserVO(userNo, userId, userPwd, userName, userPhone, userEmail, userJoin, userSub, userImgName, userImgSize, userImgOriName, userDelFalg);
+				
 			}
 			System.out.println("select 결과 = " + vo + "매개변수=" + userid);
 			return vo;
@@ -49,46 +53,31 @@ public class MyuserDAO {
 		}
 
 	}
-	
+
 	public int insertMyuser(MyuserVO vo) throws SQLException {
-		Connection conn =null;
+		Connection conn = null;
 		PreparedStatement ps = null;
-		
+
 		try {
 			conn = pool.getConnection();
-			String sql = "insert into myuser(userno,userid, userpwd, username, userphone, useremail, userjoin, usersub, userimg) \r\n"
-					+ "values(myuser_seq.nextval, ?, ?, ?, ?, ?, default,default, ?)";
+			String sql = "insert into myuser(userno,userid, userpwd, username, userphone, useremail, userjoin, usersub, userImgName, userImgSize, userImgOriName) \r\n"
+					+ "values(myuser_seq.nextval, ?, ?, ?, ?, ?, default,default, ?,?,?)";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, vo.getUserId());
 			ps.setString(2, vo.getUserPwd());
 			ps.setString(3, vo.getUserName());
 			ps.setString(4, Integer.toString(vo.getUserPhone()));
 			ps.setString(5, vo.getUserEmail());
-			ps.setString(6, vo.getUserImg());
-			
+			ps.setString(6, vo.getUserImgName());
+			ps.setString(7, Long.toString(vo.getUserImgSize()));
+			ps.setString(8, vo.getUserImgOriName());
+
 			int cnt = ps.executeUpdate();
-			System.out.println("insert 결과 = "+cnt+"매개변수="+vo);
+			System.out.println("insert 결과 = " + cnt + "매개변수=" + vo);
 			return cnt;
-			
-		}finally {
+
+		} finally {
 			pool.dbClose(ps, conn);
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
