@@ -18,7 +18,7 @@
 	String pwd = request.getParameter("pwd");
 	String chkbox = request.getParameter("chkbox");
 
-	String msg = "로그인 처리 실패", url = "/startbootstrap-sb-admin-gh-pages/login2.jsp";
+	String msg = "로그인 처리 실패", url = "/startbootstrap-sb-admin-gh-pages/login/login.jsp";
 	try {
 		int result = myuserService.loginProc(userid, pwd);
 		if (result == MyuserService.LOGIN_OK) {
@@ -41,7 +41,7 @@
 			}
 
 			msg = myuserVo.getUserName() + "님, 로그인되었습니다.";
-			url = "/startbootstrap-sb-admin-gh-pages/main.jsp";
+			url = "/startbootstrap-sb-admin-gh-pages/main/main.jsp";
 		} else if (result == MyuserService.PWD_DISAGREE) {
 			msg = "비밀번호가 일치하지 않습니다.";
 		} else if (result == MyuserService.ID_NONE) {
@@ -59,6 +59,6 @@
 	request.setAttribute("url", url);
 	%>
 		
-	<jsp:forward page="common/message.jsp"></jsp:forward>
+	<jsp:forward page="../common/message.jsp"></jsp:forward>
 </body>
 </html>

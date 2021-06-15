@@ -5,7 +5,7 @@
 <%@page import="board.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ include file="top.jsp" %>
+<%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
 
 <style>
 	.listBody{
@@ -126,4 +126,4 @@
 		</tbody>
 	</table>
 </div>
-<%@ include file="bottom.jsp" %>
+<%@ include file="/../startbootstrap-sb-admin-gh-pages/inc/bottom.jsp" %>

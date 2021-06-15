@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ include file="top.jsp" %>
+<%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
 <style>
 	.listBody{
 		background: lightgray;
@@ -86,4 +86,4 @@
 	</div>
 	<input type="submit" value="¾÷·Îµå" class="submit">
 </div>
-<%@ include file="bottom.jsp" %>
+<%@ include file="/../startbootstrap-sb-admin-gh-pages/inc/bottom.jsp" %>

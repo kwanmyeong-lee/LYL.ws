@@ -24,7 +24,7 @@ if (ckArr != null) {
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>Login</title>
-<link href="css/styles.css" rel="stylesheet" />
+<link href="../css/styles.css" rel="stylesheet" />
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous"></script>

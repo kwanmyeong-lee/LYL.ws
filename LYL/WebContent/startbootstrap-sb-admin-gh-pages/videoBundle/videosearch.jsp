@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link href="css/videoStyles.css" rel="stylesheet">
-<%@ include file="top.jsp"%>
+<link href="../css/videoStyles.css" rel="stylesheet">
+<%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
 
 <script>
     $(window).scroll(function() {
@@ -69,4 +69,4 @@
    
 
 
-<%@ include file="bottom.jsp"%>
+<%@ include file="/../startbootstrap-sb-admin-gh-pages/inc/bottom.jsp" %>
