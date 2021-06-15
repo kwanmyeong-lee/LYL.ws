@@ -49,4 +49,46 @@ public class MyuserDAO {
 		}
 
 	}
+	
+	public int insertMyuser(MyuserVO vo) throws SQLException {
+		Connection conn =null;
+		PreparedStatement ps = null;
+		
+		try {
+			conn = pool.getConnection();
+			String sql = "insert into myuser(userno,userid, userpwd, username, userphone, useremail, userjoin, usersub, userimg) \r\n"
+					+ "values(myuser_seq.nextval, ?, ?, ?, ?, ?, default,default, ?)";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, vo.getUserId());
+			ps.setString(2, vo.getUserPwd());
+			ps.setString(3, vo.getUserName());
+			ps.setString(4, Integer.toString(vo.getUserPhone()));
+			ps.setString(5, vo.getUserEmail());
+			ps.setString(6, vo.getUserImg());
+			
+			int cnt = ps.executeUpdate();
+			System.out.println("insert 결과 = "+cnt+"매개변수="+vo);
+			return cnt;
+			
+		}finally {
+			pool.dbClose(ps, conn);
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
