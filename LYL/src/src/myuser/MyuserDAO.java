@@ -80,4 +80,37 @@ public class MyuserDAO {
 			pool.dbClose(ps, conn);
 		}
 	}
+	
+	public int loginProc(String userid, String userpwd) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = pool.getConnection();
+			String sql = "select userpwd from myuser where userid = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userid);
+			rs = ps.executeQuery();
+			int result = 0;
+			if (rs.next()) {
+				String pwd = rs.getString(1);
+				if (pwd.equals(userpwd)) {
+					result = MyuserService.LOGIN_OK;
+				} else {
+					result = MyuserService.PWD_DISAGREE;
+				}
+			} else {
+				result = MyuserService.ID_NONE;
+
+			}
+			System.out.println("로그인 결과=" + result + "매개변수 userid=" + userid + "매개변수 pwd=" + userpwd);
+			return result;
+			
+		}finally {
+			
+		}
+	}
+	
+	
 }

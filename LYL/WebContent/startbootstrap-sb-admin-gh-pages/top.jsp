@@ -77,10 +77,10 @@
 					class="fas fa-user fa-fw"></i></a>
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdown">
-					<li><a class="dropdown-item" href="#!">Register</a></li>
+					<li><a class="dropdown-item" href="register2.jsp">Register</a></li>
 					<li><hr class="dropdown-divider" /></li>
 					<li><a class="dropdown-item" href="#!">Logout</a></li>
-					<li><a class="dropdown-item" href="#!">Login</a></li>
+					<li><a class="dropdown-item" href="login2.jsp">Login</a></li>
 					<!-- session 에서 userid 가 있으면 다르게 보이게  -->
 				</ul></li>
 		</ul>
