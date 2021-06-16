@@ -26,7 +26,7 @@
 			
 			//세션에 아이디, 이름 저장 => 세션 어디서든 사용 가능!
 			session.setAttribute("userName", myuserVo.getUserName());
-			session.setAttribute("userid", userid);
+			session.setAttribute("userid", userid); //키 값이 userid 
 
 			//아이디 쿠키에 저장 !!
 			Cookie ck = new Cookie("ck_userid", userid);
