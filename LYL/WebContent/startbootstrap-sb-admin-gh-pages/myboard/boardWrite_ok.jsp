@@ -11,13 +11,13 @@
 </head>
 <body>
 <%
+
+		String userid = (String) session.getAttribute("userid");
+
 		//write.jsp에서 post방식으로 서브밋
 		//1.
 		request.setCharacterEncoding("utf-8");
 		String title = request.getParameter("title");
-		String name = request.getParameter("name");
-		String pwd = request.getParameter("pwd");
-		String email = request.getParameter("email");
 		String content = request.getParameter("content");
 		
 		//ip 읽어오기
@@ -29,6 +29,7 @@
 		BoardDAO dao = new BoardDAO();
 		BoardVO vo = new BoardVO();
 		vo.setBoTitle(title);
+		/* vo.setUserNo(userNo); */ //userid로 받아올것인지 no로 받아올것인지
 		vo.setBoCon(content);
 		try{
 			int cnt = dao.insertBoard(vo);
@@ -36,12 +37,12 @@
 			//3.
 			if(cnt>0){ %>
 				<script type="text/javascript">
-				 	alert('글쓰기 처리 되었습니다');
-			        location.href="list.jsp";
+				 	alert('글작성 완료 되었습니다.');
+			        location.href="boardList.jsp";
 		        </script>
 			<%}else{ %>
 				<script type="text/javascript">
-					alert('글쓰기처리 실패');
+					alert('글작성 실패 되었습니다.');
 					history.back();
 				</script>
 			<%}

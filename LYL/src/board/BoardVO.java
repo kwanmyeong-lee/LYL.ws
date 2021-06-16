@@ -3,27 +3,24 @@ package board;
 import java.sql.Timestamp;
 
 public class BoardVO {
-	private int boNo; /* ï¿½ï¿½È£ */
-	private String boTitle; /* ï¿½ï¿½ï¿½ï¿½ */
-	private String boCon; /* ï¿½ï¿½ï¿½ï¿½ */
-	private int boHits;  /* ï¿½ï¿½È¸ï¿½ï¿½ */
-	private int boCom; /* ï¿½ï¿½Û¼ï¿½ */
-	private Timestamp boDate; /* ï¿½Û¼ï¿½ï¿½ï¿½ */
-	private int boSec; /* ï¿½ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½ */
-	private int userNo; /* Å©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
-	private int userNo2; /* ï¿½Û¾ï¿½ï¿½ï¿½ */
-	private int boMyNo; /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¹ï¿½È£ */
-	private int boStep; /* ï¿½Ô½Ã±ï¿½ ï¿½Ü°ï¿½ */
-	private int boSort;/* ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ */
-	private int boGroupNo; /* ï¿½Ô½Ã±ï¿½ ï¿½×·ï¿½ï¿½È£ */
-	
-	
+	private int boNo; /* ¹øÈ£ */
+	private String boTitle; /* Á¦¸ñ */
+	private String boCon; /* ³»¿ë */
+	private int boHits;  /* Á¶È¸¼ö */
+	private int boCom; /* ´ñ±Û¼ö */
+	private Timestamp boDate; /* ÀÛ¼ºÀÏ */
+	private int boSec; /* ºñ¹Ð±Û ¿©ºÎ */
+	private int userNo; /* Å©¸®¿¡ÀÌÅÍ */
+	private int userNo2; /* ±Û¾´ÀÌ */
+	private int boMyNo; /* ¸¶ÀÌÆäÀÌÁöº° ±Û¹øÈ£ */
+	private int boStep; /* °Ô½Ã±Û ´Ü°è */
+	private int boSort;/* °Ô½Ã±Û Á¤·Ä ¹øÈ£ */
+	private int boGroupNo; /* °Ô½Ã±Û ±×·ì¹øÈ£ */
 	
 	public BoardVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
+	
 	public BoardVO(int boNo, String boTitle, String boCon, int boHits, int boCom, Timestamp boDate, int boSec,
 			int userNo, int userNo2, int boMyNo, int boStep, int boSort, int boGroupNo) {
 		super();
