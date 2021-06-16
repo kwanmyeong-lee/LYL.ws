@@ -3,8 +3,8 @@
 <%@page import="src.myuser.MyuserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="top.jsp"%>
-<link href="css/myPageStyles.css" rel="stylesheet">
+<%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
+<link href="../css/myPageStyles.css" rel="stylesheet">
 <jsp:useBean id="myuserService" class="src.myuser.MyuserService" scope="session" ></jsp:useBean>
 <% 
 String userid =(String) session.getAttribute("userid");
@@ -45,7 +45,7 @@ String joindate = sdf.format(vo.getUserJoin());
 <div class="container position-relative px-4 px-lg-5">
 	<div class="row gx-4 gx-lg-5 justify-content-center">
 		<div class="col-md-10 col-lg-8 col-xl-7">
-			<img id="userImg" src="img/200x200.jpg" class="img-thumbnail" alt="...">
+			<img id="userImg" src="../img/200x200.jpg" class="img-thumbnail" alt="...">
 			
 			<div class="d-inline-flex position-relative start-50">
 				<button type="button" class="btn btn-primary me-2">영상 업로드</button>
@@ -87,4 +87,4 @@ String joindate = sdf.format(vo.getUserJoin());
 
 
 
-<%@ include file="bottom.jsp"%>
+<%@ include file="/../startbootstrap-sb-admin-gh-pages/inc/bottom.jsp" %>

@@ -9,10 +9,11 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>Tables - SB Admin</title>
+
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
 	rel="stylesheet" />
-<link href="css/styles.css" rel="stylesheet" />
+<link href="../css/styles.css" rel="stylesheet" />
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous"></script>
@@ -77,10 +78,10 @@
 					class="fas fa-user fa-fw"></i></a>
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdown">
-					<li><a class="dropdown-item" href="register2.jsp">Register</a></li>
+					<li><a class="dropdown-item" href="../login/register.jsp">Register</a></li>
 					<li><hr class="dropdown-divider" /></li>
 					<li><a class="dropdown-item" href="#!">Logout</a></li>
-					<li><a class="dropdown-item" href="login2.jsp">Login</a></li>
+					<li><a class="dropdown-item" href="../login/login.jsp">Login</a></li>
 					<!-- session 에서 userid 가 있으면 다르게 보이게  -->
 				</ul></li>
 		</ul>
@@ -92,7 +93,7 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">main</div>
-						<a class="nav-link" href="main.jsp">
+						<a class="nav-link" href="../main/main.jsp">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> HOME
@@ -111,9 +112,9 @@
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="myPage.jsp">마이페이지</a> <a class="nav-link"
-									href="watchRecord.jsp">시청 기록</a> <a class="nav-link"
-									href="afterVideo.jsp">나중에볼 동영상</a>
+								<a class="nav-link" href="../userPage/myPage.jsp">마이페이지</a> <a class="nav-link"
+									href="../userPage/watchRecord.jsp">시청 기록</a> <a class="nav-link"
+									href="../userPage/afterVideo.jsp">나중에볼 동영상</a>
 							</nav>
 						</div>
 					<!-- 	<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"

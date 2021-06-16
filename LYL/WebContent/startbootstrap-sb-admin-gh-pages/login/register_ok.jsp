@@ -13,6 +13,7 @@ saveDir = config.getServletContext().getRealPath(Utility.UPLOAD_PATH);
 saveDir = Utility.TEST_UPLOAD_PATH;
 
 int maxSize = 2 * 1024 * 1024;
+String msg = "회원가입 실패", url = "/startbootstrap-sb-admin-gh-pages/login/register.jsp";
 try {
 	MultipartRequest mr = new MultipartRequest(request, saveDir, maxSize, "utf-8", new DefaultFileRenamePolicy());
 	System.out.println("업로드 완료");
@@ -44,7 +45,17 @@ try {
 
 	int cnt = dao.insertMyuser(vo);
 	System.out.println("유저 등록 여부" + cnt);
+	
+	if(cnt>0){
+		msg = "회원가입 성공!";
+		url = "/startbootstrap-sb-admin-gh-pages/login/login.jsp";
+	}
 } catch (SQLException e) {
 	e.printStackTrace();
 }
+
+request.setAttribute("msg", msg);
+request.setAttribute("url", url);
 %>
+
+<jsp:forward page="../common/message.jsp"></jsp:forward>
