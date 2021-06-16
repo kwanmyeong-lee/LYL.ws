@@ -56,4 +56,49 @@ public class VideoDAO {
 			pool.dbClose(rs,ps,conn);
 		}
 	}
+	
+	public VideoVO videoSelect(String vidno) throws SQLException {
+		Connection conn =null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			conn=pool.getConnection();
+			String sql = "select * from video\r\n"
+					+ "where vidno = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, vidno);
+			
+			rs=ps.executeQuery();
+			
+			VideoVO vo = null;
+			if(rs.next()) {
+				int vidNo = rs.getInt("vidNo");
+				String vidTitle = rs.getString("vidTitle");
+				int vidHits = rs.getInt("vidHits");
+				int vidCom = rs.getInt("vidCom");
+				String vidurl = rs.getString("vidurl");
+				int vidLike = rs.getInt("vidLike");
+				Timestamp vidDate = rs.getTimestamp("vidDate");
+				String vidEx = rs.getString("vidEx");
+				int vidTheme = rs.getInt("vidTheme");
+				int userNo = rs.getInt("userNo");
+				String vidThu = rs.getString("vidThu");
+				
+				vo = new VideoVO(vidNo, vidTitle, vidHits, vidCom, vidurl, vidLike, vidDate, vidEx, vidTheme, userNo, vidThu);
+			}
+			System.out.println("select 결과 vo= "+vo+"매개변수 vidno="+vidno);
+			return vo;
+			
+		}finally{
+			pool.dbClose(rs, ps, conn);
+		}
+		
+	}
 }
+
+
+
+
+
+
