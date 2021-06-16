@@ -427,6 +427,8 @@ ALTER TABLE HINT
         
 --유저 정보--        
 insert into myuser values(myuser_seq.nextval,'admin','admin','admin',01000000000,'lyl@gmail.com',default,default,null,default,null, default );
+insert into myuser values(myuser_seq.nextval,'aaa','aaa','aaa',01000000001,'aaa@gmail.com',default,default,null,default,null, default );
+insert into myuser values(myuser_seq.nextval,'bbb','bbb','bbb',01000000002,'bbb@gmail.com',default,default,null,default,null, default );
 --유저 정보--
 
 
@@ -474,6 +476,23 @@ insert into video values(video_seq.nextval, '믿기지 않는 스포츠 선수들의 괴력', 
 
 --비디오 정보--
 
+--댓글 정보--
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다1',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다2',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다3',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다4',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다5',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다6',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다7',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다8',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다9',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다10',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다11',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다12',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다13',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다14',default,default,default,default,1,1,default,default,null);
+--댓글 정보
+
 
 commit;
 
@@ -484,3 +503,4 @@ commit;
 --select * from bobycom;
 --select * from video;   
 --select * from theme;
+--select * from mycomment;
