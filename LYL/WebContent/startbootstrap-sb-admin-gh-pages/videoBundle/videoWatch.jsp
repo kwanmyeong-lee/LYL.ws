@@ -1,29 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
 <style>
 	#player{
 		padding-top: 10px;
 	}
-	
+	p{
+		margin: 0;
+	}
 	
 </style>
-<%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
 
 <script>
     $(window).scroll(function() {
     	var otherUserId='<p class="otherUserId">아이디</p>';
     	var otherContent='<p class="otherContent">내용</p>';
-    	var otherBtCommentLike='<button class="btCommentLike" type="button">좋아요</button>';
+    	var otherBtCommentLike='<button class="btn btn-primary" type="button">좋아요 </button>';
     	var otherCommentLikeCnt='<span id="vidCommentLikeCnt">111</span>';
-    	var otherBtComment2='<button type="button">답글</button>';
+    	var otherBtComment2='<button class="btn btn-primary" type="button">답글</button>';
 		
     	if ($(window).scrollTop() == $(document).height() - $(window).height()) {
         	$('.vidComment').last().after('<div class="vidComment">');
+        	$('.vidComment').last().append("<br>");
         	$('.vidComment').last().append(otherUserId);
         	$('.vidComment').last().append(otherContent);
         	$('.vidComment').last().append(otherBtCommentLike);
-        	$('.vidComment').last().append(therCommentLikeCnt);
-        	$('.vidComment').last().append(ootherBtComment2);
+        	$('.vidComment').last().append(otherCommentLikeCnt);
+        	$('.vidComment').last().append(otherBtComment2);
+        	
         }
     });
 </script>
@@ -46,13 +50,13 @@
     	<textarea rows="2" cols="100"></textarea>
    	 	<button type="button">댓글</button>
     </div>
-    <div class='vidComment'>
+    <!-- <div class='vidComment'>
     	<p class="otherUserId">아이디</p>
     	<p class="otherContent">내용</p>
     	<button class="btCommentLike" type="button">좋아요</button>
     	<span id="vidCommentLikeCnt">111</span>
     	<button type="button">답글</button>
-    </div>
+    </div> -->
     
    
 
