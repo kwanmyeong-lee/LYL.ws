@@ -8,10 +8,14 @@
 <jsp:useBean id="myuserService" class="src.myuser.MyuserService" scope="session" ></jsp:useBean>
 <% 
 String userid =(String) session.getAttribute("userid");
+//userid = "123";
 MyuserVO vo = new MyuserVO();
 vo = myuserService.selectMyuser(userid);
-SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-String joindate = sdf.format(vo.getUserJoin());
+String imgName = null;
+if(vo.getUserImgName()!=null ){
+	imgName = vo.getUserImgName();
+}
+
 %>
 
 <script>
@@ -43,10 +47,10 @@ String joindate = sdf.format(vo.getUserJoin());
 <div class="container position-relative px-4 px-lg-5">
 	<div class="row gx-4 gx-lg-5 justify-content-center">
 		<div class="col-md-10 col-lg-8 col-xl-7">
-			<%if(vo.getUserImgName().equals("")){ %>
+			<%if(imgName==null){ %>
 			<img id="userImg" src="../img/200x200.jpg" class="img-thumbnail mw-50" alt="...">
 			<%}else{ %>
-			<img id="userImg" src="../userImg/<%=vo.getUserImgName() %>" class="img-thumbnail" style="width: 200px" alt="...">
+			<img id="userImg" src="../userImg/<%=imgName %>" class="img-thumbnail" style="width: 200px" alt="...">
 			<%} %>
 			<div class="d-inline-flex position-relative start-50">
 				<button type="button" class="btn btn-primary me-2">영상 업로드</button>
