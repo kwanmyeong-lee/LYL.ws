@@ -65,7 +65,7 @@ public class BoardDAO {
 			conn=pool.getConnection();
 
 			//3 ps
-			String sql="insert into myboard(bono, botitle, bocon, bodate, userno, userno2)"  //sql문 수정해야함
+			String sql="insert into myboard(bono, botitle, bocon, bodate, userno, userno2)"  //sql문 수정해야함 - 비밀글 여부추가, 답글은 일단X
 					+ " values(myboard_seq.nextval, ?, ?, default, ?, ?);";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, vo.getBoTitle());
@@ -80,6 +80,34 @@ public class BoardDAO {
 			return cnt;
 		}finally {
 			pool.dbClose(ps, conn);
+		}
+	}
+	
+	public BoardVO selectByNo(int boNo) throws SQLException {
+		Connection conn=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		BoardVO vo = new BoardVO();
+		try {
+		 conn=pool.getConnection();
+		 
+		 String sql="select * from myboard where boNo=?";
+		 ps=conn.prepareStatement(sql);
+		 ps.setInt(1, boNo);
+		 
+		 rs=ps.executeQuery();
+		 if(rs.next()) {
+			 vo.setBoNo(boNo);
+			 
+			 String content=rs.getString("content");
+			 vo.setBoCon(content);
+			 
+		 }
+		 System.out.println("글상세조회 결과, vo="+vo+", 매개변수 no="+boNo);
+		 return vo;
+		} finally {
+			pool.dbClose(rs, ps, conn);
 		}
 	}
 }
