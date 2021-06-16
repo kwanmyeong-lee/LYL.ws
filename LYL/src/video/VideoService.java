@@ -15,5 +15,8 @@ public class VideoService {
 		
 		return list;
 	}
+	public VideoVO videoSelect(String vidno) throws SQLException {
+		return dao.videoSelect(vidno);
+	}
 	
 }

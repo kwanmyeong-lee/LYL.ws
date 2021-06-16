@@ -1,3 +1,5 @@
+<%@page import="video.VideoVO"%>
+<%@page import="java.sql.SQLException"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
@@ -33,15 +35,30 @@
 </script>
 
 <body>
+	<jsp:useBean id="videoService" class="video.VideoService" scope="page"></jsp:useBean>
+
+	<%
+		String vidno = request.getParameter("vidno");  //받아올게 없쥬?
+		vidno = "1"; //1이라고 가정함
+		
+		
+		VideoVO videoVo = null;
+		try{
+			videoVo = videoService.videoSelect(vidno);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+	%>
+
    <header>
    </header>
    <iframe id="player" width="1200" height="650" src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1" allowfullscreen=""></iframe>
-	<p id='vidTitle'>title</p>
-	<p id='vidHits'>조회수0회 2012.12.12.</p>
+	<p id='vidTitle'>title : &nbsp;<%=videoVo.getVidTitle() %></p>
+	<p id='vidHits'>조회수 <%=videoVo.getVidHits() %> 회 <%=videoVo.getVidDate() %></p>
 	<hr>
-	<p id='vidUploaderId'>ID</p>
-	<p id='vidG'>구독자11명</p>
-    <p id='vidContent'>내용</p>
+	<p id='vidUploaderId'>id :&nbsp;<%=videoVo.getUserNo() %> </p>
+	<p id='vidG'>구독자 명</p>
+    <p id='vidContent'>내용 : &nbsp;<%=videoVo.getVidEx() %></p>
     <hr>
     <div id='vidCommentCnt'>
     	<span>댓글 </span><span>0</span><span>개</span>
@@ -58,7 +75,7 @@
     	<button type="button">답글</button>
     </div> -->
     
-   
+  </body>
 
 
 <%@ include file="/../startbootstrap-sb-admin-gh-pages/inc/bottom.jsp" %>
