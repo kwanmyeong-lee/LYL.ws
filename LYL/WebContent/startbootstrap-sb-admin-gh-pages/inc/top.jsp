@@ -30,18 +30,17 @@
 	integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
 	crossorigin="anonymous"></script> -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
     $(function(){
     	$('.form-control').keydown(function(e){
     		if(e.keyCode==13){	
     			event.preventDefault();
-    			location.href="videosearch.jsp";
+    			location.href="../videoBundle/videosearch.jsp";
     		}
     	});
 
     	$('#btnNavbarSearch').click(function(){
-    		location.href="videosearch.jsp";
+    		location.href="../videoBundle/videosearch.jsp";
     	});
     });
 
