@@ -44,7 +44,7 @@ try {
 	vo.setUserImgOriName(originalFileName);
 
 	int cnt = dao.insertMyuser(vo);
-	System.out.println("유저 등록 여부" + cnt);
+	System.out.println("회원 수정 여부" + cnt);
 	
 	if(cnt>0){
 		msg = "회원가입 성공!";
@@ -58,4 +58,4 @@ request.setAttribute("msg", msg);
 request.setAttribute("url", url);
 %>
 
-<jsp:forward page="../common/message.jsp"></jsp:forward>
+<jsp:forward page="/startbootstrap-sb-admin-gh-pages/common/message.jsp"></jsp:forward>

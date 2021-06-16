@@ -85,7 +85,9 @@ if (ckArr != null) {
 								</div>
 								<div class="card-footer text-center py-3">
 									<div class="small">
-										<a href="register.html">Need an account? Sign up!</a>
+										<a href="register.jsp">Need an account? Sign up!</a>
+										<br>
+										<a href="../main/main.jsp">go main</a>
 									</div>
 								</div>
 							</div>

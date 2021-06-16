@@ -25,4 +25,12 @@ public class MyuserService {
 	public int loginProc(String userid, String userpwd) throws SQLException {
 		return userDao.loginProc(userid, userpwd);
 	}
+	public int insertMyuser(MyuserVO vo) throws SQLException {
+		return userDao.insertMyuser(vo);
+	}
+	
+	public int userUpdate(MyuserVO vo) throws SQLException {
+		return userDao.userUpdate(vo);
+	}
+
 }
