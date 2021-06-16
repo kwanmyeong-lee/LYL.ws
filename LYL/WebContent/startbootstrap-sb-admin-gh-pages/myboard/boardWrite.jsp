@@ -75,17 +75,36 @@
 <%
 	String userid = (String) session.getAttribute("userid");
 %>
-<div class="listBody">
-	<div id="titleH"><h2>글작성</h2></div>
-	<div>
-		<div class="titleDiv">
-			<label>제목 : </label>
-			<input type="text" name="title" class="title">&nbsp;
-			<input type="checkbox" name="private" id="private">&nbsp;비공개
-			<div id="pwd">비밀번호 : <input type="password" name="pwd" class="pwd"></div>
+<script type="text/javascript">
+	$(function(){
+		$('form[name=frmWrite]').submit(function(){
+			$('.infobox').each(function(idx, item){
+				if($(this).val().length<1){
+					alert($(this).prev().text()+"을(를) 입력하세요");
+					$(item).focus();
+					event.preventDefault();
+					return false;
+				}
+			});
+		});
+	});
+</script>
+<form name="frmWrite" method="post" action="boardWrite_ok.jsp">
+	<div class="listBody">
+		<div id="titleH"><h2>글작성</h2></div>
+		<div>
+			<div class="titleDiv">
+				<label>제목 : </label>
+				<input type="text" name="title" class="title">&nbsp;
+				<input type="checkbox" name="private" id="private">&nbsp;비공개
+				<div id="pwd">
+					<label>비밀번호 : </label><input type="password" name="pwd" class="pwd">
+				</div>
+			</div>
+			<textarea name="content" id="content" cols="114" rows="30"></textarea>
 		</div>
-		<textarea name="content" id="content" cols="114" rows="30"></textarea>
+		<input type="submit" value="업로드" class="submit">
 	</div>
-	<input type="submit" value="업로드" class="submit">
-</div>
+</form>
+
 <%@ include file="/../startbootstrap-sb-admin-gh-pages/inc/bottom.jsp" %>

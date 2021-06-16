@@ -1,3 +1,6 @@
+<%@page import="java.sql.SQLException"%>
+<%@page import="board.BoardVO"%>
+<%@page import="board.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/../startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
@@ -36,7 +39,8 @@
 		margin: 10px 90px;
 		width: 700px;
 		height:40px;
-		background: black;
+		background: white;
+		border-radius: 10px;
 	}
 	.userName{
 		position:absolute;
@@ -75,16 +79,66 @@
 		width:850px;
 		height: 500px;
 		border-radius: 10px;
+		resize: none;
 	}
 	
+	button{
+		border-radius: 10px;
+	}
 	.btn{
 		margin: 0 400px;
 	}
 	
 	.commentList > h5{
-		margin-left: 70px;
+		margin-left: 75px;
+	}
+	
+	.commentInsert{
+		margin: 0 80px;
+	}
+	.commentSec{
+		position: absolute;
+		margin-left: 15px;
+	}
+	.commentSec > .submit{
+		width: 100px;
+		height: 48px;
+		margin-top: 5px;
+		border-radius: 10px;
+	}
+	.comment{
+		border-radius: 10px;
+		resize: none;
 	}
 </style>
+<%
+String boNo = request.getParameter("boNo");
+	if(boNo==null || boNo.isEmpty()){ %>
+		<script type="text/javascript">
+			alert("잘못된 url입니다.");
+			location.href="boardList.jsp";
+		</script>	
+	<% return;
+	}
+	//2
+	BoardDAO dao = new BoardDAO();
+	BoardVO vo = null;
+	try{
+		vo=dao.selectByNo(Integer.parseInt(boNo));
+	} catch(SQLException e){
+		e.printStackTrace();
+	}
+	//3
+	/* String content = vo.getBoCon();
+	if(content !=null && !content.isEmpty()){
+		
+		//replace \r\n => <br>
+		content=content.replace("\r\n", "<br>");
+	}else{
+		//null =>
+		content=" ";
+	} */
+%>
 <div class="listBody">
 	<div class="titleH"><h3>게시판</h3></div>
 		<div class="detailBlock">
@@ -111,8 +165,11 @@
 			<!-- 댓글 입력 -->
 			<span class="commentUser"><!-- 댓글 달 유저이름 --></span>
 			<span class="comment">
-			<textarea rows="3" cols="100"></textarea> 
-			input
+			<textarea rows="3" cols="100" class="comment" ></textarea> 
+			<span class="commentSec">	
+				<input type="checkbox" class="chSec">비밀글<br>
+				<input type="submit" class="submit" value="등록">
+			</span>
 			</span>
 		</div>
 </div>
