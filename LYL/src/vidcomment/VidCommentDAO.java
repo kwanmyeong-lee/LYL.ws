@@ -1,9 +1,14 @@
 package vidcomment;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import db.ConnectionPoolMgr2;
 
@@ -26,21 +31,19 @@ public class VidCommentDAO {
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, vidNo);
 
-			
-
 			rs=ps.executeQuery();
 			VidCommentVO vcvo=new VidCommentVO();
 			while(rs.next()) {
 				vcvo.setComNo(rs.getInt(1));
 				vcvo.setComCon(rs.getString(2));
 				vcvo.setComDate(rs.getTimestamp(3));
-				vcvo.setComRe(rs.getInt(4));
-				vcvo.setComRe(rs.getInt(5));
-				vcvo.setComRe(rs.getInt(6));
-				vcvo.setComRe(rs.getInt(7));
-				vcvo.setComRe(rs.getInt(8));
-				vcvo.setComRe(rs.getInt(9));
-				vcvo.setComRe(rs.getInt(10));
+				vcvo.setComLike(rs.getInt(4));
+				vcvo.setComSec(rs.getInt(5));
+				vcvo.setVidNo(rs.getInt(6));
+				vcvo.setUserNo(rs.getInt(7));
+				vcvo.setComStep(rs.getInt(8));
+				vcvo.setComSort(rs.getInt(9));
+				vcvo.setComGroup(rs.getInt(10));
 			}
 			return vcvo;
 		
@@ -48,5 +51,7 @@ public class VidCommentDAO {
 			pool.dbClose(rs, ps, conn);
 		}
 	}
+	
+	
 	
 }

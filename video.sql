@@ -496,6 +496,7 @@ insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다14',default,de
 
 commit;
 
+
 --테이블 확인
 --select * from myuser;
 --select * from myboard;
