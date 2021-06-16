@@ -112,5 +112,32 @@ public class MyuserDAO {
 		}
 	}
 	
+	public int userUpdate(MyuserVO vo) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+			conn = pool.getConnection();
+			String sql = "update myuser\r\n"
+					+ "set userpwd = ?, userphone= ?, useremail= ?,  userImgName= ?, userImgSize= ?, userImgOriName=?\r\n"
+					+ "where userid = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, vo.getUserPwd());
+			ps.setString(2, Integer.toString(vo.getUserPhone()));
+			ps.setString(3, vo.getUserEmail());
+			ps.setString(4, vo.getUserImgName());
+			ps.setString(5, Long.toString(vo.getUserImgSize()));
+			ps.setString(6, vo.getUserImgOriName());
+			ps.setString(7, vo.getUserId());
+
+			int cnt = ps.executeUpdate();
+			System.out.println("회원 정보 수정 결과 = " + cnt + "매개변수=" + vo);
+			return cnt;
+
+		} finally {
+			pool.dbClose(ps, conn);
+		}
+	}
+	
 	
 }

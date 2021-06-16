@@ -1,3 +1,5 @@
+<%@page import="src.myuser.MyuserVO"%>
+<%@page import="java.sql.SQLException"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -16,6 +18,16 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous"></script>
 <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<jsp:useBean id="myuserService" class="src.myuser.MyuserService" scope="session"></jsp:useBean>
+<%
+String userid = (String) session.getAttribute("userid");
+MyuserVO vo = null;
+try{
+	vo =myuserService.selectMyuser(userid);
+}catch(SQLException e){
+	e.printStackTrace();
+}
+%>
 <script type="text/javascript">
 	$(function() {
 		$('form[name=frmregister]').submit(function() {
@@ -39,24 +51,25 @@
 						<div class="col-lg-7">
 							<div class="card shadow-lg border-0 rounded-lg mt-5">
 								<div class="card-header">
-									<h3 class="text-center font-weight-light my-4">Create
-										Account</h3>
+									<h3 class="text-center font-weight-light my-4">update</h3>
 								</div>
 								<div class="card-body">
-									<form name="frmregister" method="post" action="register_ok.jsp"
+									<form name="frmregister" method="post" action="userUpdate_ok.jsp"
 										enctype="multipart/form-data">
 										<div class="row mb-3">
 											<div class="col-md-6">
 												<div class="form-floating mb-3 mb-md-0 inte">
 													<input name="userId" class="form-control" id="inputUserid"
-														type="text" placeholder="Enter your id" /> <label
+														type="text" placeholder="Enter your id"  value="<%=vo.getUserId()%>"
+														readonly/> <label
 														for="inputUserid">UserId</label>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-floating inte">
 													<input name="userName" class="form-control" id="inputName"
-														type="text" placeholder="Enter your Name" /> <label
+														type="text" placeholder="Enter your Name" value="<%=vo.getUserName() %>"
+														readonly/> <label
 														for="inputName">Name</label>
 												</div>
 											</div>
@@ -80,12 +93,12 @@
 										</div>
 										<div class="form-floating mb-3 inte">
 											<input name="userEmail" class="form-control" id="inputEmail"
-												type="email" placeholder="name@example.com" /> <label
+												type="email" placeholder="name@example.com" value="<%=vo.getUserEmail() %>"/> <label
 												for="inputEmail">Email address</label>
 										</div>
 										<div class="form-floating mb-3 inte">
 											<input name="userHp" class="form-control" id="inputTel"
-												type="tel" placeholder="010-1234-1234" /> <label
+												type="tel" placeholder="010-1234-1234" value="<%=vo.getUserPhone() %>"/> <label
 												for="inputTel">tel</label>
 										</div>
 										<div class="form-group ">
@@ -98,15 +111,15 @@
 										<div class="mt-4 mb-0">
 											<div class="d-grid">
 												<input class="btn btn-primary btn-block" type="submit"
-													value="Create Account">
+													value="Update Account">
 											</div>
 										</div>
 									</form>
-								</div>
-								<div class="card-footer text-center py-3">
+										<div class="card-footer text-center py-3">
 									<div class="small">
 										<a href="../main/main.jsp">go main</a>
 									</div>
+								</div>
 								</div>
 							</div>
 						</div>

@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String t_userid = (String)session.getAttribute("userid");
+	boolean t_login = false;
+	if(t_userid!=null && !t_userid.isEmpty()){ //세션에 값이 있으면
+		t_login = true; // 로그인 된 경우
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,6 +49,7 @@
     	$('#btnNavbarSearch').click(function(){
     		location.href="../videoBundle/videosearch.jsp";
     	});
+    	
     });
 
 
@@ -77,10 +85,14 @@
 					class="fas fa-user fa-fw"></i></a>
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdown">
-					<li><a class="dropdown-item" href="../login/register.jsp">Register</a></li>
-					<li><hr class="dropdown-divider" /></li>
-					<li><a class="dropdown-item" href="#!">Logout</a></li>
+					<%if(!t_login){ %>
 					<li><a class="dropdown-item" href="../login/login.jsp">Login</a></li>
+					<li><a class="dropdown-item" href="../login/register.jsp">Register</a></li>
+					<%}else{ %>
+					<!-- <li><hr class="dropdown-divider" /></li> -->
+					<li><a class="dropdown-item" href="../login/logOut.jsp">Logout</a></li>
+					<li><a class="dropdown-item" href="../login/userUpdate.jsp">userUpdate</a></li>
+					<%} %>
 					<!-- session 에서 userid 가 있으면 다르게 보이게  -->
 				</ul></li>
 		</ul>
@@ -97,6 +109,7 @@
 								<i class="fas fa-tachometer-alt"></i>
 							</div> HOME
 						</a>
+						<%if(t_login){ %>
 						<div class="sb-sidenav-menu-heading">Interface</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapseLayouts" aria-expanded="false"
@@ -108,6 +121,7 @@
 								<i class="fas fa-angle-down"></i>
 							</div>
 						</a>
+					
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
@@ -116,6 +130,7 @@
 									href="../userPage/afterVideo.jsp">나중에볼 동영상</a>
 							</nav>
 						</div>
+						<%} %>
 					<!-- 	<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapsePages" aria-expanded="false"
 							aria-controls="collapsePages">
