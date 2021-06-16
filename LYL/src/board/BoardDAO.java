@@ -55,4 +55,31 @@ public class BoardDAO {
 		}
 		
 	}
+	
+	public int insertBoard(BoardVO vo) throws SQLException {
+		Connection conn=null;
+		PreparedStatement ps=null;
+
+		try {
+			//1,2 conn
+			conn=pool.getConnection();
+
+			//3 ps
+			String sql="insert into myboard(bono, botitle, bocon, bodate, userno, userno2)"  //sql문 수정해야함
+					+ " values(myboard_seq.nextval, ?, ?, default, ?, ?);";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getBoTitle());
+			ps.setString(2, vo.getBoCon());
+			ps.setInt(3, vo.getUserNo());
+			ps.setInt(3, vo.getUserNo2());
+			
+			//4 exec
+			int cnt=ps.executeUpdate();
+			System.out.println("글쓰기 결과, cnt="+cnt+", 매개변수 vo="+vo);
+
+			return cnt;
+		}finally {
+			pool.dbClose(ps, conn);
+		}
+	}
 }
