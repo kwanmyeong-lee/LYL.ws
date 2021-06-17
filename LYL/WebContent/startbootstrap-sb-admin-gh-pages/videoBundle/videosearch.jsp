@@ -9,7 +9,7 @@
    
 	
 <script>
-	var vidCnt=0;
+	var vidCnt=5;
 	var vidTitle="${param.vidTitle}";
     $(window).scroll(function() {
 		
@@ -66,49 +66,31 @@
     <h1>찾기</h1>
    </header>
    
-
-   <div class="video_info">
-	   <div class="video_search_list">
-	   		<img class="search_Thumbnail" src="http://img.youtube.com/vi/lgPi5GhEj0c/maxresdefault.jpg">
-	   		<p class="search_video_tilte">title</p>
-	   		<p class="video_uploaderid">id</p>
-	   		<p class="video_hits">조회수</p>
-	   </div>
-   </div>
-
+<%
+	String vidTitle = request.getParameter("vidTitle");
+	VideoService sv = new VideoService();
+	List<VideoVO> list = sv.videoSearch(vidTitle, 0);
+	
+	for(int i=0; i<list.size(); i++){
+		VideoVO vo = list.get(i);
+		String VidWatch ="videoWatch.jsp?vidNo="+vo.getVidNo();
+		%>
+		<a class="awatch" href=<%=VidWatch%>>
+   			<div class="video_info">
+	   			<div class="video_search_list">
+			   		<img class="search_Thumbnail" src=<%=vo.getVidThu() %>>
+			   		<p class="search_video_tilte"><%=vo.getVidTitle() %>title</p>
+			   		<p class="video_uploaderid"><%=vo.getUserNo() %></p>
+			   		<p class="video_hits"><%=vo.getVidHits() %></p>
+			   </div>
+   			</div>
+		</a>
+		
+	<%}
+%>
+	
    
-   <div class="video_info">
-	   <div class="video_search_list">
-	   		<img class="search_Thumbnail" src="http://img.youtube.com/vi/lgPi5GhEj0c/maxresdefault.jpg">
-	   		<p class="search_video_tilte">title</p>
-	   		<p class="video_uploaderid">id</p>
-	   		<p class="video_hits">조회수</p>
-	   </div>
-   </div>
-   <div class="video_info">
-	   <div class="video_search_list">
-	   		<img class="search_Thumbnail" src="http://img.youtube.com/vi/lgPi5GhEj0c/maxresdefault.jpg">
-	   		<p class="search_video_tilte">title</p>
-	   		<p class="video_uploaderid">id</p>
-	   		<p class="video_hits">조회수</p>
-	   </div>
-   </div>
-   <div class="video_info">
-	   <div class="video_search_list">
-	   		<img class="search_Thumbnail" src="http://img.youtube.com/vi/lgPi5GhEj0c/maxresdefault.jpg">
-	   		<p class="search_video_tilte">title</p>
-	   		<p class="video_uploaderid">id</p>
-	   		<p class="video_hits">조회수</p>
-	   </div>
-   </div>
-   <div class="video_info">
-	   <div class="video_search_list">
-	   		<img class="search_Thumbnail" src="http://img.youtube.com/vi/lgPi5GhEj0c/maxresdefault.jpg">
-	   		<p class="search_video_tilte">title</p>
-	   		<p class="video_uploaderid">id</p>
-	   		<p class="video_hits">조회수</p>
-	   </div>
-   </div>
+  
    
    
 
