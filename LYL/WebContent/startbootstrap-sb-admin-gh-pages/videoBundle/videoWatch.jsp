@@ -69,6 +69,19 @@
         	
         }
     });
+    
+    $(function(){
+    	$('#videoSave').click(){
+    		$.ajax({
+
+    			url : "watchRecord_ok.jsp",
+
+    			type : "post", //get post둘중하나
+
+    			data : {"vidComCnt":vidComCnt,"vidNo":vidNo},
+    			
+    	}
+    })
 </script>
 
 <body>
@@ -101,7 +114,13 @@
 	<hr>
 	<p id='vidUploaderId'>id :&nbsp;<%=myuserVo.getUserId() %> </p>
 	<p id='vidG'>구독자<%=myuserVo.getUserSub() %> 명</p>
-    <p id='vidContent'>내용 : &nbsp;<%=videoVo.getVidEx() %></p>
+	
+	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+		<button id="subscribe" class="btn btn-primary me-md-2" type="button" value="구독"></button>
+		<button id="videoSave" class="btn btn-primary" type="button" value="다시보기에 저장"></button>
+	</div>
+
+	<p id='vidContent'>내용 : &nbsp;<%=videoVo.getVidEx() %></p>
     <hr>
     <div id='vidCommentCnt'>
     	<span>댓글 </span><span><%=videoVo.getVidCom() %></span><span>개</span>
