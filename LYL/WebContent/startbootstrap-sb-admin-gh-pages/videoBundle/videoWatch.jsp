@@ -70,10 +70,64 @@
     });
   
 </script>
+<body>
+	<jsp:useBean id="videoService" class="video.VideoService" scope="page"></jsp:useBean>
+	<jsp:useBean id="myuserService" class="src.myuser.MyuserService" scope="page"></jsp:useBean>
+	<jsp:useBean id="aftervideoService" class="src.aftervideo.aftervideoService" scope="page"></jsp:useBean>
+	
+	<%
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String vidno = request.getParameter("vidNo");  //받아올게 없쥬?
+		
+		VideoVO videoVo = null;
+		MyuserVO myuserVo = null;
+		aftervideoVO afvideoVo = null;
+		try{
+			videoVo = videoService.videoSelect(vidno);
+			myuserVo = myuserService.selectMyuserByVidNo(vidno); //유저번호, 구독자, 타이틀 밖에 안들어있어요
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+	%>
+
+   <header>
+   </header>
+   <iframe id="player" width="1200" height="650" src=<%=videoVo.getVidurl()+"?autoplay=1&mute=1"%> allowfullscreen=""></iframe>
+	<p id='vidTitle'>title : &nbsp;<%=videoVo.getVidTitle() %></p>
+	<p id='vidHits'>조회수 <%=videoVo.getVidHits() %> 회 <%=sdf.format(videoVo.getVidDate()) %></p>
+	
+	<hr>
+	<p id='vidUploaderId'>id :&nbsp;<%=myuserVo.getUserId() %> </p>
+	<p id='vidG'>구독자<%=myuserVo.getUserSub() %> 명</p>
+	
+	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+		<button id="subscribe" class="btn btn-primary me-md-2" type="button" value="<%=myuserVo.getUserNo()%>">구독</button>
+		<button id="videoSave" class="btn btn-primary" type="button" >다시보기에 저장</button>
+	</div>
+
+	<p id='vidContent'>내용 : &nbsp;<%=videoVo.getVidEx() %></p>
+    <hr>
+    <div id='vidCommentCnt'>
+    	<span>댓글 </span><span><%=videoVo.getVidCom() %></span><span>개</span>
+    </div>
+    <div class='vidComment' id ='myComment'>
+    	<textarea rows="2" cols="100"></textarea>
+   	 	<button type="button">댓글</button>
+    </div>
+    <!-- <div class='vidComment'>
+    	<p class="otherUserId">아이디</p>
+    	<p class="otherContent">내용</p>
+    	<button class="btCommentLike" type="button">좋아요</button>
+    	<span id="vidCommentLikeCnt">111</span>
+    	<button type="button">답글</button>
+    </div> -->
+    
+  </body>
 <script type="text/javascript">
 	var vidNo=${param.vidNo};
-	var userNo = ${sessionScope.userNo}; 
-	var userNo2 = $('subscribe').val();
+	var userNo = ${sessionScope.userNo}; //로이그인 해서 들어온 유저
+	var userNo2 = $('#subscribe').val(); //영상 올린 유저
 	
 	$(function() {
 		$('#videoSave').click(function() {
@@ -131,61 +185,5 @@
 		});
 	});
 </script>
-
-<body>
-	<jsp:useBean id="videoService" class="video.VideoService" scope="page"></jsp:useBean>
-	<jsp:useBean id="myuserService" class="src.myuser.MyuserService" scope="page"></jsp:useBean>
-	<jsp:useBean id="aftervideoService" class="src.aftervideo.aftervideoService" scope="page"></jsp:useBean>
-	
-	<%
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String vidno = request.getParameter("vidNo");  //받아올게 없쥬?
-		
-		VideoVO videoVo = null;
-		MyuserVO myuserVo = null;
-		aftervideoVO afvideoVo = null;
-		try{
-			videoVo = videoService.videoSelect(vidno);
-			myuserVo = myuserService.selectMyuserByVidNo(vidno);
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		
-	%>
-
-   <header>
-   </header>
-   <iframe id="player" width="1200" height="650" src=<%=videoVo.getVidurl()+"?autoplay=1&mute=1"%> allowfullscreen=""></iframe>
-	<p id='vidTitle'>title : &nbsp;<%=videoVo.getVidTitle() %></p>
-	<p id='vidHits'>조회수 <%=videoVo.getVidHits() %> 회 <%=sdf.format(videoVo.getVidDate()) %></p>
-	
-	<hr>
-	<p id='vidUploaderId'>id :&nbsp;<%=myuserVo.getUserId() %> </p>
-	<p id='vidG'>구독자<%=myuserVo.getUserSub() %> 명</p>
-	
-	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-		<button id="subscribe" class="btn btn-primary me-md-2" type="button" value="<%=myuserVo.getUserNo()%>">구독</button>
-		<button id="videoSave" class="btn btn-primary" type="button" value="">다시보기에 저장</button>
-	</div>
-
-	<p id='vidContent'>내용 : &nbsp;<%=videoVo.getVidEx() %></p>
-    <hr>
-    <div id='vidCommentCnt'>
-    	<span>댓글 </span><span><%=videoVo.getVidCom() %></span><span>개</span>
-    </div>
-    <div class='vidComment' id ='myComment'>
-    	<textarea rows="2" cols="100"></textarea>
-   	 	<button type="button">댓글</button>
-    </div>
-    <!-- <div class='vidComment'>
-    	<p class="otherUserId">아이디</p>
-    	<p class="otherContent">내용</p>
-    	<button class="btCommentLike" type="button">좋아요</button>
-    	<span id="vidCommentLikeCnt">111</span>
-    	<button type="button">답글</button>
-    </div> -->
-    
-  </body>
-
 
 <%@ include file="/../startbootstrap-sb-admin-gh-pages/inc/bottom.jsp" %>

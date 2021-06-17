@@ -155,9 +155,11 @@ public class MyuserDAO {
 			if (rs.next()) {
 				String userid = rs.getString("userId");
 				int userSub = rs.getInt("userSub");
+				int userNo = rs.getInt("userNo");
 
 				vo.setUserId(userid);
 				vo.setUserSub(userSub);
+				vo.setUserNo(userNo);
 
 			}
 			System.out.println("비디오 번호로 유저 검색 결과 =" + vo + "매개변수 vidno=" + vidno);

@@ -13,4 +13,7 @@ public class subscribeService {
 	public int subscribe(String userNo2, String userNo ) throws SQLException {
 		return dao.subscribe(userNo2, userNo);
 	}
+	public int dissubscribe(String userNo, String userNo2) throws SQLException {
+		return dao.dissubscribe(userNo, userNo2);
+	}
 }
