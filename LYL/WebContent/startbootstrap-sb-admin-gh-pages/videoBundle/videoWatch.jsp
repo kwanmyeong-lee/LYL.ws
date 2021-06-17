@@ -73,6 +73,7 @@
 <script type="text/javascript">
 	var vidNo=${param.vidNo};
 	var userNo = ${sessionScope.userNo}; 
+	var userNo2 = $('subscribe').val();
 	
 	$(function() {
 		$('#videoSave').click(function() {
@@ -111,7 +112,7 @@
 
 				data : {
 					"userNo" : userNo,
-					"vidNo" : vidNo
+					"userNo2" : userNo2
 				},
 
 				success : function(data) {
@@ -163,7 +164,7 @@
 	<p id='vidG'>구독자<%=myuserVo.getUserSub() %> 명</p>
 	
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-		<button id="subscribe" class="btn btn-primary me-md-2" type="button" value="">구독</button>
+		<button id="subscribe" class="btn btn-primary me-md-2" type="button" value="<%=myuserVo.getUserNo()%>">구독</button>
 		<button id="videoSave" class="btn btn-primary" type="button" value="">다시보기에 저장</button>
 	</div>
 
