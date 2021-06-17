@@ -39,6 +39,7 @@
 	    		    	var scVidUserId='<p class="video_uploaderid">'+vidList[i].vidUserNo+'</p>';
 	    		    	var scVidHits='<p class="video_hits">'+vidList[i].vidHits+'</p>';
 	    				var scVidNo=vidList[i].vidNo;
+	    				
 						
 	    		    	$("main").children().first().append('<a class="awatch" href="videoWatch.jsp?vidNo='+scVidNo+'">');
 	    		    	$(".awatch").last().append('<div class="video_info">');

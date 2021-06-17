@@ -89,11 +89,15 @@
 			e.printStackTrace();
 		}
 		
+		String vidUrl = videoVo.getVidurl();
+		if(vidUrl.startsWith("https")){
+			vidUrl+="?autoplay=1&mute=1";
+		}
 	%>
 
    <header>
    </header>
-   <iframe id="player" width="1200" height="650" src=<%=videoVo.getVidurl()+"?autoplay=1&mute=1"%> allowfullscreen=""></iframe>
+   <iframe id="player" width="1200" height="650" src=<%=vidUrl%> allowfullscreen=""></iframe>
 	<p id='vidTitle'>title : &nbsp;<%=videoVo.getVidTitle() %></p>
 	<p id='vidHits'>조회수 <%=videoVo.getVidHits() %> 회 <%=sdf.format(videoVo.getVidDate()) %></p>
 	
