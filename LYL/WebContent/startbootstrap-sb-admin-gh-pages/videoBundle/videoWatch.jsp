@@ -1,3 +1,4 @@
+<%@page import="video.VideoService"%>
 <%@page import="src.aftervideo.aftervideoVO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -7,6 +8,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
+
+
 <style>
 	#player{
 		padding-top: 10px;
@@ -19,6 +22,7 @@
 
 <script>
 	var vidComCnt=0;
+	var vidNo=${param.vidNo};
     $(window).scroll(function() {
     	
     	
@@ -30,7 +34,7 @@
 
     			type : "post", //get post둘중하나
 
-    			data : {"vidComCnt":vidComCnt},
+    			data : {"vidComCnt":vidComCnt,"vidNo":vidNo},
     			
 
     			success : function(data) {
@@ -74,8 +78,7 @@
 	
 	<%
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String vidno = request.getParameter("vidno");  //받아올게 없쥬?
-		vidno = "1"; //1이라고 가정함
+		String vidno = request.getParameter("vidNo");  //받아올게 없쥬?
 		
 		VideoVO videoVo = null;
 		MyuserVO myuserVo = null;
@@ -91,7 +94,7 @@
 
    <header>
    </header>
-   <iframe id="player" width="1200" height="650" src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1" allowfullscreen=""></iframe>
+   <iframe id="player" width="1200" height="650" src=<%=videoVo.getVidurl()+"?autoplay=1&mute=1"%> allowfullscreen=""></iframe>
 	<p id='vidTitle'>title : &nbsp;<%=videoVo.getVidTitle() %></p>
 	<p id='vidHits'>조회수 <%=videoVo.getVidHits() %> 회 <%=sdf.format(videoVo.getVidDate()) %></p>
 	

@@ -42,12 +42,12 @@
     	$('.form-control').keydown(function(e){
     		if(e.keyCode==13){	
     			event.preventDefault();
-    			location.href="../videoBundle/videosearch.jsp";
+    			location.href="../videoBundle/videosearch.jsp?vidTitle="+$('.form-control').val();
     		}
     	});
 
     	$('#btnNavbarSearch').click(function(){
-    		location.href="../videoBundle/videosearch.jsp";
+    		location.href="../videoBundle/videosearch.jsp?vidTitle="+$('.form-control').val();
     	});
     	
     });

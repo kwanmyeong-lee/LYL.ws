@@ -7,7 +7,7 @@
 	String vidComCnt = request.getParameter("vidComCnt");
 	String vidNo = request.getParameter("vidNo");
 	VidCommentService sv = new VidCommentService();
-	List<VidCommentVO> list = sv.sellectComment(1, Integer.parseInt(vidComCnt));
+	List<VidCommentVO> list = sv.sellectComment(Integer.parseInt(vidNo), Integer.parseInt(vidComCnt));
 
 %>{ 
 	"comList" : [
