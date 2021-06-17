@@ -1,8 +1,10 @@
+<%@page import="board.ClobTest"%>
+<%@page import="java.sql.Clob"%>
 <%@page import="board.BoardVO"%>
 <%@page import="board.BoardDAO"%>
 <%@page import="java.sql.SQLException"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,39 +13,35 @@
 </head>
 <body>
 	<%
-	//write.jsp¿¡¼­ post¹æ½ÄÀ¸·Î ¼­ºê¹Ô
+	//write.jspì—ì„œ postë°©ì‹ìœ¼ë¡œ ì„œë¸Œë°‹
 	//1.
 	request.setCharacterEncoding("utf-8");
 	String title = request.getParameter("title");
-	String name = request.getParameter("name");
+	String name = "ì´ë¦„";
 	String pwd = request.getParameter("pwd");
-	String email = request.getParameter("email");
 	String content = request.getParameter("content");
-
-	//ip ÀĞ¾î¿À±â
-	String ip = request.getRemoteAddr();
-	String ip2 = request.getRemoteHost();
-	System.out.println("ip=" + ip + ", ip2=" + ip2);
-
+	 
 	//2.
 	BoardDAO dao = new BoardDAO();
 	BoardVO vo =  new BoardVO();
 	vo.setBoTitle(title);
 	vo.setBoCon(content);
+	vo.setUserNo(1);
+	vo.setUserNo2(1);
 	try {
-
+		int cnt=dao.insertBoard(vo);
 		//3.
 		if (cnt > 0) {
 	%>
 	<script type="text/javascript">
-		alert('±Û¾²±â Ã³¸® µÇ¾ú½À´Ï´Ù');
-		location.href = "list.jsp";
+		alert('ê¸€ì“°ê¸° ì²˜ë¦¬ ë˜ì—ˆìŠµë‹ˆë‹¤');
+		location.href = "boardList.jsp";
 	</script>
 	<%
 	} else {
 	%>
 	<script type="text/javascript">
-		alert('±Û¾²±âÃ³¸® ½ÇÆĞ');
+		alert('ê¸€ì“°ê¸°ì²˜ë¦¬ ì‹¤íŒ¨');
 		history.back();
 	</script>
 	<%

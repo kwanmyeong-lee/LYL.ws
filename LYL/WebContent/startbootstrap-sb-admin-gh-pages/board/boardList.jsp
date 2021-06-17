@@ -3,14 +3,14 @@
 <%@page import="board.BoardVO"%>
 <%@page import="java.util.List"%>
 <%@page import="board.BoardDAO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
 
 <style>
 	.listBody{
 		width: 1000px;
-		height: 700px;
+		height: auto;
 		margin: 10px auto;
 		padding-top: 20px;
 	}
@@ -68,8 +68,8 @@
 </style>
 
 <%
-	//[1] myPage.jsp¿¡¼­ [°Ô½ÃÆÇ]¹öÆ° Å¬¸¯ÇØ¼­ get¹æ½ÄÀ¸·Î ÀÌµ¿
-	// 1. ÆÄ¶ó¹ÌÅÍ ÀÐ¾î¿À±â
+	//[1] myPage.jspì—ì„œ [ê²Œì‹œíŒ]ë²„íŠ¼ í´ë¦­í•´ì„œ getë°©ì‹ìœ¼ë¡œ ì´ë™
+	// 1. íŒŒë¼ë¯¸í„° ì½ì–´ì˜¤ê¸°
 	
 	// 2. DB
 	BoardDAO dao = new BoardDAO();
@@ -85,8 +85,9 @@
 	
 %>
 <div class="listBody">
-	<button class="upload">±Û¾²±â</button>
-	<div class="titleH"><h3>°Ô½ÃÆÇ</h3></div>
+	<button class="upload">ê¸€ì“°ê¸°</button>
+	<div class="titleH"><h3>ê²Œì‹œíŒ</h3></div>
+	
 	<table class="box2">
 		<colgroup>
 			<col style="width:9%;" />
@@ -97,30 +98,31 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th scope="col"><div>¹øÈ£</div></th>
-				<th scope="col"><div>Á¦¸ñ</div></th>
-				<th scope="col"><div>ÀÛ¼ºÀÚ</div></th>
-				<th scope="col"><div>ÀÛ¼ºÀÏ</div></th>
-				<th scope="col"><div>Á¶È¸¼ö</div></th>
+				<th scope="col"><div>ë²ˆí˜¸</div></th>
+				<th scope="col"><div>ì œëª©</div></th>
+				<th scope="col"><div>ìž‘ì„±ìž</div></th>
+				<th scope="col"><div>ìž‘ì„±ì¼</div></th>
+				<th scope="col"><div>ì¡°íšŒìˆ˜</div></th>
 			</tr>
 		</thead> 
 		<tbody>
-			<!-- °Ô½Ã±ÛÀÌ ¾øÀ» °æ¿ì -->
+			<!-- ê²Œì‹œê¸€ì´ ì—†ì„ ê²½ìš° -->
 			<%if(list==null || list.isEmpty()){ %>
 		         <tr>
-		            <td colspan="5" class="align_center">µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.</td>
+		            <td colspan="5" class="align_center">ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 		         </tr>
 	     	 <%}else{ %>
-					<!-- °Ô½Ã±ÛÀÌ ÀÖÀ» °æ¿ì -->
+					<!-- ê²Œì‹œê¸€ì´ ìžˆì„ ê²½ìš° -->
 				<% for(int i=0;i<list.size() ;i++){ 
 	     	 		BoardVO vo = list.get(i); %>
 					<tr>
-						<td><%=vo.getBoMyNo() %></td>
-						<td><%=vo.getBoTitle() %></td>
+						<td><%=vo.getBoNo() %></td>
+						<td><a href="boardDetail.jsp?boNo=<%=vo.getBoNo() %>"><%=vo.getBoTitle() %></a></td>
 						<td><%=vo.getUserNo() %></td>
 						<td><%=sdf.format(vo.getBoDate()) %></td>
 						<td><%=vo.getBoHits() %></td>
 					</tr>
+				
 				<% } //for%>
 			<%}//if %>
 		</tbody>
