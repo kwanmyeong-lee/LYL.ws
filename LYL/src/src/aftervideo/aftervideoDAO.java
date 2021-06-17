@@ -33,4 +33,26 @@ public class aftervideoDAO {
 			pool.dbClose(ps, conn);
 		}
 	}
+	
+	public int deleteAftervideo(String videoNo, String userNo) throws SQLException {
+		Connection conn =null;
+		PreparedStatement ps = null;
+		
+		try {
+			conn =pool.getConnection();
+			String sql = "delete AFTERVIDEO\r\n"
+					+ "where userNo=? and vidno=?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userNo);
+			ps.setString(2, videoNo);
+			
+			int cnt = ps.executeUpdate();
+			System.out.println("영상 저장 취소 결과 cnt = "+cnt+"매개변수 userNo="+userNo+"videoNo"+videoNo);
+			return cnt;
+			
+		}finally {
+			pool.dbClose(ps, conn);
+		}
+		
+	}
 }
