@@ -55,7 +55,7 @@
 	}
 	
 	.upload{
-		width: 90px;
+		width: 120px;
 		height: 40px;
 		float: right;
 		color: white;
@@ -66,7 +66,14 @@
 		
 	}
 </style>
-
+<script type="text/javascript" src="/../js/datatables-simple-demo.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.upload').click(function(){
+			location.href="boardWrite.jsp";
+		});
+	});
+</script>
 <%
 	//[1] myPage.jsp에서 [게시판]버튼 클릭해서 get방식으로 이동
 	// 1. 파라미터 읽어오기
@@ -85,7 +92,7 @@
 	
 %>
 <div class="listBody">
-	<button class="upload">글쓰기</button>
+	<button class="upload">게시글 작성</button>
 	<div class="titleH"><h3>게시판</h3></div>
 	
 	<table class="box2">
