@@ -17,38 +17,36 @@
 	//1.
 	request.setCharacterEncoding("utf-8");
 	String title = request.getParameter("title");
-	String name = "이름";
-	String pwd = request.getParameter("pwd");
 	String content = request.getParameter("content");
+	String pwd = request.getParameter("pwd");
+	String userId = "이름";
+	String userNo = "1";
 	 
 	//2.
 	BoardDAO dao = new BoardDAO();
 	BoardVO vo =  new BoardVO();
 	vo.setBoTitle(title);
 	vo.setBoCon(content);
-	vo.setUserNo(1);
-	vo.setUserNo2(1);
+	vo.setBoPwd(Integer.parseInt(pwd));
+	vo.setUserNo(Integer.parseInt(userNo));
+	vo.setUserId(userId);
 	try {
 		int cnt=dao.insertBoard(vo);
 		//3.
 		if (cnt > 0) {
-	%>
-	<script type="text/javascript">
-		alert('글쓰기 처리 되었습니다');
-		location.href = "boardList.jsp";
-	</script>
-	<%
-	} else {
-	%>
-	<script type="text/javascript">
-		alert('글쓰기처리 실패');
-		history.back();
-	</script>
-	<%
-	}
+			%>
+			<script type="text/javascript">
+				alert('글쓰기 처리 되었습니다');
+				location.href = "boardList.jsp";
+			</script>
+		<%} else {%>
+			<script type="text/javascript">
+				alert('글쓰기처리 실패');
+				history.back();
+			</script>
+		<%}
 	} catch (SQLException e) {
-	e.printStackTrace();
-	}
-	%>
+		e.printStackTrace();
+	}%>
 </body>
 </html>

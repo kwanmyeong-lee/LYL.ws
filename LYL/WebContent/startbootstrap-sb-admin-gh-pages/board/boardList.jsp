@@ -84,6 +84,14 @@
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");   
 	
 %>
+<script type="text/javascript" src="/../js/datatables-simple-demo.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.upload').click(function(){
+			location.href="boardWrite.jsp";
+		});
+	});
+</script>
 <div class="listBody">
 	<button class="upload">글쓰기</button>
 	<div class="titleH"><h3>게시판</h3></div>
@@ -98,7 +106,6 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th scope="col"><div>번호</div></th>
 				<th scope="col"><div>제목</div></th>
 				<th scope="col"><div>작성자</div></th>
 				<th scope="col"><div>작성일</div></th>
@@ -116,16 +123,15 @@
 				<% for(int i=0;i<list.size() ;i++){ 
 	     	 		BoardVO vo = list.get(i); %>
 					<tr>
-						<td><%=vo.getBoNo() %></td>
 						<td><a href="boardDetail.jsp?boNo=<%=vo.getBoNo() %>"><%=vo.getBoTitle() %></a></td>
-						<td><%=vo.getUserNo() %></td>
+						<td><%=vo.getUserId() %></td> <!-- 내용이 이름으로 가는 이유 모름 -->
 						<td><%=sdf.format(vo.getBoDate()) %></td>
 						<td><%=vo.getBoHits() %></td>
 					</tr>
 				
 				<% } //for%>
-			<%}//if %>
+			<%}//if%>
 		</tbody>
 	</table>
 </div>
-   <%@ include file="/../startbootstrap-sb-admin-gh-pages/inc/bottom.jsp" %>
+<%@ include file="/../startbootstrap-sb-admin-gh-pages/inc/bottom.jsp" %>

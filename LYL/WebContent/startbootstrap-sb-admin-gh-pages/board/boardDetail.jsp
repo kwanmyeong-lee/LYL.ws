@@ -143,13 +143,24 @@ String boNo = request.getParameter("boNo");
 		content=" ";
 	} */
 %>
+<script type="text/javascript" src="/../js/datatables-simple-demo.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#boardDelete').click(function(){
+			location.href="boardDelete.jsp?boNo=<%=vo.getBoNo()%>";
+		});
+		$('#boardList').click(function(){
+			location.href="boardList.jsp";
+		});
+	});
+</script>
 <div class="listBody">
 <input type="hidden" name="boNo" value="<%=vo.getBoNo()%>">
 	<div class="titleH"><h3>게시판</h3></div>
 		<div class="detailBlock">
 			<label class="titleLabel">제목 : </label>
 			<div class="title"><%=vo.getBoTitle() %></div>
-			<div class="userName"><a><%=vo.getUserNo() %></a></div>
+			<div class="userName"><a><%=vo.getUserId() %></a></div>
 			<div class="regdate"><%=sdf.format(vo.getBoDate()) %></div>
 			<label class="regdateLabel"> 등록일 : </label><br><br>
 			<div class="contentDiv">
@@ -158,8 +169,8 @@ String boNo = request.getParameter("boNo");
 		</div>
 		<div class="btn">
 			<input type="button" value="수정" >
-			<a href="boardDelete.jsp?boNo=<%=vo.getBoNo()%>"><input type="button" value="삭제" id="boardDelete.jsp"></a>
-			<input type="button" value="목록" id="boardList.jsp">
+			<input type="button" value="삭제" id="boardDelete">
+			<input type="button" value="목록" id="boardList">
 		</div>
 		<div class="commentList">
 			<h5>댓글</h5>
