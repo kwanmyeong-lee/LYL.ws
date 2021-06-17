@@ -95,6 +95,44 @@ public class VideoDAO {
 		}
 		
 	}
+	
+	public List<VideoVO> videoSearch(String vidTitle) throws SQLException{
+		Connection conn =null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<VideoVO> list = new ArrayList<VideoVO>();
+		
+		try {
+			conn= pool.getConnection();
+			
+			String sql = "select * from video where vidtitle like '%'||?||'%' ";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, vidTitle);
+			
+			rs=ps.executeQuery();
+			
+			while(rs.next()) {
+				VideoVO vvo = new VideoVO();
+				vvo.setVidNo(rs.getInt(1));
+				vvo.setVidTitle(rs.getString(2));
+				vvo.setVidHits(rs.getInt(3));
+				vvo.setVidCom(rs.getInt(4));
+				vvo.setVidurl(rs.getString(5));
+				vvo.setVidLike(rs.getInt(6));
+				vvo.setVidDate(rs.getTimestamp(7));
+				vvo.setVidEx(rs.getString(8));
+				vvo.setVidTheme(rs.getInt(9));
+				vvo.setUserNo(rs.getInt(10));
+				vvo.setVidThu(rs.getString(11));
+				
+				list.add(vvo);
+				
+			}
+			return list;
+		}finally {
+			pool.dbClose(rs,ps,conn);
+		}
+	}
 }
 
 

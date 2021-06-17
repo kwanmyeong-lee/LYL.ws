@@ -18,21 +18,50 @@
 </style>
 
 <script>
+	var vidComCnt=0;
     $(window).scroll(function() {
-    	var otherUserId='<p class="otherUserId">아이디</p>';
-    	var otherContent='<p class="otherContent">내용</p>';
-    	var otherBtCommentLike='<button class="btn btn-primary" type="button">좋아요 </button>';
-    	var otherCommentLikeCnt='<span id="vidCommentLikeCnt">111</span>';
-    	var otherBtComment2='<button class="btn btn-primary" type="button">답글</button>';
-		
+    	
+    	
     	if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-        	$('.vidComment').last().after('<div class="vidComment">');
-        	$('.vidComment').last().append("<br>");
-        	$('.vidComment').last().append(otherUserId);
-        	$('.vidComment').last().append(otherContent);
-        	$('.vidComment').last().append(otherBtCommentLike);
-        	$('.vidComment').last().append(otherCommentLikeCnt);
-        	$('.vidComment').last().append(otherBtComment2);
+    		
+    		$.ajax({
+
+    			url : "videoWatch_ok.jsp",
+
+    			type : "post", //get post둘중하나
+
+    			data : {"vidComCnt":vidComCnt},
+    			
+
+    			success : function(data) {
+    				
+    				var obj = JSON.parse(data);
+
+    				var comList = obj.comList;
+    				var comListSize = obj.comListSize;
+    				
+    				for(var i=0; i<comListSize; i++){
+	    				var otherUserId='<p class="otherUserId">'+comList[i].comNo+'</p>';
+	    		    	var otherContent='<p class="otherContent">'+comList[i].comCon+'</p>';
+	    		    	var otherBtCommentLike='<button class="btn btn-primary" type="button">좋아요 </button>';
+	    		    	var otherCommentLikeCnt='<span id="vidCommentLikeCnt">'+comList[i].comLike+'</span>';
+	    		    	var otherBtComment2='<button class="btn btn-primary" type="button">답글</button>';
+	    				
+	
+	    				$('.vidComment').last().after('<div class="vidComment">');
+	    	        	$('.vidComment').last().append("<br>");
+	    	        	$('.vidComment').last().append(otherUserId);
+	    	        	$('.vidComment').last().append(otherContent);
+	    	        	$('.vidComment').last().append(otherBtCommentLike);
+	    	        	$('.vidComment').last().append(otherCommentLikeCnt);
+	    	        	$('.vidComment').last().append(otherBtComment2);
+    				}
+    				vidComCnt+=10;
+    			}
+
+    		});
+    		
+        	
         	
         }
     });
