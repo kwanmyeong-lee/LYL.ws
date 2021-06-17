@@ -19,4 +19,10 @@ public class VideoService {
 		return dao.videoSelect(vidno);
 	}
 	
+	public List<VideoVO> videoSearch(String vidTitle) throws SQLException{
+		List<VideoVO> list = dao.videoSearch(vidTitle);
+		
+		return list;
+	}
+	
 }

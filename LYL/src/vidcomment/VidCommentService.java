@@ -1,6 +1,7 @@
 package vidcomment;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class VidCommentService {
 	VidCommentDAO dao;
@@ -9,7 +10,7 @@ public class VidCommentService {
 		dao=new VidCommentDAO();
 	}
 	
-	public VidCommentVO sellectComment(int vidNo,int vidComCnt) throws SQLException {
+	public List<VidCommentVO> sellectComment(int vidNo,int vidComCnt) throws SQLException {
 		return dao.sellectComment(vidNo, vidComCnt);
 	}
 }
