@@ -74,12 +74,17 @@
 	for(int i=0; i<list.size(); i++){
 		VideoVO vo = list.get(i);
 		String VidWatch ="videoWatch.jsp?vidNo="+vo.getVidNo();
+		String title=vo.getVidTitle();
+		if(title.length()>15){
+			title=title.substring(0, 15);
+			title+="...";
+		}
 		%>
 		<a class="awatch" href=<%=VidWatch%>>
    			<div class="video_info">
 	   			<div class="video_search_list">
 			   		<img class="search_Thumbnail" src=<%=vo.getVidThu() %>>
-			   		<p class="search_video_tilte"><%=vo.getVidTitle() %>title</p>
+			   		<p class="search_video_tilte"><%=title%></p>
 			   		<p class="video_uploaderid"><%=vo.getUserNo() %></p>
 			   		<p class="video_hits"><%=vo.getVidHits() %></p>
 			   </div>
