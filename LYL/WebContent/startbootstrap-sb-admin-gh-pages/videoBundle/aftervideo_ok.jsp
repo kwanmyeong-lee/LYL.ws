@@ -1,11 +1,12 @@
-<%@page import="src.watchrecord.watchrecordService"%>
+<%@page import="src.aftervideo.aftervideoService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	String userNo = request.getParameter("userNo");
 	String vidNo = request.getParameter("vidNo");
-	watchrecordService watService = new watchrecordService();
-	int cnt = watService.insertWatchrecord(userNo, vidNo);
+	aftervideoService afService = new aftervideoService();
+	int cnt = afService.aftervideo(vidNo, userNo);
+	
 %>
 {
 "cnt" : <%=cnt %>

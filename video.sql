@@ -507,6 +507,11 @@ commit;
 --select * from mycomment;
 --select * from (select ROWNUM as rowcnt, a.* from mycomment a where vidno=1 and comgroup is null)
 --where rowcnt>=10 and rowcnt<20;
+--select * from AFTERVIDEO;
+--select * from WATCHRECORD;
+--select * from SUBSCRIB;
+--
+--insert into SUBSCRIB(userNo2, userNo) values(1, 2);
 
 --select * from 
 --(select  ad.*, rownum as rowcnt from 
