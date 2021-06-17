@@ -31,6 +31,9 @@
 
     				var vidList = obj.vidList;
     				var vidListSize = obj.vidListSize;
+    				if(vidListSize==0){
+    					return;
+    				}
     				
     				for(var i=0; i<vidListSize; i++){
     					
@@ -62,11 +65,6 @@
         }
     });
 </script>
-<body>
-   <header>
-    <h1>찾기</h1>
-   </header>
-   
 <%
 	String vidTitle = request.getParameter("vidTitle");
 	VideoService sv = new VideoService();

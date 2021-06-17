@@ -25,7 +25,9 @@ public class VideoDAO {
 		try {
 			conn= pool.getConnection();
 			
-			String sql = "select * from video where vidtheme=?";
+			String sql = "select * from\r\n"
+					+ "(select ad.*,rownum as rowcnt from\r\n"
+					+ "(select * from video where vidtheme=? order by  vidhits desc)ad)";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, theme);
 			

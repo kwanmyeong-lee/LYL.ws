@@ -9,59 +9,8 @@
    pageEncoding="UTF-8"%>
 <link href="../css/videoStyles.css" rel="stylesheet">
 <%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
-<%
-   VideoService vs = new VideoService();
-   ThemeService ts = new ThemeService();
-   
-    
-   List<ThemeVO> themelist = ts.selectAllTheme();
-   ThemeVO[] tvo = new ThemeVO[themelist.size()];
-   %>
-   <script type="text/javascript">
- 	var scThName = new Array();
-	var scVidImg = new Array();
-	var scVidTitle = new Array();
-	var scVidUserId = new Array();
-	var scVidHits = new Array();
-	var scThSize = <%=themelist.size()%>;
-	for(var i=0; i<scThSize; i++){
-		scVidImg[i] = new Array();
-		scVidTitle[i] = new Array();
-		scVidUserId[i] = new Array();
-		scVidHits[i] = new Array();
-	}
-   </script>
-   <%
-   for(int i=0; i<themelist.size(); i++){
-	   	List<VideoVO> list = vs.videoThemaList(i+1);
-		tvo[i] = themelist.get(i);
-		
-	%>
-		<script type="text/javascript">
-			scThName.push('<%=tvo[i].getThName()%>');
-		</script>
-	<% 
-		for(int j=0; j<list.size(); j++){
-			VideoVO vvo =list.get(j);
-			String title= vvo.getVidTitle();
-			if(title.length()>15){
-				title=title.substring(0, 15);
-				title+="...";
-			}
-		%>	
-			<script type="text/javascript">
-				scVidTitle[<%=i%>].push("<p class='video_tilte'><%=title%></p>");
-				scVidImg[<%=i%>].push("<img class='main_Thumbnail' src=<%=vvo.getVidThu()%>>");
-				scVidUserId[<%=i%>].push("<p class='video_uploaderid'><%=vvo.getUserNo()%></p>");
-				scVidHits[<%=i%>].push("<p class='video_hits'>조회수 <%=vvo.getVidHits() %></p>");
-			</script>
-			
-		<%}
-	}
-   
-%>
 <script>
-   var scThNum =0;
+   var scThNum =1;
    
    $(window)
          .scroll(
@@ -71,24 +20,51 @@
                   
                   if ($(window).scrollTop() == $(document).height()
                         - $(window).height()) {
-                     if(scThSize!=0 && scThNum < scThSize){    
+                       
                      
-                     
-                        $("main").append('<div class="video_main_list">');
-                        $(".video_main_list").last().prepend('<h1>'+scThName[scThNum]+'<h1>');
-                        for (var i = 0; i < 4; i++) {
+                	  $.ajax({
 
-                        	$('.video_main_list').last().append(videoinfo);
-							$('.video_info').last().append(scVidImg[scThNum][i]);
-							$('.video_info').last().append(scVidTitle[scThNum][i]);
-							$('.video_info').last().append(scVidUserId[scThNum][i]);
-							$('.video_info').last().append(scVidHits[scThNum][i]);
+              			url : "main_ok.jsp",
 
-                        }
-                        
-                        
-                     scThNum++;
-                     }
+              			type : "post", //get post둘중하나
+
+              			data : {"scThNum":scThNum},
+              			
+
+              			success : function(data) {              				
+              				var obj = JSON.parse(data);
+
+              				var vidList = obj.vidList;
+              				var vidListSize = obj.vidListSize;
+              				if(vidListSize==0){
+              					return;
+              				}
+              				var themeName = obj.themeName;
+              				if(vidListSize>4) vidListSize=4;
+              				
+              				$("main").append('<div class="video_main_list">');
+                            $(".video_main_list").last().prepend('<h1>'+themeName+'<h1>');
+              				for(var i=0; i<vidListSize; i++){
+              					
+          	    				var scVidImg='<img class="main_Thumbnail" src="'+vidList[i].vidImg+'">';
+          	    		    	var scVidTitle='<p class="video_tilte">'+vidList[i].vidTitle+'</p>';
+          	    		    	var scVidUserId='<p class="video_uploaderid">'+vidList[i].vidUserNo+'</p>';
+          	    		    	var scVidHits='<p class="video_hits">조회수'+vidList[i].vidHits+'</p>';
+          	    				var scVidNo=vidList[i].vidNo;
+          	    				
+          	    				$('.video_main_list').last().append('<a class="awatch" href="../videoBundle/videoWatch.jsp?vidNo='+scVidNo+'">');
+          	    				$('.awatch').last().append(videoinfo);
+          	    	        	$('.video_info').last().append(scVidImg);
+          	    	        	$('.video_info').last().append(scVidTitle);
+          	    	        	$('.video_info').last().append(scVidUserId);
+          	    	        	$('.video_info').last().append(scVidHits);
+          	    	        	
+              				}
+              				scThNum++;
+              			}
+
+              		});
+           
                   }
                });
    
@@ -96,10 +72,6 @@
    
 </script>
 
-<body>
-   <header>
-      <h1>Hello World!!!</h1>
-   </header>
    <div id="carouselExampleCaptions" class="carousel slide"
       data-bs-ride="carousel">
       <div class="carousel-indicators">
