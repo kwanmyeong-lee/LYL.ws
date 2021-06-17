@@ -442,10 +442,10 @@ insert into theme values(theme_seq.nextval,'스포츠');
 
 --비디오 정보--
 --게임 no 1--
-insert into video values(video_seq.nextval,'2021년PC온라인게임순위 전세계TOP10',default,default,'https://www.youtube.com/embed/XDB-ew_nFjo',default,default,'2021년 PC 온라인게임순위 (1월통합)',1,1,'http://img.youtube.com/vi/XDB-ew_nFjo/maxresdefault.jpg');
-insert into video values(video_seq.nextval,'게임판 사고사례는 게임보다 더 황당하다 [2021 2분기 이왜진 게임뉴스]',default,default,'https://www.youtube.com/embed/0eiDYPxnt4c',default,default,'30년차 테트리스 고인물 / BTS마저 찌바르는 겜덕력 / 추신수 빠른무한 / 일본 국민게임에서 일본 때려잡는 한국인 / 삼탈워 참수 사태 등',1,1,'http://img.youtube.com/vi/0eiDYPxnt4c/maxresdefault.jpg');
-insert into video values(video_seq.nextval,'뉴욕에 또다시 퍼진 바이러스, 알렉스 머서는 죽어야만 한다 - 프로토타입 2 스토리 한눈에 보기',default,default,'https://www.youtube.com/embed/12280TgSiwU',default,default,'※ 게임 구매',1,1,'http://img.youtube.com/vi/12280TgSiwU/maxresdefault.jpg');
-insert into video values(video_seq.nextval,'영상 제목',default,default,'video/lala.mp4',default,default,'내용',1,1,'../thumbnail/lala.png');
+insert into video values(video_seq.nextval,'2021년PC온라인게임순위 전세계TOP10',1000,default,'https://www.youtube.com/embed/XDB-ew_nFjo',default,default,'2021년 PC 온라인게임순위 (1월통합)',1,1,'http://img.youtube.com/vi/XDB-ew_nFjo/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'게임판 사고사례는 게임보다 더 황당하다 [2021 2분기 이왜진 게임뉴스]',99999,default,'https://www.youtube.com/embed/0eiDYPxnt4c',default,default,'30년차 테트리스 고인물 / BTS마저 찌바르는 겜덕력 / 추신수 빠른무한 / 일본 국민게임에서 일본 때려잡는 한국인 / 삼탈워 참수 사태 등',1,1,'http://img.youtube.com/vi/0eiDYPxnt4c/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'뉴욕에 또다시 퍼진 바이러스, 알렉스 머서는 죽어야만 한다 - 프로토타입 2 스토리 한눈에 보기',100000,default,'https://www.youtube.com/embed/12280TgSiwU',default,default,'※ 게임 구매',1,1,'http://img.youtube.com/vi/12280TgSiwU/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'영상 제목',default,default,'video/lala.mp4',1000000,default,'내용',1,1,'../thumbnail/lala.png');
 
 --영화 no 2--
 insert into video values(video_seq.nextval,'정말... 이 영화가 개봉한다고...?',default,default,'https://www.youtube.com/embed/R7HGsxi47l8',default,default,'*본 영상은 유료광고를 포함하고 있습니다.',2,1,'http://img.youtube.com/vi/R7HGsxi47l8/maxresdefault.jpg');
@@ -505,8 +505,10 @@ commit;
 --select * from video;   
 --select * from theme;
 --select * from mycomment;
-select ROWNUM, a.* from mycomment a 
-where vidno=1 and comgroup is null and ROWNUM>=0 and ROWNUM<20;
+--select * from (select ROWNUM as rowcnt, a.* from mycomment a where vidno=1 and comgroup is null)
+--where rowcnt>=10 and rowcnt<20;
 
-select * from (select ROWNUM as rowcnt, a.* from mycomment a where vidno=1 and comgroup is null)
-where rowcnt>=10 and rowcnt<20;
+select * from 
+(select  ad.*, rownum as rowcnt from 
+(select * from video where vidtitle like '%'||'게임'||'%' order by vidhits desc)ad)
+ where rowcnt>=0 and rowcnt<10;

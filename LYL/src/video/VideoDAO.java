@@ -96,7 +96,7 @@ public class VideoDAO {
 		
 	}
 	
-	public List<VideoVO> videoSearch(String vidTitle) throws SQLException{
+	public List<VideoVO> videoSearch(String vidTitle,int vidCnt) throws SQLException{
 		Connection conn =null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -105,9 +105,14 @@ public class VideoDAO {
 		try {
 			conn= pool.getConnection();
 			
-			String sql = "select * from video where vidtitle like '%'||?||'%' ";
+			String sql = "select * from \r\n"
+					+ "(select  ad.*, rownum as rowcnt from \r\n"
+					+ "(select * from video where vidtitle like '%'||?||'%' order by vidhits desc)ad)\r\n"
+					+ " where rowcnt>=? and rowcnt<?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, vidTitle);
+			ps.setInt(2, vidCnt);
+			ps.setInt(3, vidCnt+5);
 			
 			rs=ps.executeQuery();
 			
