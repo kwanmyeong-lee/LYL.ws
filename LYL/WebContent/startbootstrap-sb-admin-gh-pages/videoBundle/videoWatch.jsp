@@ -66,22 +66,69 @@
     		});
     		
         	
-        	
         }
     });
-    
-    $(function(){
-    	$('#videoSave').click(){
-    		$.ajax({
+  
+</script>
+<script type="text/javascript">
+	var vidNo=${param.vidNo};
+	var userNo = ${sessionScope.userNo}; 
+	
+	$(function() {
+		$('#videoSave').click(function() {
+			$.ajax({
 
-    			url : "watchRecord_ok.jsp",
+				url : "aftervideo_ok.jsp", //나중에볼 동영상
 
-    			type : "post", //get post둘중하나
+				type : "post", //get post둘중하나
 
-    			data : {"vidComCnt":vidComCnt,"vidNo":vidNo},
-    			
-    	}
-    })
+				data : {
+					"userNo" : userNo,
+					"vidNo" : vidNo
+				},
+
+				success : function(data) {
+					var obj = JSON.parse(data);
+					var cnt = obj.cnt;
+
+					if (cnt > 0) {
+						$(function() {
+							$('#videoSave').css('background', 'red');
+						})
+
+					}
+
+				}
+			});
+		});
+		
+		$('#subscribe').click(function() {
+			$.ajax({
+
+				url : "usbscribe_ok.jsp", //나중에볼 동영상
+
+				type : "post", //get post둘중하나
+
+				data : {
+					"userNo" : userNo,
+					"vidNo" : vidNo
+				},
+
+				success : function(data) {
+					var obj = JSON.parse(data);
+					var cnt = obj.cnt;
+
+					if (cnt > 0) {
+						$(function() {
+							$('#videoSave').css('background', 'red');
+						})
+
+					}
+
+				}
+			});
+		});
+	});
 </script>
 
 <body>
@@ -116,8 +163,8 @@
 	<p id='vidG'>구독자<%=myuserVo.getUserSub() %> 명</p>
 	
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-		<button id="subscribe" class="btn btn-primary me-md-2" type="button" value="구독"></button>
-		<button id="videoSave" class="btn btn-primary" type="button" value="다시보기에 저장"></button>
+		<button id="subscribe" class="btn btn-primary me-md-2" type="button" value="">구독</button>
+		<button id="videoSave" class="btn btn-primary" type="button" value="">다시보기에 저장</button>
 	</div>
 
 	<p id='vidContent'>내용 : &nbsp;<%=videoVo.getVidEx() %></p>
