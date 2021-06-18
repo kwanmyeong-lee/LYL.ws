@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="board.BoardVO"%>
 <%@page import="board.BoardDAO"%>
+=======
+>>>>>>> 0618-hyuk
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
@@ -76,6 +79,7 @@
 	}
 
 </style>
+<<<<<<< HEAD
 <script type="text/javascript" src="/../js/datatables-simple-demo.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -114,4 +118,22 @@
 	<input type="submit" value="수정" class="submit">
 	<input type="button" value="취소" class="cancle">
 </div>
+=======
+
+<div class="listBody">
+	<div id="titleH"><h2>글작성</h2></div>
+	<div>
+		<form action="boardWrite_ok.jsp" method="post" >
+		<div class="titleDiv">
+			<label>제목 : </label>
+			<input type="text" name="title" class="title">&nbsp;
+			<input type="checkbox" name="private" id="private">&nbsp;비공개
+			<div id="pwd">비밀번호 : <input type="password" name="pwd" class="pwd"></div>
+		</div>
+		<textarea name="content" id="content" cols="114" rows="30"></textarea>
+	<input type="submit" value="수정" class="submit"></div>
+	<a href="boardList.jsp"><input type="button" value="목록" class="submit"></a>
+	</form>
+	</div>
+>>>>>>> 0618-hyuk
 <%@ include file="/../startbootstrap-sb-admin-gh-pages/inc/bottom.jsp" %>

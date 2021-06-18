@@ -3,7 +3,7 @@
 <%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
 <style>
 	.listBody{
-		background: lightgray;
+		background: rgb(242, 242, 242);
 		width: 1000px;
 		height: 100%;
 		margin: 10px auto;
@@ -51,9 +51,20 @@
 	}
 
 	.submit{
+		margin-left: 400px;
+		margin-bottom: 30px;
 		height: 40px;
 		width: 100px;
-		margin: 0 450px 20px 450px;
+		color: white;
+		font-weight: bold;
+		background: #0d6efd;
+		border: none;
+		border-radius: 10px;
+		cursor: pointer;
+	}
+	.btnCancle{
+		height: 40px;
+		width: 100px;
 		color: white;
 		font-weight: bold;
 		background: #0d6efd;
@@ -82,7 +93,7 @@
 	});
 </script>
 <div class="listBody">
-	<div id="titleH"><h2>글작성</h2></div>
+	<div id="titleH"><h2>게시글 작성</h2></div>
 	<div>
 		<form action="boardWrite_ok.jsp" method="post" >
 		<div class="titleDiv">
@@ -92,9 +103,15 @@
 			<div id="pwd">비밀번호 : <input type="password" name="pwd" class="pwd" value="0"></div>
 		</div>
 		<textarea name="content" id="content" cols="114" rows="30"></textarea>
+<<<<<<< HEAD:LYL/WebContent/startbootstrap-sb-admin-gh-pages/myBoard/boardWrite.jsp
 	<input type="submit" value="확인" class="submit">
 	<input type="button" value="목록" class="submit" id="boardList">
 	</form>
+=======
+		<input type="submit" value="확인" class="submit">
+		<a href="boardList.jsp"><input type="button" value="취소" class="btnCancle"></a>
+		</form>
+>>>>>>> 0618-hyuk:LYL/WebContent/startbootstrap-sb-admin-gh-pages/board/boardWrite.jsp
 	</div>
 </div>
 <%@ include file="/../startbootstrap-sb-admin-gh-pages/inc/bottom.jsp" %>

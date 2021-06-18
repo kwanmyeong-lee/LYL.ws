@@ -146,9 +146,12 @@ String boNo = request.getParameter("boNo");
 <script type="text/javascript" src="/../js/datatables-simple-demo.js"></script>
 <script type="text/javascript">
 	$(function(){
+<<<<<<< HEAD:LYL/WebContent/startbootstrap-sb-admin-gh-pages/myBoard/boardDetail.jsp
 		$('#boardEdit').click(function(){
 			location.href="boardEdit.jsp?boNo=<%=vo.getBoNo()%>";
 		});
+=======
+>>>>>>> 0618-hyuk:LYL/WebContent/startbootstrap-sb-admin-gh-pages/board/boardDetail.jsp
 		$('#boardDelete').click(function(){
 			location.href="boardDelete.jsp?boNo=<%=vo.getBoNo()%>";
 		});

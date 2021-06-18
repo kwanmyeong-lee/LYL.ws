@@ -517,3 +517,7 @@ commit;
 --(select  ad.*, rownum as rowcnt from 
 --(select * from video where vidtitle like '%'||'°ÔÀÓ'||'%' order by vidhits desc)ad)
 -- where rowcnt>=0 and rowcnt<10;
+
+select * from
+(select ad.*,rownum as rowcnt from
+(select * from video where vidtheme=4 order by  vidhits desc)ad;
