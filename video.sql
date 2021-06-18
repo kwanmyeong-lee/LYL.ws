@@ -503,7 +503,7 @@ commit;
 --select * from mycomment;
 --select * from bobycom;
 --select * from video;   
-select * from theme;
+--select * from theme;
 --select * from mycomment;
 --select * from (select ROWNUM as rowcnt, a.* from mycomment a where vidno=1 and comgroup is null)
 --where rowcnt>=10 and rowcnt<20;
@@ -518,6 +518,6 @@ select * from theme;
 --(select * from video where vidtitle like '%'||'°ÔÀÓ'||'%' order by vidhits desc)ad)
 -- where rowcnt>=0 and rowcnt<10;
 
---select * from
---(select ad.*,rownum as rowcnt from
---(select * from video where vidtheme=4 order by  vidhits desc)ad);
+select * from
+(select ad.*,rownum as rowcnt from
+(select * from video where vidtheme=4 order by  vidhits desc)ad;
