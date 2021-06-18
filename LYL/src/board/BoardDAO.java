@@ -157,7 +157,7 @@ public class BoardDAO {
 	}
 	
 	//ÀÛ¾÷
-	public int editBoard(int boNo, String userId, int pwd) throws SQLException {
+	public int editBoard(BoardVO vo) throws SQLException {
 		Connection conn=null;
 		PreparedStatement ps=null;
 		

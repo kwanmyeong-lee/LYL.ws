@@ -1,3 +1,7 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="board.BoardVO"%>
+<%@page import="board.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
@@ -80,17 +84,31 @@
 		});
 	});
 </script>
+<%
+	//session으로 사용자아이디 받기
+	String userId = "이름";
+	String boNo = request.getParameter("boNo");
+	String pwd = "0";
+	//2
+		BoardDAO dao = new BoardDAO();
+		BoardVO vo = null;
+		try{
+			vo=dao.selectByNo(Integer.parseInt(boNo));
+		} catch(SQLException e){
+			e.printStackTrace();
+		}
+%>
 <div class="listBody">
-	<div id="titleH"><h2>글작성</h2></div>
+	<div id="titleH"><h2>게시글 수정</h2></div>
 	<div>
 		<form action="boardEdit_ok.jsp" method="post" >
 		<div class="titleDiv">
 			<label>제목 : </label>
-			<input type="text" name="title" class="title">&nbsp;
+			<input type="text" name="title" class="title" value="<%=vo.getBoTitle()%>">&nbsp;
 			<input type="checkbox" name="private" id="private">&nbsp;비공개
-			<div id="pwd">비밀번호 : <input type="password" name="pwd" class="pwd"></div>
+			<div id="pwd">비밀번호 : <input type="password" name="pwd" class="pwd" value="<%=pwd%>"></div>
 		</div>
-		<textarea name="content" id="content" cols="114" rows="30"></textarea>
+		<textarea name="content" id="content" cols="114" rows="30" ><%=vo.getBoCon()%>"</textarea>
 		</form>
 	</div>
 	<input type="submit" value="수정" class="submit">

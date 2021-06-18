@@ -146,6 +146,9 @@ String boNo = request.getParameter("boNo");
 <script type="text/javascript" src="/../js/datatables-simple-demo.js"></script>
 <script type="text/javascript">
 	$(function(){
+		$('#boardEdit').click(function(){
+			location.href="boardEdit.jsp?boNo=<%=vo.getBoNo()%>";
+		});
 		$('#boardDelete').click(function(){
 			location.href="boardDelete.jsp?boNo=<%=vo.getBoNo()%>";
 		});
@@ -159,8 +162,8 @@ String boNo = request.getParameter("boNo");
 	<div class="titleH"><h3>게시판</h3></div>
 		<div class="detailBlock">
 			<label class="titleLabel">제목 : </label>
-			<div class="title"><%=vo.getBoTitle() %></div>
-			<div class="userName"><a><%=vo.getUserId() %></a></div>
+			<div class="title" name="title"><%=vo.getBoTitle() %></div>
+			<div class="userName" name="userId"><a href=""><%=vo.getUserId() %></a></div>
 			<div class="regdate"><%=sdf.format(vo.getBoDate()) %></div>
 			<label class="regdateLabel"> 등록일 : </label><br><br>
 			<div class="contentDiv">
@@ -168,7 +171,7 @@ String boNo = request.getParameter("boNo");
 			</div>
 		</div>
 		<div class="btn">
-			<input type="button" value="수정" >
+			<input type="button" value="수정" id="boardEdit">
 			<input type="button" value="삭제" id="boardDelete">
 			<input type="button" value="목록" id="boardList">
 		</div>

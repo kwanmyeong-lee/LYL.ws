@@ -19,7 +19,7 @@
 	String title = request.getParameter("title");
 	String content = request.getParameter("content");
 	String pwd = request.getParameter("pwd");
-	String userId = "이름";
+	String userId = "테스트용 이름";
 	String userNo = "1";
 	 
 	//2.
@@ -30,6 +30,7 @@
 	vo.setBoPwd(Integer.parseInt(pwd));
 	vo.setUserNo(Integer.parseInt(userNo));
 	vo.setUserId(userId);
+	
 	try {
 		int cnt=dao.insertBoard(vo);
 		//3.

@@ -98,7 +98,7 @@
 	
 	<table class="box2">
 		<colgroup>
-			<col style="width:9%;" />
+			<col style="width:15%;" />
 			<col style="width:54%;" />
 			<col style="width:14%;" />
 			<col style="width:9%;" />
@@ -106,8 +106,8 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th scope="col"><div>제목</div></th>
 				<th scope="col"><div>작성자</div></th>
+				<th scope="col"><div>제목</div></th>
 				<th scope="col"><div>작성일</div></th>
 				<th scope="col"><div>조회수</div></th>
 			</tr>
@@ -123,8 +123,8 @@
 				<% for(int i=0;i<list.size() ;i++){ 
 	     	 		BoardVO vo = list.get(i); %>
 					<tr>
-						<td><a href="boardDetail.jsp?boNo=<%=vo.getBoNo() %>"><%=vo.getBoTitle() %></a></td>
 						<td><%=vo.getUserId() %></td> <!-- 내용이 이름으로 가는 이유 모름 -->
+						<td><a href="boardDetail.jsp?boNo=<%=vo.getBoNo() %>"><%=vo.getBoTitle() %></a></td>
 						<td><%=sdf.format(vo.getBoDate()) %></td>
 						<td><%=vo.getBoHits() %></td>
 					</tr>
