@@ -7,8 +7,8 @@
 <%@page import="video.VideoService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<link href="../css/videoStyles.css" rel="stylesheet">
 <%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
+<link href="../css/videoStyles.css" rel="stylesheet">
 <script>
    var scThNum =1;
    
@@ -48,8 +48,8 @@
               					
           	    				var scVidImg='<img class="main_Thumbnail" src="'+vidList[i].vidImg+'">';
           	    		    	var scVidTitle='<p class="video_tilte">'+vidList[i].vidTitle+'</p>';
-          	    		    	var scVidUserId='<p class="video_uploaderid">'+vidList[i].vidUserNo+'</p>';
-          	    		    	var scVidHits='<p class="video_hits">조회수'+vidList[i].vidHits+'</p>';
+          	    		    	var scVidUserId='<p class="video_uploaderid">'+vidList[i].vidUserId+'</p>';
+          	    		    	var scVidHits='<p class="video_hits">조회수 '+vidList[i].vidHits+'</p>';
           	    				var scVidNo=vidList[i].vidNo;
           	    				
           	    				$('.video_main_list').last().append('<a class="awatch" href="../videoBundle/videoWatch.jsp?vidNo='+scVidNo+'">');
@@ -128,7 +128,7 @@
       </button>
    </div>
 
-   <iframe id="player" width="640" height="360"
+   <iframe id="player" width="630" height="360"
       src="https://www.youtube.com/embed/4TWR90KJl84"></iframe>
    
    
