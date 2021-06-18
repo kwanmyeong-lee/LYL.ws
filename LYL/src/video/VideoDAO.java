@@ -140,6 +140,30 @@ public class VideoDAO {
 			pool.dbClose(rs,ps,conn);
 		}
 	}
+	
+	public int vidAllCnt() throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = pool.getConnection();
+			
+			String sql = "select count(*) from video";
+			ps=conn.prepareStatement(sql);
+			
+
+			rs=ps.executeQuery();
+			int cnt=0;
+			while(rs.next()) {
+				cnt=rs.getInt(1);
+			}
+			return cnt;
+		
+		}finally {
+			pool.dbClose(rs, ps, conn);
+		}
+	}
 }
 
 
