@@ -19,12 +19,12 @@
 			int cnt=dao.deleteBoard(Integer.parseInt(boNo));
 			if(cnt>0){ %>
 			<script type="text/javascript">
-			 	alert('글삭제 처리 성공');
+			 	alert('게시글을 삭제하였습니다.');
 		        location.href="boardList.jsp";
 	        </script>
 		<%}else{ %>
 			<script type="text/javascript">
-				alert('글삭제 처리 실패');
+				alert('게시글 삭제 처리를 실패하였습니다.');
 				history.back();
 			</script>
 		<%}

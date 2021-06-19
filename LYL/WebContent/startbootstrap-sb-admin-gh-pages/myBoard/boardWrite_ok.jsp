@@ -1,5 +1,3 @@
-<%@page import="board.ClobTest"%>
-<%@page import="java.sql.Clob"%>
 <%@page import="board.BoardVO"%>
 <%@page import="board.BoardDAO"%>
 <%@page import="java.sql.SQLException"%>
