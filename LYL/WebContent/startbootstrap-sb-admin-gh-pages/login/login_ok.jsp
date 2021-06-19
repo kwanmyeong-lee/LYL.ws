@@ -28,6 +28,7 @@
 			session.setAttribute("userName", myuserVo.getUserName());
 			session.setAttribute("userid", userid); //키 값이 userid 
 			session.setAttribute("userNo", myuserVo.getUserNo());
+			System.out.println();
 
 			//아이디 쿠키에 저장 !!
 			Cookie ck = new Cookie("ck_userid", userid);
