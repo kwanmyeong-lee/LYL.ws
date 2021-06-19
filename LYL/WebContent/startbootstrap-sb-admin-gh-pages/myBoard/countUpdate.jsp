@@ -13,8 +13,8 @@
    //list.jsp에서 [제목]클릭하면 get방식으로 이동
    //=> http://localhost:9090/mystudy/board/countUpdate.jsp?no=5
    //1
-   String no=request.getParameter("no");
-   if(no==null || no.isEmpty()){ %>
+   String boNo=request.getParameter("boNo");
+   if(boNo==null || boNo.isEmpty()){ %>
       <script type="text/javascript">
          alert('잘못된 url입니다.');
          location.href="list.jsp";
@@ -27,10 +27,10 @@
    BoardDAO dao = new BoardDAO();
    
    try{
-      int cnt=dao.updateReadCount(Integer.parseInt(no));   
+      int cnt=dao.updateReadCount(Integer.parseInt(boNo));   
       //3
       if(cnt>0){
-         response.sendRedirect("detail.jsp?no="+no);
+         response.sendRedirect("boardDetail.jsp?boNo="+boNo);
       }else{ %>
          <script type="text/javascript">
             alert('조회수 증가 실패');

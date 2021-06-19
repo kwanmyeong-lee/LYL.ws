@@ -28,7 +28,12 @@
 		text-align: center;
 		padding-top: 8px;
 	}
-
+	
+	.title{
+		text-align: left;
+		padding-left: 30px;
+	}
+	
 	table{
 		width: 1000px;
 		border-collapse: collapse;
@@ -65,6 +70,15 @@
 		border: 0px;
 		
 	}
+	
+	.pageDiv{
+		text-align: center;
+	}
+	.pageI{
+		color: black;
+		text-decoration: none;
+		font-size:20px;
+	}
 </style>
 <script type="text/javascript" src="/../js/datatables-simple-demo.js"></script>
 <script type="text/javascript">
@@ -94,7 +108,7 @@
 <script type="text/javascript" src="/../js/datatables-simple-demo.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$('.upload').click(function(){
+		$('#upload').click(function(){
 			location.href="boardWrite.jsp";
 		});
 	});
@@ -128,10 +142,11 @@
 	     	 <%}else{ %>
 					<!-- 게시글이 있을 경우 -->
 				<% for(int i=0;i<list.size() ;i++){ 
-	     	 		BoardVO vo = list.get(i); %>
+					BoardVO vo=list.get(i); //0, 5, 10, 15 
+				%>
 					<tr>
 						<td><%=vo.getUserId() %></td> <!-- 내용이 이름으로 가는 이유 모름 -->
-						<td><a href="boardDetail.jsp?boNo=<%=vo.getBoNo() %>"><%=vo.getBoTitle() %></a></td>
+						<td class="title"><a href="countUpdate.jsp?boNo=<%=vo.getBoNo() %>"><%=vo.getBoTitle() %></a></td>
 						<td><%=sdf.format(vo.getBoDate()) %></td>
 						<td><%=vo.getBoHits() %></td>
 					</tr>

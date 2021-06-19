@@ -33,11 +33,16 @@
 		margin: 20px auto;
 	}
 	.titleLabel{
-		margin: 5px 30px;
+		margin-top: 5px;
+		font-weight: bold;
+		margin-left: 50px;
 		float: left;
 	}
+	#title{
+		border: none;
+	}
 	.title{
-		margin: 10px 90px;
+		margin: 10px auto;
 		padding: 7px;
 		width: 700px;
 		height:40px;
@@ -45,31 +50,25 @@
 		border-radius: 10px;
 	}
 	.userName{
-		position:absolute;
-		top:178px;
-		left: 450px;
 		float:left;
 		font-size: 12px;
 		width: 150px;
 		height:20px;
-		margin: 0 10px;
-		background: white;
+		margin: 2px 30px;
+		border: none;
+		background: none;
 	}
 	.regdateLabel{
-		position:absolute;
-		left: 1110px;
-		top:175px;
-	
+		float: right;
 	}
 	.regdate{
-		position:absolute;
-		left: 1170px;
-		top:178px;
 		width: 110px;
 		height:20px;
-		margin: 0 10px;
+		margin: 2px 10px;
 		float: right;
 		font-size: 12px;
+		background: none;
+		border: none;
 	}
 	.contentDiv{
 		margin: 0 auto;
@@ -109,8 +108,14 @@
 		margin-top: 5px;
 		border-radius: 10px;
 	}
-	.comment{
+	
+	#content{
+		width: 790px;
+		height: 450px;
+		margin:20px;
 		border-radius: 10px;
+		border: none;
+		font-size: 15px;
 		resize: none;
 	}
 </style>
@@ -146,12 +151,9 @@ String boNo = request.getParameter("boNo");
 <script type="text/javascript" src="/../js/datatables-simple-demo.js"></script>
 <script type="text/javascript">
 	$(function(){
-<<<<<<< HEAD:LYL/WebContent/startbootstrap-sb-admin-gh-pages/myBoard/boardDetail.jsp
 		$('#boardEdit').click(function(){
 			location.href="boardEdit.jsp?boNo=<%=vo.getBoNo()%>";
 		});
-=======
->>>>>>> 0618-hyuk:LYL/WebContent/startbootstrap-sb-admin-gh-pages/board/boardDetail.jsp
 		$('#boardDelete').click(function(){
 			location.href="boardDelete.jsp?boNo=<%=vo.getBoNo()%>";
 		});
@@ -161,16 +163,20 @@ String boNo = request.getParameter("boNo");
 	});
 </script>
 <div class="listBody">
-<input type="hidden" name="boNo" value="<%=vo.getBoNo()%>">
+<input type="hidden" name="boNo" value="<%=boNo%>">
 	<div class="titleH"><h3>게시판</h3></div>
 		<div class="detailBlock">
 			<label class="titleLabel">제목 : </label>
-			<div class="title" name="title"><%=vo.getBoTitle() %></div>
-			<div class="userName" name="userId"><a href=""><%=vo.getUserId() %></a></div>
-			<div class="regdate"><%=sdf.format(vo.getBoDate()) %></div>
-			<label class="regdateLabel"> 등록일 : </label><br><br>
+			<div class="title">
+				<input type="text" name="title" id="title" value="<%=vo.getBoTitle() %>">
+			</div>
+				<input type="text" name="userid" class="userName" value="<%=vo.getUserId() %>"></a>
+				<input type="text" name="regdate" class="regdate" value="<%=sdf.format(vo.getBoDate()) %>">
+				<label class="regdateLabel"> 등록일 : </label><br><br>
 			<div class="contentDiv">
-				<div class="content" name="content"><%=vo.getBoCon() %></div>
+				<div class="content" >
+					<textarea rows="114" cols="30" name="content" id="content"><%=vo.getBoCon() %></textarea> 
+				</div>
 			</div>
 		</div>
 		<div class="btn">

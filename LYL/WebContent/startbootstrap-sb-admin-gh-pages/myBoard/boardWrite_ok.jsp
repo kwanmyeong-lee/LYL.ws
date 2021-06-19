@@ -32,7 +32,7 @@
 	
 	try {
 		int cnt=dao.insertBoard(vo);
-		//3.
+
 		if (cnt > 0) {
 			%>
 			<script type="text/javascript">

@@ -1,18 +1,27 @@
-<<<<<<< HEAD
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="board.BoardVO"%>
 <%@page import="board.BoardDAO"%>
-=======
->>>>>>> 0618-hyuk
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
+<%@ include file="/../startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
+<%
+	//session으로 사용자아이디 받기
+	String boNo = request.getParameter("boNo");
+	//2
+		BoardDAO dao = new BoardDAO();
+		BoardVO vo = null;
+		try{
+			vo=dao.selectByNo(Integer.parseInt(boNo));
+		} catch(SQLException e){
+			e.printStackTrace();
+		}
+%>
 <style>
 	.listBody{
-		background: lightgray;
+		background: rgb(242, 242, 242);
 		width: 1000px;
-		height: 100%;
+		height: auto;
 		margin: 10px auto;
 		padding-top: 20px;
 		border-radius: 10px;
@@ -57,10 +66,13 @@
 		resize: none;
 	}
 
-	.submit{
+	.btnList{
+		margin: 10px 390px;
+	}
+	
+	.btn11{
 		height: 40px;
 		width: 100px;
-		margin: 0 450px 20px 450px;
 		color: white;
 		font-weight: bold;
 		background: #0d6efd;
@@ -79,61 +91,29 @@
 	}
 
 </style>
-<<<<<<< HEAD
 <script type="text/javascript" src="/../js/datatables-simple-demo.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$('.cancle').click(function(){
-			location.back();
-		});
+		
+		
 	});
 </script>
-<%
-	//session으로 사용자아이디 받기
-	String userId = "이름";
-	String boNo = request.getParameter("boNo");
-	String pwd = "0";
-	//2
-		BoardDAO dao = new BoardDAO();
-		BoardVO vo = null;
-		try{
-			vo=dao.selectByNo(Integer.parseInt(boNo));
-		} catch(SQLException e){
-			e.printStackTrace();
-		}
-%>
 <div class="listBody">
-	<div id="titleH"><h2>게시글 수정</h2></div>
-	<div>
-		<form action="boardEdit_ok.jsp" method="post" >
+	<form action="boardEdit_ok.jsp" method="post" >
+	<input type="hidden" name="boNo" value="<%=boNo%>">
+		<div id="titleH"><h2>게시글 수정</h2></div>
 		<div class="titleDiv">
 			<label>제목 : </label>
 			<input type="text" name="title" class="title" value="<%=vo.getBoTitle()%>">&nbsp;
 			<input type="checkbox" name="private" id="private">&nbsp;비공개
-			<div id="pwd">비밀번호 : <input type="password" name="pwd" class="pwd" value="<%=pwd%>"></div>
+			<div id="pwd">비밀번호 : <input type="password" name="pwd" class="pwd" value="<%=vo.getBoPwd()%>"></div>
 		</div>
-		<textarea name="content" id="content" cols="114" rows="30" ><%=vo.getBoCon()%>"</textarea>
-		</form>
-	</div>
-	<input type="submit" value="수정" class="submit">
-	<input type="button" value="취소" class="cancle">
-</div>
-=======
-
-<div class="listBody">
-	<div id="titleH"><h2>글작성</h2></div>
-	<div>
-		<form action="boardWrite_ok.jsp" method="post" >
-		<div class="titleDiv">
-			<label>제목 : </label>
-			<input type="text" name="title" class="title">&nbsp;
-			<input type="checkbox" name="private" id="private">&nbsp;비공개
-			<div id="pwd">비밀번호 : <input type="password" name="pwd" class="pwd"></div>
+		<textarea name="content" id="content" cols="114" rows="30"><%=vo.getBoCon()%></textarea>
+		<div class="btnList">
+			<input type="submit" value="수정" class="btn11" id="submit" />
+			<input type="button" value="취소" class="btn11" id="btnCancle" onclick="location.href='boardDetail.jsp?boNo=<%=boNo%>'">
 		</div>
-		<textarea name="content" id="content" cols="114" rows="30"></textarea>
-	<input type="submit" value="수정" class="submit"></div>
-	<a href="boardList.jsp"><input type="button" value="목록" class="submit"></a>
 	</form>
-	</div>
->>>>>>> 0618-hyuk
+</div>
+
 <%@ include file="/../startbootstrap-sb-admin-gh-pages/inc/bottom.jsp" %>

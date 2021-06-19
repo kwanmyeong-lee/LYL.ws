@@ -45,7 +45,7 @@ public class BoardDAO {
 				int boSort=rs.getInt("boSort");
 				int boGroupNo=rs.getInt("boGroupNo");
 				
-				BoardVO vo = new BoardVO(boNo, boTitle, boCon, boHits, boCom, boDate, boPwd, userNo, boCon, boStep, boSort, boGroupNo);
+				BoardVO vo = new BoardVO(boNo, boTitle, boCon, boHits, boCom, boDate, boPwd, userNo, userId, boStep, boSort, boGroupNo);
 				list.add(vo);
 			}
 			
@@ -113,7 +113,7 @@ public class BoardDAO {
 		}
 	}
 	
-	public int updateReadCount(int no) throws SQLException {
+	public int updateReadCount(int boNo) throws SQLException {
 		Connection conn=null;
 		PreparedStatement ps=null;
 
@@ -122,12 +122,12 @@ public class BoardDAO {
 
 			String sql="update myboard"
 					+ " set boHits=boHits+1"
-					+ " where no=?";
+					+ " where boNo=?";
 			ps=conn.prepareStatement(sql);
-			ps.setInt(1, no);
+			ps.setInt(1, boNo);
 
 			int cnt=ps.executeUpdate();
-			System.out.println("조회수 증가 결과 cnt="+cnt+", 매개변수 no="+no);
+			System.out.println("조회수 증가 결과 cnt="+cnt+", 매개변수 boNo="+boNo);
 
 			return cnt;
 		}finally {
@@ -164,10 +164,17 @@ public class BoardDAO {
 		try {
 			conn=pool.getConnection();
 			
-			String sql="";
+			String sql="update myboard"
+					+ " set boTitle=?, boCon=?"
+					+ " where boNo=? and userId like '%' || ? || '%'";
 			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getBoTitle());
+			ps.setString(2, vo.getBoCon());
+			ps.setInt(3, vo.getBoNo());
+			ps.setString(4, vo.getUserId());
 			
 			int cnt=ps.executeUpdate();
+			System.out.println("======글수정 결과 cnt="+cnt+", 매개변수 vo="+vo);
 			
 			return cnt;
 		} finally {
