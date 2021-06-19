@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="board.BoardVO"%>
 <%@page import="board.BoardDAO"%>
@@ -32,43 +33,42 @@
 		margin: 20px auto;
 	}
 	.titleLabel{
-		margin: 5px 30px;
+		margin-top: 5px;
+		font-weight: bold;
+		margin-left: 50px;
 		float: left;
 	}
+	#title{
+		border: none;
+	}
 	.title{
-		margin: 10px 90px;
+		margin: 10px auto;
+		padding: 7px;
 		width: 700px;
 		height:40px;
 		background: white;
 		border-radius: 10px;
 	}
 	.userName{
-		position:absolute;
-		top:178px;
-		left: 450px;
 		float:left;
 		font-size: 12px;
 		width: 150px;
 		height:20px;
-		margin: 0 10px;
-		background: white;
+		margin: 2px 30px;
+		border: none;
+		background: none;
 	}
 	.regdateLabel{
-		position:absolute;
-		left: 1110px;
-		top:175px;
-	
+		float: right;
 	}
 	.regdate{
-		position:absolute;
-		left: 1170px;
-		top:178px;
 		width: 110px;
 		height:20px;
-		margin: 0 10px;
-		background: white;
+		margin: 2px 10px;
 		float: right;
 		font-size: 12px;
+		background: none;
+		border: none;
 	}
 	.contentDiv{
 		margin: 0 auto;
@@ -76,7 +76,9 @@
 	}
 	.content{
 		margin: 0 auto;
+		padding: 10px;
 		width:850px;
+		background: white;
 		height: 500px;
 		border-radius: 10px;
 		resize: none;
@@ -106,8 +108,14 @@
 		margin-top: 5px;
 		border-radius: 10px;
 	}
-	.comment{
+	
+	#content{
+		width: 790px;
+		height: 450px;
+		margin:20px;
 		border-radius: 10px;
+		border: none;
+		font-size: 15px;
 		resize: none;
 	}
 </style>
@@ -129,6 +137,7 @@ String boNo = request.getParameter("boNo");
 		e.printStackTrace();
 	}
 	//3
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
 	/* String content = vo.getBoCon();
 	if(content !=null && !content.isEmpty()){
 		
@@ -139,22 +148,41 @@ String boNo = request.getParameter("boNo");
 		content=" ";
 	} */
 %>
+<script type="text/javascript" src="/../js/datatables-simple-demo.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#boardEdit').click(function(){
+			location.href="boardEdit.jsp?boNo=<%=vo.getBoNo()%>";
+		});
+		$('#boardDelete').click(function(){
+			location.href="boardDelete.jsp?boNo=<%=vo.getBoNo()%>";
+		});
+		$('#boardList').click(function(){
+			location.href="boardList.jsp";
+		});
+	});
+</script>
 <div class="listBody">
+<input type="hidden" name="boNo" value="<%=boNo%>">
 	<div class="titleH"><h3>게시판</h3></div>
 		<div class="detailBlock">
 			<label class="titleLabel">제목 : </label>
-			<div class="title"><!-- 제목 --></div>
-			<div class="userName"><a><!-- 유저이름 --></a></div>
-			<div class="regdate"><!-- 등록일 --></div>
-			<label class="regdateLabel"> 등록일 : </label><br><br>
+			<div class="title">
+				<input type="text" name="title" id="title" value="<%=vo.getBoTitle() %>">
+			</div>
+				<input type="text" name="userid" class="userName" value="<%=vo.getUserId() %>"></a>
+				<input type="text" name="regdate" class="regdate" value="<%=sdf.format(vo.getBoDate()) %>">
+				<label class="regdateLabel"> 등록일 : </label><br><br>
 			<div class="contentDiv">
-				<textarea class="content" name="content"><!-- 내용 --></textarea>
+				<div class="content" >
+					<textarea rows="114" cols="30" name="content" id="content"><%=vo.getBoCon() %></textarea> 
+				</div>
 			</div>
 		</div>
 		<div class="btn">
-			<button>수정</button>
-			<button>삭제</button>
-			<button>목록</button>
+			<input type="button" value="수정" id="boardEdit">
+			<input type="button" value="삭제" id="boardDelete">
+			<input type="button" value="목록" id="boardList">
 		</div>
 		<div class="commentList">
 			<h5>댓글</h5>
@@ -173,4 +201,5 @@ String boNo = request.getParameter("boNo");
 			</span>
 		</div>
 </div>
+	
 <%@ include file="/../startbootstrap-sb-admin-gh-pages/inc/bottom.jsp" %>
