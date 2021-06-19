@@ -450,19 +450,19 @@ insert into video values(video_seq.nextval,'영상 제목',4863215,default,'../video
 --영화 no 2--
 insert into video values(video_seq.nextval,'정말... 이 영화가 개봉한다고...?',8888,default,'https://www.youtube.com/embed/R7HGsxi47l8',default,default,'*본 영상은 유료광고를 포함하고 있습니다.',2,1,'http://img.youtube.com/vi/R7HGsxi47l8/maxresdefault.jpg');
 insert into video values(video_seq.nextval,'10,000명 몽골 대군을 막아낸 산골 마을 사냥꾼의 전설 [영화리뷰 결말포함]',666666,default,'https://www.youtube.com/embed/aH9BWyAP2JI',default,default,'[ 라이징 호크, 2019 ]',2,1,'http://img.youtube.com/vi/aH9BWyAP2JI/maxresdefault.jpg');
-insert into video values(video_seq.nextval,'이 여자를 위협하면 어마무시한 일이 벌어집니다... (결말 포함)',333333,default,'https://youtu.be/RNbJTDSgTLY',default,default,'틀딱이 소개하는 영화리뷰 시작합니다.',2,1,'http://img.youtube.com/vi/RNbJTDSgTLY/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'이 여자를 위협하면 어마무시한 일이 벌어집니다... (결말 포함)',333333,default,'https://www.youtube.com/embed/RNbJTDSgTLY',default,default,'틀딱이 소개하는 영화리뷰 시작합니다.',2,1,'http://img.youtube.com/vi/RNbJTDSgTLY/maxresdefault.jpg');
 insert into video values(video_seq.nextval,'영화 속 ''조정석'' 웃긴장면 모음 ZIP',99999999,default,'https://www.youtube.com/embed/j5jbymJVGT4',default,default,'영화는 [엑시트], [건축학개론], [형]입니다. 안녕하세요 ''영화에미치다'' 매드무비입니다.',2,1,'http://img.youtube.com/vi/j5jbymJVGT4/maxresdefault.jpg');
 
 
 --학습 no 3 --
-insert into video values(video_seq.nextval, '아인슈타인이 받았던 공부', 8888888,default,'https://youtube/embed/hcymislezjI', default, default, '무언가를 배우고자 할 때 이 공부를 왜 해야 하는가 ', 3, 1,'http://img.youtube.com/vi/hcymislezjI/maxresdefault.jpg');
+insert into video values(video_seq.nextval, '아인슈타인이 받았던 공부', 8888888,default,'https://www.youtube.com/embed/hcymislezjI', default, default, '무언가를 배우고자 할 때 이 공부를 왜 해야 하는가 ', 3, 1,'http://img.youtube.com/vi/hcymislezjI/maxresdefault.jpg');
 insert into video values(video_seq.nextval, '이 계획대로 공부하면 반드시 성공합니다. (학습 계획표)', 123132132,default,'https://www.youtube.com/embed/KQYJ_0yr-1Q', default, default, '공부가 어려우신가요? 이 계획대로라면 반드시 성공합니다! 계획표도 받아가세요', 3, 1,'http://img.youtube.com/vi/KQYJ_0yr-1Q/maxresdefault.jpg');
 insert into video values(video_seq.nextval, '서울대 수석의 스터디 플래너. [학습 계획법 + 공부 집중력] 한꺼번에 2가지.', 456454,default,'https://www.youtube.com/embed/o2-rsPs47Zw', default, default, '수험생의 최대 고민인 계획 세우는 법, 집중 잘하는 법.', 3, 1,'http://img.youtube.com/vi/o2-rsPs47Zw/maxresdefault.jpg');
 insert into video values(video_seq.nextval, '초등학생 자기주도학습 지도하는 10가지 방법 + 미쉘 교육철학', 8188181,default,'https://www.youtube.com/embed/wxdmIjLMPJM', default, default, '아침형 인간인 저희 아이가 주도적으로 스스로 학습을 할 수 있게 ', 3, 1,'http://img.youtube.com/vi/wxdmIjLMPJM/maxresdefault.jpg');
 insert into video values(video_seq.nextval, '자기주도학습은 중요합니다. 그러나 왜곡되어 있습니다. | 자기주도학습의 정확한 방법', 354354,default,'https://www.youtube.com/embed/qIUDyLBAOdg', default, default, '모두가 중요하다고 하는 자기주도학습 ', 3, 1,'http://img.youtube.com/vi/qIUDyLBAOdg/maxresdefault.jpg');
 insert into video values(video_seq.nextval, '공부하는 힘, 몰입 | 황농문 서울대학교 재료공학부 교수 | 공부 학습 시험 강연', 123,default,'https://www.youtube.com/embed/ukjYwSiYT1I', default, default, '? 강연 소개 : 도전이 아무리 어렵다고 해도, 내가 ', 3, 1,'http://img.youtube.com/vi/ukjYwSiYT1I/maxresdefault.jpg');
 insert into video values(video_seq.nextval, '[동기부여,공부자극] 공부의지는 어디서 오는가?', 4545454,default,'https://www.youtube.com/embed/3XvGdiE_RlI', default, default, '나는 왜 ''공부의지''가 좀처럼 생기지 않을까요? ', 3, 1,'http://img.youtube.com/vi/3XvGdiE_RlI/maxresdefault.jpg');
-insert into video values(video_seq.nextval, '서울대3121명이 공통적으로 쓰는 공부법을 공개합니다', 98498,default,'https://www.youtube.com/sacbcLnZt8w', default, default, '서울대3121명이 공통적으로 쓰는 공부법을 공개합니다. ', 3, 1,'http://img.youtube.com/vi/sacbcLnZt8w/maxresdefault.jpg');
+insert into video values(video_seq.nextval, '서울대3121명이 공통적으로 쓰는 공부법을 공개합니다', 98498,default,'https://www.youtube.com/embed/sacbcLnZt8w', default, default, '서울대3121명이 공통적으로 쓰는 공부법을 공개합니다. ', 3, 1,'http://img.youtube.com/vi/sacbcLnZt8w/maxresdefault.jpg');
 
 --스포츠 no 4--
 insert into video values(video_seq.nextval, '스포츠 역사상 가장 말도 안되는 30가지 순간', 34543,default,'https://www.youtube.com/embed/kRbC5CJeXec', default, default, '이건 새로 나온 피파 게임의 버그가 아닙니다, 눈으로 직접 봐야지만 믿을 수 있는 스포츠', 4, 1,'http://img.youtube.com/vi/kRbC5CJeXec/maxresdefault.jpg');
@@ -517,7 +517,3 @@ commit;
 --(select  ad.*, rownum as rowcnt from 
 --(select * from video where vidtitle like '%'||'게임'||'%' order by vidhits desc)ad)
 -- where rowcnt>=0 and rowcnt<10;
-
-select * from
-(select ad.*,rownum as rowcnt from
-(select * from video where vidtheme=4 order by  vidhits desc)ad;
