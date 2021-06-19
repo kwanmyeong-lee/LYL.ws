@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import db.ConnectionPoolMgr2;
-import oracle.jdbc.OracleResultSet;
 
 public class BoardDAO {
 	private ConnectionPoolMgr2 pool;
