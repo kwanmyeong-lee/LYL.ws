@@ -1,4 +1,4 @@
-boardDelete.jsp<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.SQLException"%>
 <%@page import="board.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
