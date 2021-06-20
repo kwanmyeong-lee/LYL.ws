@@ -89,5 +89,29 @@ public class VidCommentDAO {
 		}
 
 	}
+	
+	public int deleteComment(int comNo) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		
+		try {
+			conn = pool.getConnection();
+			
+			String sql = "delete from mycomment where comno=? or comgroup=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, comNo);
+			ps.setInt(2, comNo);
+			
+			
+			int cnt = ps.executeUpdate();
+			
+			return cnt;
+			
+			
+		}finally {
+			pool.dbClose(ps, conn);
+		}
+		
+	}
 
 }

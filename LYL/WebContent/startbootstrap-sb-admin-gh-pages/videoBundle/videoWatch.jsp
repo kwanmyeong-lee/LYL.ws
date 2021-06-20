@@ -25,8 +25,9 @@
 <script>
 	var vidComCnt= 0;
 	var vidComCnt2= 1;
-	var vidReComCnt=0;
+	var vidReComCnt=1;
 	var vidNo=${param.vidNo};
+	var userNo = "${sessionScope.userNo}";
     $(window).scroll(function() {
     	
     	
@@ -64,7 +65,8 @@
 	    		    	var otherReplyCom
 	    		    	='<div class="ReplyCom" style="display:none"><textarea rows="2" cols="100" class="teReComCon"></textarea><button type="button" class="reComWrite">댓글</button></div>';
 	    		    	var otherReComDiv='<div class="ReComDiv" style="display:none"><p></p></div>'
-	    				
+						
+	    		    	
 	
 	    				$('.vidComment').last().after('<div class="vidComment">');
 	    	        	$('.vidComment').last().append("<br>");
@@ -80,6 +82,12 @@
 	    	        	$('.vidComment').last().append(otherBtComment2);
 	    	        	$('.vidComment').last().append(otherCommentReCnt);
 	    	        	$('.vidComment').last().append(otherBtComment3);
+	    	        	if(comList[i].comUserNo==userNo){
+	    		    		var otherBtComment4='&nbsp&nbsp<button class="btn btn-primary btComUpdate" type="button">수정</button>';
+	    		    		var otherBtComment5	='&nbsp&nbsp<button class="btn btn-primary btComDelete" type="button">삭제</button>';
+	    		    		$('.vidComment').last().append(otherBtComment4);
+	    		    		$('.vidComment').last().append(otherBtComment5);
+	    		    	}
 	    	        	$('.vidComment').last().append(otherReplyCom);
 	    	        	$('.vidComment').last().append(otherReComDiv);
     					vidComCnt2++;
@@ -114,7 +122,7 @@
 
         			type : "post", //get post둘중하나
 
-        			data : {"vidComCnt":vidReComCnt,"vidNo":vidNo, "vidGroup":reComNo},
+        			data : {"vidComCnt":0,"vidNo":vidNo, "vidGroup":reComNo},
         			
 
         			success : function(data) {
@@ -133,13 +141,18 @@
     	    		    	var reotherContent='<p class="reotherContent">'+comList[i].comCon+'</p>';
     	    		    	var reotherBtCommentLike='<button class="btn btn-primary rebtComLike" type="button">좋아요 </button>';
     	    		    	var reotherCommentLikeCnt='<span class="revidCommentLikeCnt">&nbsp'+comList[i].comLike+'&nbsp&nbsp&nbsp&nbsp</span>';
-    	    				
     	
     	    		    	
     	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append(reotherUserId);
     	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append(reotherContent);
     	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append(reotherBtCommentLike);
     	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append(reotherCommentLikeCnt);
+    	    		    	if(comList[i].comUserNo==userNo){
+    	    		    		var otherBtComment4='&nbsp&nbsp<button class="btn btn-primary btReComUpdate" type="button">수정</button>';
+    	    		    		var otherBtComment5	='&nbsp&nbsp<button class="btn btn-primary btReComDelete" type="button">삭제</button>';
+    	    		    		$('.vidComment').last().append(otherBtComment4);
+    	    		    		$('.vidComment').last().append(otherBtComment5);
+    	    		    	}
     	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append("<br>");
     	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append("<br>");
         				}
@@ -187,7 +200,6 @@
     	    		    	var reotherContent='<p class="reotherContent">'+comList[i].comCon+'</p>';
     	    		    	var reotherBtCommentLike='<button class="btn btn-primary rebtComLike" type="button">좋아요 </button>';
     	    		    	var reotherCommentLikeCnt='<span class="revidCommentLikeCnt">&nbsp'+comList[i].comLike+'&nbsp&nbsp&nbsp&nbsp</span>';
-    	    				
     	
     	    		    	
     	    		    	
@@ -195,6 +207,12 @@
     	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append(reotherContent);
     	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append(reotherBtCommentLike);
     	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append(reotherCommentLikeCnt);
+    	    		    	if(comList[i].comUserNo==userNo){
+    	    		    		var otherBtComment4='&nbsp&nbsp<button class="btn btn-primary btReComUpdate" type="button">수정</button>';
+    	    		    		var otherBtComment5	='&nbsp&nbsp<button class="btn btn-primary btReComDelete" type="button">삭제</button>';
+    	    		    		$('.vidComment').last().append(otherBtComment4);
+    	    		    		$('.vidComment').last().append(otherBtComment5);
+    	    		    	}
     	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append("<br>");
     	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append("<br>");
         				}
@@ -424,7 +442,7 @@
 			
 			$.ajax({
 
-				url : "comWrite_ok.jsp", //나중에볼 동영상
+				url : "comWrite_ok.jsp", 
 
 				type : "post", //get post둘중하나
 
@@ -457,7 +475,7 @@
     		var comCon = $(this).parent().children('.teReComCon').val();
     		$.ajax({
 
-				url : "comWrite_ok.jsp", //나중에볼 동영상
+				url : "comWrite_ok.jsp", 
 
 				type : "post", //get post둘중하나
 
@@ -491,6 +509,58 @@
 			});//ajax
 			
     	}));//reComWrite
+    	
+    	$('body').on('click','button.btComDelete',(function(){
+    		var comGroup= $(this).parent().children('input[type=hidden]').val();
+    		var comCntNo= $(this).parent().children('.hid2').val();
+    		
+    		$.ajax({
+
+				url : "comDelete_ok.jsp", //나중에볼 동영상
+
+				type : "post", //get post둘중하나
+
+				data : {
+					"comGroup" : comGroup
+				},
+
+				success : function(data) {							
+ 												
+	    		    $('.vidComment').eq(comCntNo).remove();
+					if(vidComCnt!=0){
+						vidComCnt--;
+						vidComCnt2--;
+					}
+					
+				}
+			});//ajax
+    	}));//btComDelete
+    	
+    	$('body').on('click','button.btComDelete',(function(){
+    		var comGroup= $(this).parent().children('input[type=hidden]').val();
+    		var comCntNo= $(this).parent().children('.hid2').val();
+    		
+    		$.ajax({
+
+				url : "comDelete_ok.jsp", //나중에볼 동영상
+
+				type : "post", //get post둘중하나
+
+				data : {
+					"comGroup" : comGroup
+				},
+
+				success : function(data) {							
+ 												
+	    		    $('.vidComment').eq(comCntNo).remove();
+					if(vidComCnt!=0){
+						vidComCnt--;
+						vidComCnt2--;
+					}
+					
+				}
+			});//ajax
+    	}));//btComDelete
 		
 	});
 </script>
