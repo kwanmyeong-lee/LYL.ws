@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="bocomment.BoCommentVO"%>
+<%@page import="bocomment.BoCommentDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="board.BoardVO"%>
@@ -87,10 +90,15 @@
 	button{
 		border-radius: 10px;
 	}
-	.btn{
+	.btn11{
 		margin: 0 400px;
 	}
-	
+	.btn22{
+		border-radius: 10px;
+		background: #0d6efd;
+		color:white;
+		border:none;
+	}
 	.commentList > h5{
 		margin-left: 75px;
 	}
@@ -118,9 +126,32 @@
 		font-size: 15px;
 		resize: none;
 	}
+	
+	.commentList{
+		width: 840px;
+		margin: 15px 80px;
+		background: #A3A3A3;
+		border-radius: 15px;
+		padding: 15px;
+	}
+	table{
+		width:800px;
+	}
+	td{
+		background: white;
+		border-bottom: 1px solid gray;
+		text-align: center;
+	}
+	.commentTd{
+		text-align: left;
+		padding-left: 15px;
+	}
+	textarea{
+		resize: none;
+	}
 </style>
 <%
-String boNo = request.getParameter("boNo");
+	String boNo = request.getParameter("boNo");
 	if(boNo==null || boNo.isEmpty()){ %>
 		<script type="text/javascript">
 			alert("잘못된 url입니다.");
@@ -138,15 +169,16 @@ String boNo = request.getParameter("boNo");
 	}
 	//3
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
-	/* String content = vo.getBoCon();
-	if(content !=null && !content.isEmpty()){
-		
-		//replace \r\n => <br>
-		content=content.replace("\r\n", "<br>");
-	}else{
-		//null =>
-		content=" ";
-	} */
+	
+	//===============comment
+	//2
+	BoCommentDAO commDao = new BoCommentDAO();
+	List<BoCommentVO> list = null;
+	try{
+		list= commDao.selectByBoComment(Integer.parseInt(boNo));
+	} catch(SQLException e){
+		e.printStackTrace();
+	}
 %>
 <script type="text/javascript" src="/../js/datatables-simple-demo.js"></script>
 <script type="text/javascript">
@@ -170,7 +202,7 @@ String boNo = request.getParameter("boNo");
 			<div class="title">
 				<input type="text" name="title" id="title" value="<%=vo.getBoTitle() %>">
 			</div>
-				<input type="text" name="userid" class="userName" value="<%=vo.getUserId() %>"></a>
+				<input type="text" name="userid" class="userName" value="<%=vo.getUserId() %>">
 				<input type="text" name="regdate" class="regdate" value="<%=sdf.format(vo.getBoDate()) %>">
 				<label class="regdateLabel"> 등록일 : </label><br><br>
 			<div class="contentDiv">
@@ -179,15 +211,34 @@ String boNo = request.getParameter("boNo");
 				</div>
 			</div>
 		</div>
-		<div class="btn">
-			<input type="button" value="수정" id="boardEdit">
-			<input type="button" value="삭제" id="boardDelete">
-			<input type="button" value="목록" id="boardList">
+		<div class="btn11">
+			<input type="button" value="수정" id="boardEdit" class="btn22">
+			<input type="button" value="삭제" id="boardDelete" class="btn22">
+			<input type="button" value="목록" id="boardList" class="btn22">
 		</div>
 		<div class="commentList">
-			<h5>댓글</h5>
 			<!-- 댓글 목록 반복 -->
 			<!-- 테이블로 만들기@@@@@@@@ -->
+			<table>
+				<colgroup>
+					<col style="width:20%;"/>
+					<col style="width:60%;"/>
+					<col style="wdith:10%;"/>
+					<col style="wdith:10%;"/>
+				</colgroup>
+				<tbody>
+				<%for(int i=0;i<list.size(); i++){ 
+					BoCommentVO commVo = list.get(i);
+				%>
+					<tr>
+						<td><%=commVo.getUserId() %></td>
+						<td class="commentTd"><%=commVo.getBcCom() %></td>
+						<td><%=sdf.format(commVo.getBcDate()) %></td>
+						<td><%=commVo.getBcLike() %></td>
+					</tr>
+				<%} %>
+				</tbody>
+			</table>
 		</div>
 		<div class="commentInsert">
 			<!-- 댓글 입력 -->
@@ -196,7 +247,7 @@ String boNo = request.getParameter("boNo");
 			<textarea rows="3" cols="100" class="comment" ></textarea> 
 			<span class="commentSec">	
 				<input type="checkbox" class="chSec">비밀글<br>
-				<input type="submit" class="submit" value="등록">
+				<input type="submit" class="submit" value="등록" onclick="bo_CommentWrite_ok.jsp">
 			</span>
 			</span>
 		</div>
