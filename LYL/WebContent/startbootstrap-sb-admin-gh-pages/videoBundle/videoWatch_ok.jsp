@@ -22,7 +22,7 @@
 		MyuserVO mvo = msv.selectMyuserByVidNo(userno);
 	%>
 	
-	{"comNo" : "<%=vo.getComNo() %>", "comId" : "<%=mvo.getUserId() %>", "comCon" : "<%=vo.getComCon() %>", "comLike" : "<%=vo.getComLike() %>", "comRe" : "<%=vo.getComRe() %>"}<%if(i<list.size()-1){ %>,<%} %> 
+	{"comUserNo" : "<%=vo.getUserNo() %>", "comNo" : "<%=vo.getComNo() %>", "comId" : "<%=mvo.getUserId() %>", "comCon" : "<%=vo.getComCon() %>", "comLike" : "<%=vo.getComLike() %>", "comRe" : "<%=vo.getComRe() %>"}<%if(i<list.size()-1){ %>,<%} %> 
 		
 	<%}
 %>],"comListSize":<%=list.size()%> }<%
