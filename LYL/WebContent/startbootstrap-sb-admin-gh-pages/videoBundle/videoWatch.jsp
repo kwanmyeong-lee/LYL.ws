@@ -1,3 +1,4 @@
+<%@page import="src.subscribe.subscribeVO"%>
 <%@page import="video.VideoService"%>
 <%@page import="src.aftervideo.aftervideoVO"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -228,17 +229,24 @@
 	<jsp:useBean id="videoService" class="video.VideoService" scope="page"></jsp:useBean>
 	<jsp:useBean id="myuserService" class="src.myuser.MyuserService" scope="page"></jsp:useBean>
 	<jsp:useBean id="aftervideoService" class="src.aftervideo.aftervideoService" scope="page"></jsp:useBean>
+	<jsp:useBean id="subscribeService" class="src.subscribe.subscribeService" scope="page"></jsp:useBean>
 	
 	<%
+		int userNo = (int)session.getAttribute("userNo"); //세션 유저번호
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String vidno = request.getParameter("vidNo");  //받아올게 없쥬?
+		String vidno = request.getParameter("vidNo");  // 비디오 번호
 		
 		VideoVO videoVo = null;
 		MyuserVO myuserVo = null;
 		aftervideoVO afvideoVo = null;
+		subscribeVO subscribeVo = null;
+		int cnt= 0;
+		int subCnt = 0;
 		try{
 			videoVo = videoService.videoSelect(vidno);
 			myuserVo = myuserService.selectMyuserByVidNo(vidno); //유저번호, 구독자, 타이틀 밖에 안들어있어요
+			cnt = aftervideoService.selectAftervideo(vidno, Integer.toString(userNo));
+			subCnt = subscribeService.selectSubscribe(Integer.toString(myuserVo.getUserNo()), Integer.toString(userNo));
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -247,6 +255,7 @@
 		if(vidUrl.startsWith("https")){
 			vidUrl+="?autoplay=1&mute=1";
 		}
+		System.out.println(cnt);
 	%>
 
    <header>
@@ -260,8 +269,17 @@
 	<p id='vidG'>구독자<%=myuserVo.getUserSub() %> 명</p>
 	
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+		<%if(subCnt>0){%>
+		<button id="subscribe" class="btn btn-primary me-md-2" type="button" value="<%=myuserVo.getUserNo()%>" style="background: #dc3545">구독 취소</button>
+		<%}else { %>
 		<button id="subscribe" class="btn btn-primary me-md-2" type="button" value="<%=myuserVo.getUserNo()%>">구독</button>
+		<%} %>
+		<%if(cnt>0){%>
+		<button id="videoSave" class="btn btn-primary" type="button" style="background: #dc3545" >다시보기 삭제</button>
+		<%}else { %>
 		<button id="videoSave" class="btn btn-primary" type="button" >다시보기에 저장</button>
+		<%} %>
+	
 	</div>
 
 	<p id='vidContent'>내용 : &nbsp;<%=videoVo.getVidEx() %></p>
