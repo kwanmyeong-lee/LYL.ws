@@ -60,6 +60,7 @@ public class aftervideoDAO {
 	public int selectAftervideo(String videoNo, String userNo) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
+		ResultSet rs = null;
 		
 		try {
 			conn = pool.getConnection();
@@ -68,13 +69,18 @@ public class aftervideoDAO {
 			ps.setString(1, userNo);
 			ps.setString(2, videoNo);
 			
-			int cnt = ps.executeUpdate();
+			rs=ps.executeQuery();
+			
+			int cnt = 0;
+			if(rs.next()) {
+				cnt = rs.getInt(1);
+			}
 			
 			System.out.println("나중에볼동영상 insert 결과 vo="+cnt+"매개변수 ="+videoNo+userNo);
 			return cnt;
 			
 		}finally{
-			pool.dbClose(ps, conn);
+			pool.dbClose(rs, ps, conn);
 		}
 	}
 	
