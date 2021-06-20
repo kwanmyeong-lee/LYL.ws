@@ -24,6 +24,7 @@
 
 <script>
 	var vidComCnt= 0;
+	var vidComCnt2= 1;
 	var vidReComCnt=0;
 	var vidNo=${param.vidNo};
     $(window).scroll(function() {
@@ -49,9 +50,10 @@
     				
     				for(var i=0; i<comListSize; i++){
     					var otherComNo='<input type="hidden" class="hid1" value="'+comList[i].comNo+'">';
-    					var otherComNo2='<input type="hidden" class="hid2" value="'+vidComCnt+'">';    				
+    					var otherComNo2='<input type="hidden" class="hid2" value="'+vidComCnt2+'">';    				
     					var otherReFirstCheck='<input type="hidden" class="reComBtFirstCheck" value=0>';
     					var otherReComSeeMore='<input type="hidden" class="reComSeeMore" value=0>';
+    					var otherReComSeeMoreCheck='<input type="hidden" class="reComSeeMoreCheck" value="true">';
 	    				var otherUserId='<p class="otherUserId">'+comList[i].comId+'</p>';
 	    		    	var otherContent='<p class="otherContent">'+comList[i].comCon+'</p>';
 	    		    	var otherBtCommentLike='<button class="btn btn-primary btComLike" type="button">좋아요 </button>';
@@ -70,6 +72,7 @@
 	    	        	$('.vidComment').last().append(otherComNo2);
 	    	        	$('.vidComment').last().append(otherReFirstCheck);
 	    	        	$('.vidComment').last().append(otherReComSeeMore);
+	    	        	$('.vidComment').last().append(otherReComSeeMoreCheck);
 	    	        	$('.vidComment').last().append(otherUserId);
 	    	        	$('.vidComment').last().append(otherContent);
 	    	        	$('.vidComment').last().append(otherBtCommentLike);
@@ -79,10 +82,13 @@
 	    	        	$('.vidComment').last().append(otherBtComment3);
 	    	        	$('.vidComment').last().append(otherReplyCom);
 	    	        	$('.vidComment').last().append(otherReComDiv);
+    					vidComCnt2++;
+    				}
+    				vidComCnt+=comListSize;
+    				if(vidComCnt==9 || vidComCnt==1){
     					vidComCnt++;
     				}
-    				if(vidComCnt<=9)
-    					vidComCnt++;
+    				
     			}
 
     		});//ajax
@@ -96,7 +102,7 @@
     		$(this).parent().children('.ReComDiv').toggle();
     		
     		var reComNo= $(this).parent().children('.hid1').val();
-    		var reComNo2= parseInt($(this).parent().children('.hid2').val())+1;
+    		var reComNo2= parseInt($(this).parent().children('.hid2').val());
     		
     		var firstCheck = $(this).parent().children('.reComBtFirstCheck').val();
     		var reSeeMore = $(this).parent().children('.reComSeeMore').val();
@@ -141,6 +147,8 @@
         					var otherBtComment2='<button class="btn btn-primary btComReSeeMore" type="button">더보기</button>';
         					$('.vidComment').eq(reComNo2).children('.ReComDiv').append(otherBtComment2);
         					$('.vidComment').eq(reComNo2).children('.reComSeeMore').val(parseInt(reSeeMore)+10);
+        					$('.vidComment').eq(reComNo2).children('.reComSeeMoreCheck').val("false");
+        					
         				}
         				
         			}
@@ -154,7 +162,7 @@
     	$('body').on('click','button.btComReSeeMore',(function(){
     		$(this).hide();
     		var reComNo= $(this).parent().parent().children('.hid1').val();
-    		var reComNo2= parseInt($(this).parent().parent().children('.hid2').val())+1;
+    		var reComNo2= parseInt($(this).parent().parent().children('.hid2').val());
     		var reSeeMore = $(this).parent().parent().children('.reComSeeMore').val();
     		
     		
@@ -194,6 +202,8 @@
         					var otherBtComment2='<button class="btn btn-primary btComReSeeMore" type="button">더보기</button>';        					
         					$('.vidComment').eq(reComNo2).children('.ReComDiv').append(otherBtComment2);
         					$('.vidComment').eq(reComNo2).children('.reComSeeMore').val(parseInt(reSeeMore)+10);
+        				}else{
+        					$('.vidComment').eq(reComNo2).children('.reComSeeMoreCheck').val("true");
         					
         				}
         				
@@ -276,7 +286,7 @@
   </body>
 <script type="text/javascript">
 	var vidNo=${param.vidNo};
-	var userNo = ${sessionScope.userNo}; //로이그인 해서 들어온 유저
+	var userNo = "${sessionScope.userNo}"; //로이그인 해서 들어온 유저
 	var userNo2 = $('#subscribe').val(); //영상 올린 유저
 	
 	$(function() {
@@ -308,6 +318,7 @@
 		});
 		
 		$('#subscribe').click(function() {
+			
 			$.ajax({
 
 				url : "usbscribe_ok.jsp", //나중에볼 동영상
@@ -335,6 +346,12 @@
 		});
 		
 		$('.comWrite').click(function(){
+			
+			if(userNo==""){
+    			alert("로그인하세요")
+    			return;
+    		}
+			
 			var comCon = $('#myComment').children('.teComCon').val();
 			
 			$.ajax({
@@ -361,8 +378,14 @@
     	});//comWrite
     	
     	$('body').on('click','button.reComWrite',(function(){
+    		if(userNo==""){
+    			alert("로그인하세요")
+    			return;
+    		}
     		var comGroup= $(this).parent().parent().children('input[type=hidden]').val();
-    		
+    		var comCntNo= $(this).parent().parent().children('.hid2').val();
+			var seeMoreCheck= $(this).parent().parent().children('.reComSeeMoreCheck').val();
+			var firstCheck = $(this).parent().parent().children('.reComBtFirstCheck').val();
     		var comCon = $(this).parent().children('.teReComCon').val();
     		$.ajax({
 
@@ -377,8 +400,24 @@
 					"comGroup" : comGroup
 				},
 
-				success : function(data) {
-					$('.ReplyCom').eq(comGroup).children('textarea').val("");
+				success : function(data) {			
+ 					$('.ReplyCom').eq(comCntNo-1).children('textarea').val(""); 					
+ 					
+ 					if(seeMoreCheck=="true" && firstCheck!=0){
+ 						
+	 					var reotherUserId='<p class="reotherUserId"><%=myuserVo.getUserId()%></p>';
+	    		    	var reotherContent='<p class="reotherContent">'+comCon+'</p>';
+	    		    	var reotherBtCommentLike='<button class="btn btn-primary rebtComLike" type="button">좋아요 </button>';
+	    		    	var reotherCommentLikeCnt='<span class="revidCommentLikeCnt">&nbsp0&nbsp&nbsp&nbsp&nbsp</span>';
+						
+	    		    	$('.vidComment').eq(comCntNo).children('.ReComDiv').append(reotherUserId);
+	    		    	$('.vidComment').eq(comCntNo).children('.ReComDiv').append(reotherContent);
+	    		    	$('.vidComment').eq(comCntNo).children('.ReComDiv').append(reotherBtCommentLike);
+	    		    	$('.vidComment').eq(comCntNo).children('.ReComDiv').append(reotherCommentLikeCnt);
+	    		    	$('.vidComment').eq(comCntNo).children('.ReComDiv').append("<br>");
+	    		    	$('.vidComment').eq(comCntNo).children('.ReComDiv').append("<br>");
+	    		   
+ 					}
 					
 				}
 			});//ajax
