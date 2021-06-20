@@ -230,15 +230,18 @@
 	<jsp:useBean id="aftervideoService" class="src.aftervideo.aftervideoService" scope="page"></jsp:useBean>
 	
 	<%
+		int userNo = (int)session.getAttribute("userNo"); //세션 유저번호
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String vidno = request.getParameter("vidNo");  //받아올게 없쥬?
+		String vidno = request.getParameter("vidNo");  // 비디오 번호
 		
 		VideoVO videoVo = null;
 		MyuserVO myuserVo = null;
 		aftervideoVO afvideoVo = null;
+		int cnt= 0;
 		try{
 			videoVo = videoService.videoSelect(vidno);
 			myuserVo = myuserService.selectMyuserByVidNo(vidno); //유저번호, 구독자, 타이틀 밖에 안들어있어요
+			cnt = aftervideoService.selectAftervideo(vidno, Integer.toString(userNo));
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -261,7 +264,13 @@
 	
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 		<button id="subscribe" class="btn btn-primary me-md-2" type="button" value="<%=myuserVo.getUserNo()%>">구독</button>
-		<button id="videoSave" class="btn btn-primary" type="button" >다시보기에 저장</button>
+		<button id="videoSave" class="btn btn-primary" type="button" >
+		<%if(cnt>0){%>
+		다시보기 삭제
+		<%}else { %>
+		다시보기에 저장
+		<%} %>
+		</button>
 	</div>
 
 	<p id='vidContent'>내용 : &nbsp;<%=videoVo.getVidEx() %></p>
