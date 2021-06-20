@@ -23,7 +23,7 @@
 </style>
 
 <script>
-	var vidComCnt=0;
+	var vidComCnt= 0;
 	var vidReComCnt=0;
 	var vidNo=${param.vidNo};
     $(window).scroll(function() {
@@ -48,7 +48,8 @@
     				var comListSize = obj.comListSize;
     				
     				for(var i=0; i<comListSize; i++){
-    					var otherComNo='<input type="hidden" value="'+comList[i].comNo+'">';
+    					var otherComNo='<input type="hidden" class="hid1" value="'+comList[i].comNo+'">';
+    					var otherComNo2='<input type="hidden" class="hid2" value="'+vidComCnt+'">';    				
     					var otherReFirstCheck='<input type="hidden" class="reComBtFirstCheck" value=0>';
     					var otherReComSeeMore='<input type="hidden" class="reComSeeMore" value=0>';
 	    				var otherUserId='<p class="otherUserId">'+comList[i].comId+'</p>';
@@ -59,13 +60,14 @@
 	    		    	var otherCommentReCnt='<span class="vidCommentReCnt">&nbsp'+comList[i].comRe+'&nbsp&nbsp&nbsp&nbsp</span>';
 	    		    	var otherBtComment3='<button class="btn btn-primary btComReply" type="button">답글하기</button>';
 	    		    	var otherReplyCom
-	    		    	='<div class="ReplyCom" style="display:none"><textarea rows="2" cols="100"></textarea><button type="button">댓글</button></div>';
+	    		    	='<div class="ReplyCom" style="display:none"><textarea rows="2" cols="100" class="teReComCon"></textarea><button type="button" class="reComWrite">댓글</button></div>';
 	    		    	var otherReComDiv='<div class="ReComDiv" style="display:none"><p></p></div>'
 	    				
 	
 	    				$('.vidComment').last().after('<div class="vidComment">');
 	    	        	$('.vidComment').last().append("<br>");
 	    	        	$('.vidComment').last().append(otherComNo);
+	    	        	$('.vidComment').last().append(otherComNo2);
 	    	        	$('.vidComment').last().append(otherReFirstCheck);
 	    	        	$('.vidComment').last().append(otherReComSeeMore);
 	    	        	$('.vidComment').last().append(otherUserId);
@@ -77,8 +79,10 @@
 	    	        	$('.vidComment').last().append(otherBtComment3);
 	    	        	$('.vidComment').last().append(otherReplyCom);
 	    	        	$('.vidComment').last().append(otherReComDiv);
+    					vidComCnt++;
     				}
-    				vidComCnt+=10;
+    				if(vidComCnt<=9)
+    					vidComCnt++;
     			}
 
     		});//ajax
@@ -91,7 +95,9 @@
     	$('body').on('click','button.btComRe',(function(){
     		$(this).parent().children('.ReComDiv').toggle();
     		
-    		var reComNo= $(this).parent().children('input[type=hidden]').val();
+    		var reComNo= $(this).parent().children('.hid1').val();
+    		var reComNo2= parseInt($(this).parent().children('.hid2').val())+1;
+    		
     		var firstCheck = $(this).parent().children('.reComBtFirstCheck').val();
     		var reSeeMore = $(this).parent().children('.reComSeeMore').val();
     		
@@ -113,8 +119,8 @@
         				var comListSize = obj.comListSize;
         				
         				if(comListSize>0){
-        					$('.vidComment').eq(reComNo).children('.ReComDiv').append("<br>");
-        					$('.vidComment').eq(reComNo).children('.reComBtFirstCheck').val(1);
+        					$('.vidComment').eq(reComNo2).children('.ReComDiv').append("<br>");
+        					$('.vidComment').eq(reComNo2).children('.reComBtFirstCheck').val(1);
         				}
         				for(var i=0; i<comListSize; i++){
     	    				var reotherUserId='<p class="reotherUserId">'+comList[i].comId+'</p>';
@@ -124,17 +130,17 @@
     	    				
     	
     	    		    	
-    	    		    	$('.vidComment').eq(reComNo).children('.ReComDiv').append(reotherUserId);
-    	    		    	$('.vidComment').eq(reComNo).children('.ReComDiv').append(reotherContent);
-    	    		    	$('.vidComment').eq(reComNo).children('.ReComDiv').append(reotherBtCommentLike);
-    	    		    	$('.vidComment').eq(reComNo).children('.ReComDiv').append(reotherCommentLikeCnt);
-    	    		    	$('.vidComment').eq(reComNo).children('.ReComDiv').append("<br>");
-    	    		    	$('.vidComment').eq(reComNo).children('.ReComDiv').append("<br>");
+    	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append(reotherUserId);
+    	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append(reotherContent);
+    	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append(reotherBtCommentLike);
+    	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append(reotherCommentLikeCnt);
+    	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append("<br>");
+    	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append("<br>");
         				}
         				if(comListSize==9){
         					var otherBtComment2='<button class="btn btn-primary btComReSeeMore" type="button">더보기</button>';
-        					$('.vidComment').eq(reComNo).children('.ReComDiv').append(otherBtComment2);
-        					$('.vidComment').eq(reComNo).children('.reComSeeMore').val(parseInt(reSeeMore)+10);
+        					$('.vidComment').eq(reComNo2).children('.ReComDiv').append(otherBtComment2);
+        					$('.vidComment').eq(reComNo2).children('.reComSeeMore').val(parseInt(reSeeMore)+10);
         				}
         				
         			}
@@ -147,7 +153,8 @@
     	
     	$('body').on('click','button.btComReSeeMore',(function(){
     		$(this).hide();
-    		var reComNo= $(this).parent().parent().children('input[type=hidden]').val();
+    		var reComNo= $(this).parent().parent().children('.hid1').val();
+    		var reComNo2= parseInt($(this).parent().parent().children('.hid2').val())+1;
     		var reSeeMore = $(this).parent().parent().children('.reComSeeMore').val();
     		
     		
@@ -176,17 +183,17 @@
     	
     	    		    	
     	    		    	
-    	    		    	$('.vidComment').eq(reComNo).children('.ReComDiv').append(reotherUserId);
-    	    		    	$('.vidComment').eq(reComNo).children('.ReComDiv').append(reotherContent);
-    	    		    	$('.vidComment').eq(reComNo).children('.ReComDiv').append(reotherBtCommentLike);
-    	    		    	$('.vidComment').eq(reComNo).children('.ReComDiv').append(reotherCommentLikeCnt);
-    	    		    	$('.vidComment').eq(reComNo).children('.ReComDiv').append("<br>");
-    	    		    	$('.vidComment').eq(reComNo).children('.ReComDiv').append("<br>");
+    	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append(reotherUserId);
+    	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append(reotherContent);
+    	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append(reotherBtCommentLike);
+    	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append(reotherCommentLikeCnt);
+    	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append("<br>");
+    	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').append("<br>");
         				}
         				if(comListSize>=9){
         					var otherBtComment2='<button class="btn btn-primary btComReSeeMore" type="button">더보기</button>';        					
-        					$('.vidComment').eq(reComNo).children('.ReComDiv').append(otherBtComment2);
-        					$('.vidComment').eq(reComNo).children('.reComSeeMore').val(parseInt(reSeeMore)+10);
+        					$('.vidComment').eq(reComNo2).children('.ReComDiv').append(otherBtComment2);
+        					$('.vidComment').eq(reComNo2).children('.reComSeeMore').val(parseInt(reSeeMore)+10);
         					
         				}
         				
@@ -201,9 +208,9 @@
     	$('body').on('click','button.btComReply',(function(){
     		$(this).parent().children('.ReplyCom').toggle();
     		   		
-    		
-    		
     	}));//btComReply
+    	
+    	
     	
     });
   
@@ -253,9 +260,11 @@
     	<span>댓글 </span><span><%=videoVo.getVidCom() %></span><span>개</span>
     </div>
     <div class='vidComment' id ='myComment'>
-    	<textarea rows="2" cols="100"></textarea>
-   	 	<button type="button">댓글</button>
+    	<textarea rows="2" cols="100" class="teComCon"></textarea>
+   	 	<button type="button" class="comWrite">댓글</button>
     </div>
+    <input type="hidden" class="vidComCnt" value=0>
+    
     <!-- <div class='vidComment'>
     	<p class="otherUserId">아이디</p>
     	<p class="otherContent">내용</p>
@@ -324,6 +333,58 @@
 				}
 			});
 		});
+		
+		$('.comWrite').click(function(){
+			var comCon = $('#myComment').children('.teComCon').val();
+			
+			$.ajax({
+
+				url : "comWrite_ok.jsp", //나중에볼 동영상
+
+				type : "post", //get post둘중하나
+
+				data : {
+					"userNo" : userNo,
+					"vidNo" : vidNo,
+					"comCon" : comCon,
+					"comGroup" : 0
+				},
+
+				success : function(data) {
+					$('#myComment').children('textarea').val("");
+					
+
+				}
+			});//ajax
+			
+			
+    	});//comWrite
+    	
+    	$('body').on('click','button.reComWrite',(function(){
+    		var comGroup= $(this).parent().parent().children('input[type=hidden]').val();
+    		
+    		var comCon = $(this).parent().children('.teReComCon').val();
+    		$.ajax({
+
+				url : "comWrite_ok.jsp", //나중에볼 동영상
+
+				type : "post", //get post둘중하나
+
+				data : {
+					"userNo" : userNo,
+					"vidNo" : vidNo,
+					"comCon" : comCon,
+					"comGroup" : comGroup
+				},
+
+				success : function(data) {
+					$('.ReplyCom').eq(comGroup).children('textarea').val("");
+					
+				}
+			});//ajax
+			
+    	}));//reComWrite
+		
 	});
 </script>
 
