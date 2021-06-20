@@ -546,7 +546,7 @@ commit;
 --테이블 확인
 --select * from myuser;
 --select * from myboard;
-select * from mycomment order by comno;
+--select * from mycomment order by comno;
 --select * from bobycom;
 --select * from video;   
 --select * from theme;

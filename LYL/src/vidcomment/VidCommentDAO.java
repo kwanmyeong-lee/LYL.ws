@@ -16,11 +16,11 @@ import db.ConnectionPoolMgr2;
 
 public class VidCommentDAO {
 	ConnectionPoolMgr2 pool;
-	
+
 	public VidCommentDAO() {
 		pool= new ConnectionPoolMgr2();
 	}
-	
+
 	public List<VidCommentVO> sellectComment(int vidNo,int vidComCnt, int vidComGroup) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -28,28 +28,21 @@ public class VidCommentDAO {
 		List<VidCommentVO> list = new ArrayList<VidCommentVO>();
 		try {
 			conn = pool.getConnection();
-			
-			if(vidComGroup==0) {
-				String sql = "select * from\r\n"
-						+ "(select rownum as rowcnt, ad.* from\r\n"
-						+ "(select * from mycomment where vidno=? and comgroup=0 order by comno)ad)\r\n"
-						+ "where rowcnt>=? and rowcnt<?";
-				ps=conn.prepareStatement(sql);
-				ps.setInt(1, vidNo);
-				ps.setInt(2, vidComCnt);
-				ps.setInt(3, vidComCnt+10);
-			}else {
-				String sql = "select * from (select ROWNUM as rowcnt, a.* from mycomment a where vidno=? and comgroup=?)\r\n"
-						+ "where rowcnt>=? and rowcnt<?";
-				ps=conn.prepareStatement(sql);
-				ps.setInt(1, vidNo);
-				ps.setInt(2, vidComGroup);
-				ps.setInt(3, vidComCnt);
-				ps.setInt(4, vidComCnt+10);
-				
-			}
+
+
+			String sql = "select * from\r\n"
+					+ "(select rownum as rowcnt, ad.* from\r\n"
+					+ "(select * from mycomment where vidno=? and comgroup=? order by comno)ad)\r\n"
+					+ "where rowcnt>=? and rowcnt<?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, vidNo);
+			ps.setInt(2, vidComGroup);
+			ps.setInt(3, vidComCnt);
+			ps.setInt(4, vidComCnt+10);
+
+
 			rs=ps.executeQuery();
-			
+
 			while(rs.next()) {
 				VidCommentVO vcvo=new VidCommentVO();
 				vcvo.setComNo(rs.getInt(2));
@@ -66,35 +59,35 @@ public class VidCommentDAO {
 				list.add(vcvo);
 			}
 			return list;
-		
+
 		}finally {
 			pool.dbClose(rs, ps, conn);
 		}
 	}
-	
+
 	public int insertComment(VidCommentVO vo) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
-		
+
 		try {
 			conn = pool.getConnection();
-			
+
 			String sql = "insert into mycomment values(mycomment_seq.nextval,?,default,default,default,default,?,?,default,default,?)";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, vo.getComCon());
 			ps.setInt(2, vo.getVidNo());
 			ps.setInt(3, vo.getUserNo());
 			ps.setInt(4, vo.getComGroup());
-			
+
 			int cnt = ps.executeUpdate();
-			
+
 			return cnt;
-			
-		
+
+
 		}finally {
 			pool.dbClose(ps, conn);
 		}
 
 	}
-	
+
 }
