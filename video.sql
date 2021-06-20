@@ -479,7 +479,7 @@ insert into video values(video_seq.nextval, '믿기지 않는 스포츠 선수들의 괴력', 
 --댓글 정보--
 insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다1',default,default,default,default,1,1,default,default,null);
 insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다2',default,default,default,default,1,1,default,default,null);
-insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다3',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다3',default,13,default,default,1,1,default,default,null);
 insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다4',default,default,default,default,1,1,default,default,null);
 insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다5',default,default,default,default,1,1,default,default,null);
 insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다6',default,default,default,default,1,1,default,default,null);
@@ -491,6 +491,45 @@ insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다11',default,de
 insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다12',default,default,default,default,1,1,default,default,null);
 insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다13',default,default,default,default,1,1,default,default,null);
 insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다14',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다15',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다16',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다17',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다18',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다19',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다20',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다21',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다22',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다23',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다24',default,default,default,default,1,1,default,default,null);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다25',default,default,default,default,1,1,default,default,null);
+
+
+--답글
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다1',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다2',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다3',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다4',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다5',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다6',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다7',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다8',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다9',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다10',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다11',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다12',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다13',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다14',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다15',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다16',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다17',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다18',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다19',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다20',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다21',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'답글내용입니다22',default,default,default,default,1,1,1,default,3);
+
+
+
 --댓글 정보
 
 

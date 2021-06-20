@@ -8,9 +8,8 @@
 <%
 	String vidComCnt = request.getParameter("vidComCnt");
 	String vidNo = request.getParameter("vidNo");
-	String vidGroup = request.getParameter("vidGroup");
 	VidCommentService sv = new VidCommentService();
-	List<VidCommentVO> list = sv.sellectComment(Integer.parseInt(vidNo), Integer.parseInt(vidComCnt), Integer.parseInt(vidGroup));
+	List<VidCommentVO> list = sv.sellectComment(Integer.parseInt(vidNo), Integer.parseInt(vidComCnt), 0);
 	MyuserService msv = new MyuserService();
 
 %>{ 

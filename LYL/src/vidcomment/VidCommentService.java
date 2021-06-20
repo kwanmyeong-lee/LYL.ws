@@ -10,7 +10,7 @@ public class VidCommentService {
 		dao=new VidCommentDAO();
 	}
 	
-	public List<VidCommentVO> sellectComment(int vidNo,int vidComCnt) throws SQLException {
-		return dao.sellectComment(vidNo, vidComCnt);
+	public List<VidCommentVO> sellectComment(int vidNo,int vidComCnt,int vidComGroup) throws SQLException {
+		return dao.sellectComment(vidNo, vidComCnt, vidComGroup);
 	}
 }
