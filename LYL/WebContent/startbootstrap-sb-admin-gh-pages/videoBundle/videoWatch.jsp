@@ -58,6 +58,8 @@
 	    		    	var otherBtComment2='<button class="btn btn-primary btComRe" type="button">답글</button>';
 	    		    	var otherCommentReCnt='<span class="vidCommentReCnt">&nbsp'+comList[i].comRe+'&nbsp&nbsp&nbsp&nbsp</span>';
 	    		    	var otherBtComment3='<button class="btn btn-primary btComReply" type="button">답글하기</button>';
+	    		    	var otherReplyCom
+	    		    	='<div class="ReplyCom" style="display:none"><textarea rows="2" cols="100"></textarea><button type="button">댓글</button></div>';
 	    		    	var otherReComDiv='<div class="ReComDiv" style="display:none"><p></p></div>'
 	    				
 	
@@ -73,6 +75,7 @@
 	    	        	$('.vidComment').last().append(otherBtComment2);
 	    	        	$('.vidComment').last().append(otherCommentReCnt);
 	    	        	$('.vidComment').last().append(otherBtComment3);
+	    	        	$('.vidComment').last().append(otherReplyCom);
 	    	        	$('.vidComment').last().append(otherReComDiv);
     				}
     				vidComCnt+=10;
@@ -91,7 +94,7 @@
     		var reComNo= $(this).parent().children('input[type=hidden]').val();
     		var firstCheck = $(this).parent().children('.reComBtFirstCheck').val();
     		var reSeeMore = $(this).parent().children('.reComSeeMore').val();
-    		$(this).parent().children('.reComBtFirstCheck').val(1);
+    		
     		if(firstCheck==0){
     			$.ajax({
 
@@ -111,6 +114,7 @@
         				
         				if(comListSize>0){
         					$('.vidComment').eq(reComNo).children('.ReComDiv').append("<br>");
+        					$('.vidComment').eq(reComNo).children('.reComBtFirstCheck').val(1);
         				}
         				for(var i=0; i<comListSize; i++){
     	    				var reotherUserId='<p class="reotherUserId">'+comList[i].comId+'</p>';
@@ -195,7 +199,7 @@
     	}));//btComReSeeMore
     	
     	$('body').on('click','button.btComReply',(function(){
-    		
+    		$(this).parent().children('.ReplyCom').toggle();
     		   		
     		
     		
