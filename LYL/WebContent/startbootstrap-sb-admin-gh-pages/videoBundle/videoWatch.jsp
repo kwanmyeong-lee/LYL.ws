@@ -291,58 +291,126 @@
 	
 	$(function() {
 		$('#videoSave').click(function() {
-			$.ajax({
-
-				url : "aftervideo_ok.jsp", //나중에볼 동영상
-
-				type : "post", //get post둘중하나
-
-				data : {
-					"userNo" : userNo,
-					"vidNo" : vidNo
-				},
-
-				success : function(data) {
-					var obj = JSON.parse(data);
-					var cnt = obj.cnt;
-
-					if (cnt > 0) {
-						$(function() {
-							$('#videoSave').css('background', 'red');
-						})
-
+			if(userNo==""){
+    			alert("로그인하세요")
+    			return;
+    		}
+			
+			if($('#videoSave').text()=='다시보기에 저장'){ 
+				$.ajax({
+	
+					url : "aftervideo_ok.jsp", //나중에볼 동영상
+	
+					type : "post", //get post둘중하나
+	
+					data : {
+						"userNo" : userNo,
+						"vidNo" : vidNo
+					},
+	
+					success : function(data) {
+						var obj = JSON.parse(data);
+						var cnt = obj.cnt;
+	
+						if (cnt > 0) {
+							$(function() {
+								$('#videoSave').text('다시보기 삭제');
+								$('#videoSave').css('background', '#dc3545');
+							})
+	
+						}
+	
 					}
-
-				}
-			});
+				});
+			
+			} else if($('#videoSave').text()=='다시보기 삭제'){
+				$.ajax({
+					
+					url : "delAftervideo_ok.jsp", //나중에볼 동영상
+	
+					type : "post", //get post둘중하나
+	
+					data : {
+						"userNo" : userNo,
+						"vidNo" : vidNo
+					},
+	
+					success : function(data) {
+						var obj = JSON.parse(data);
+						var cnt = obj.cnt;
+	
+						if (cnt > 0) {
+							$(function() {
+								$('#videoSave').text('다시보기에 저장');
+								$('#videoSave').css('background', '#0d6efd');
+							})
+	
+						}
+	
+					}
+				});
+			}
 		});
 		
 		$('#subscribe').click(function() {
+			if(userNo==""){
+    			alert("로그인하세요")
+    			return;
+    		}
 			
-			$.ajax({
-
-				url : "usbscribe_ok.jsp", //나중에볼 동영상
-
-				type : "post", //get post둘중하나
-
-				data : {
-					"userNo" : userNo,
-					"userNo2" : userNo2
-				},
-
-				success : function(data) {
-					var obj = JSON.parse(data);
-					var cnt = obj.cnt;
-
-					if (cnt > 0) {
-						$(function() {
-							$('#videoSave').css('background', 'red');
-						})
-
+			if($('#subscribe').text()=='구독'){
+				$.ajax({
+	
+					url : "usbscribe_ok.jsp", //나중에볼 동영상
+	
+					type : "post", //get post둘중하나
+	
+					data : {
+						"userNo" : userNo,
+						"userNo2" : userNo2
+					},
+	
+					success : function(data) {
+						var obj = JSON.parse(data);
+						var cnt = obj.cnt;
+	
+						if (cnt > 0) {
+							$(function() {
+								$('#subscribe').text('구독 취소');
+								$('#subscribe').css('background', '#dc3545');
+							})
+	
+						}
+	
 					}
-
-				}
-			});
+				});
+			} else if($('#subscribe').text()=='구독 취소'){
+				$.ajax({
+					
+					url : "delUsbscribe_ok.jsp", //나중에볼 동영상
+	
+					type : "post", //get post둘중하나
+	
+					data : {
+						"userNo" : userNo,
+						"userNo2" : userNo2
+					},
+	
+					success : function(data) {
+						var obj = JSON.parse(data);
+						var cnt = obj.cnt;
+	
+						if (cnt > 0) {
+							$(function() {
+								$('#subscribe').text('구독');
+								$('#subscribe').css('background', '#0d6efd');
+							})
+	
+						}
+	
+					}
+				});
+			}
 		});
 		
 		$('.comWrite').click(function(){
