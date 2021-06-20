@@ -21,7 +21,7 @@ public class VidCommentDAO {
 		pool= new ConnectionPoolMgr2();
 	}
 	
-	public List<VidCommentVO> sellectComment(int vidNo,int vidComCnt) throws SQLException {
+	public List<VidCommentVO> sellectComment(int vidNo,int vidComCnt, int vidComGroup) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -29,13 +29,23 @@ public class VidCommentDAO {
 		try {
 			conn = pool.getConnection();
 			
-			String sql = "select * from (select ROWNUM as rowcnt, a.* from mycomment a where vidno=? and comgroup is null)\r\n"
-					+ "where rowcnt>=? and rowcnt<?";
-			ps=conn.prepareStatement(sql);
-			ps.setInt(1, vidNo);
-			ps.setInt(2, vidComCnt);
-			ps.setInt(3, vidComCnt+10);
-			
+			if(vidComGroup==0) {
+				String sql = "select * from (select ROWNUM as rowcnt, a.* from mycomment a where vidno=? and comstep=0)\r\n"
+						+ "where rowcnt>=? and rowcnt<?";
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, vidNo);
+				ps.setInt(2, vidComCnt);
+				ps.setInt(3, vidComCnt+10);
+			}else {
+				String sql = "select * from (select ROWNUM as rowcnt, a.* from mycomment a where vidno=? and comgroup=?)\r\n"
+						+ "where rowcnt>=? and rowcnt<?";
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, vidNo);
+				ps.setInt(2, vidComGroup);
+				ps.setInt(3, vidComCnt);
+				ps.setInt(4, vidComCnt+10);
+				
+			}
 			rs=ps.executeQuery();
 			
 			while(rs.next()) {
@@ -43,13 +53,14 @@ public class VidCommentDAO {
 				vcvo.setComNo(rs.getInt(2));
 				vcvo.setComCon(rs.getString(3));
 				vcvo.setComDate(rs.getTimestamp(4));
-				vcvo.setComLike(rs.getInt(5));
-				vcvo.setComSec(rs.getInt(6));
-				vcvo.setVidNo(rs.getInt(7));
-				vcvo.setUserNo(rs.getInt(8));
-				vcvo.setComStep(rs.getInt(9));
-				vcvo.setComSort(rs.getInt(10));
-				vcvo.setComGroup(rs.getInt(11));
+				vcvo.setComRe(rs.getInt(5));
+				vcvo.setComLike(rs.getInt(6));
+				vcvo.setComSec(rs.getInt(7));
+				vcvo.setVidNo(rs.getInt(8));
+				vcvo.setUserNo(rs.getInt(9));
+				vcvo.setComStep(rs.getInt(10));
+				vcvo.setComSort(rs.getInt(11));
+				vcvo.setComGroup(rs.getInt(12));
 				list.add(vcvo);
 			}
 			return list;
