@@ -7,7 +7,7 @@
 	VidCommentService vsv= new VidCommentService();
 	
 	String comGroup = request.getParameter("comGroup");
-	
-	int cnt = vsv.deleteComment(Integer.parseInt(comGroup));
-			
+	if(!comGroup.isEmpty() && comGroup!=null){
+		int cnt = vsv.deleteComment(Integer.parseInt(comGroup));
+	}
 %>
