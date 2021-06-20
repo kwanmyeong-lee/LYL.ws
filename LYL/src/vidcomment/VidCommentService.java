@@ -13,4 +13,8 @@ public class VidCommentService {
 	public List<VidCommentVO> sellectComment(int vidNo,int vidComCnt,int vidComGroup) throws SQLException {
 		return dao.sellectComment(vidNo, vidComCnt, vidComGroup);
 	}
+	
+	public int insertComment(VidCommentVO vo) throws SQLException{
+		return dao.insertComment(vo);
+	}
 }

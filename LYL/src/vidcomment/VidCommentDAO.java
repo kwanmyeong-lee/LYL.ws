@@ -30,7 +30,9 @@ public class VidCommentDAO {
 			conn = pool.getConnection();
 			
 			if(vidComGroup==0) {
-				String sql = "select * from (select ROWNUM as rowcnt, a.* from mycomment a where vidno=? and comstep=0)\r\n"
+				String sql = "select * from\r\n"
+						+ "(select rownum as rowcnt, ad.* from\r\n"
+						+ "(select * from mycomment where vidno=? and comgroup=0 order by comno)ad)\r\n"
 						+ "where rowcnt>=? and rowcnt<?";
 				ps=conn.prepareStatement(sql);
 				ps.setInt(1, vidNo);
@@ -70,6 +72,29 @@ public class VidCommentDAO {
 		}
 	}
 	
-	
+	public int insertComment(VidCommentVO vo) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		
+		try {
+			conn = pool.getConnection();
+			
+			String sql = "insert into mycomment values(mycomment_seq.nextval,?,default,default,default,default,?,?,default,default,?)";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getComCon());
+			ps.setInt(2, vo.getVidNo());
+			ps.setInt(3, vo.getUserNo());
+			ps.setInt(4, vo.getComGroup());
+			
+			int cnt = ps.executeUpdate();
+			
+			return cnt;
+			
+		
+		}finally {
+			pool.dbClose(ps, conn);
+		}
+
+	}
 	
 }
