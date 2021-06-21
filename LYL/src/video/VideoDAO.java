@@ -186,6 +186,25 @@ public class VideoDAO {
 			pool.dbClose(ps, conn);
 		}
 	}
+	
+	public int insertVideo(VideoVO vo) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			conn = pool.getConnection();
+			
+			String sql = "";
+			ps=conn.prepareStatement(sql);
+			
+			int cnt = ps.executeUpdate();
+			
+			return cnt;
+			
+			
+		}finally {
+			pool.dbClose(ps, conn);
+		}
+	}
 }
 
 
