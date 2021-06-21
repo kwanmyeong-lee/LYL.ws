@@ -479,9 +479,9 @@ insert into video values(video_seq.nextval, '믿기지 않는 스포츠 선수들의 괴력', 
 --비디오 정보--
 
 --댓글 정보--
-insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다1',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다1',default,3,default,default,1,1,default,default,0);
 insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다2',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다3',default,13,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다3',default,22,default,default,1,1,default,default,0);
 insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다4',default,default,default,default,1,1,default,default,0);
 insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다5',default,default,default,default,1,1,default,default,0);
 insert into mycomment values(mycomment_seq.nextval,'댓글내용입니다6',default,default,default,default,1,1,default,default,0);
@@ -533,10 +533,7 @@ insert into mycomment values(mycomment_seq.nextval,'답글내용입니다20',default,de
 insert into mycomment values(mycomment_seq.nextval,'답글내용입니다21',default,default,default,default,1,1,1,default,3);
 insert into mycomment values(mycomment_seq.nextval,'답글내용입니다22',default,default,default,default,1,1,1,default,3);
 
-insert into mycomment values(mycomment_seq.nextval,'덧내용입니다22',default,default,default,default,3,2,0,default,0);
-insert into mycomment values(mycomment_seq.nextval,'덧글내용입니다22',default,default,default,default,3,2,0,default,0);
-insert into mycomment values(mycomment_seq.nextval,'답글내용입니다22',default,default,default,default,3,2,1,default,51);
-insert into mycomment values(mycomment_seq.nextval,'답글내용입니다22',default,default,default,default,3,2,1,default,52);
+
 
 
 --댓글 정보
@@ -570,3 +567,4 @@ commit;
 --(select rownum as rowcnt, ad.* from
 --(select * from mycomment where vidno=1 and comstep=0 order by comno)ad)
 --where rowcnt>=0 and rowcnt<10
+
