@@ -29,4 +29,7 @@ public class VidCommentService {
 	public int updateLikeCnt(int comNo,int check) throws SQLException {
 		return dao.updateLikeCnt(comNo, check);
 	}
+	public int selectLastCom() throws SQLException {
+		return dao.selectLastCom();
+	}
 }

@@ -193,5 +193,32 @@ public class VidCommentDAO {
 		}
 		
 	}
+	
+	public int selectLastCom() throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = pool.getConnection();
+			
+			String sql = "select comno from mycomment where rownum=1 order by comno desc";
+			ps=conn.prepareStatement(sql);
+			
+
+
+
+			rs=ps.executeQuery();
+			int cnt=0;
+			while(rs.next()) {
+				cnt = rs.getInt(1);
+			}
+		
+			return cnt;
+		}finally {
+			pool.dbClose(rs, ps, conn);
+		}
+	}
+	
 
 }

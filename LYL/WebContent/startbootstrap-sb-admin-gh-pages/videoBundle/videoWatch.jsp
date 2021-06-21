@@ -535,11 +535,13 @@
 						"comGroup" : comGroup
 					},
 	
-					success : function(data) {			
+					success : function(data) {
+						var obj = JSON.parse(data);
+						var cnt = obj.cnt;
 	 					$('.ReplyCom').eq(comCntNo-1).children('textarea').val(""); 					
 	 					
 	 					if(seeMoreCheck=="true" && firstCheck!=0){
-	 						var reotherComNo='<input type="hidden" class="rehid1" value="0">';
+	 						var reotherComNo='<input type="hidden" class="rehid1" value='+cnt+'>';
 		 					var reotherUserId='<p class="reotherUserId"><%=myuserVo.getUserId()%></p>';
 		    		    	var reotherContent='<p class="reotherContent">'+comCon+'</p>';
 		    		    	var reotherBtCommentLike='<button class="btn btn-primary rebtComLike" type="button">좋아요 </button>';
@@ -626,6 +628,8 @@
     		var $remove= $(this).parent();
     		var $comre = $(this).parent().parent().parent().children('.vidCommentReCnt');
     		var comreCnt = $(this).parent().parent().parent().children('.vidCommentReCnt').text();
+    		var reComSeeMoreCnt = $(this).parent().parent().parent().children('.reComSeeMore').val();
+    		var $rCSM = $(this).parent().parent().parent().children('.reComSeeMore');    		
     		$.ajax({
 
 				url : "comDelete_ok.jsp", //나중에볼 동영상
@@ -646,6 +650,10 @@
 					if(vidReComCnt!=0){
 						vidReComCnt--;
 					}
+					if(reComSeeMoreCnt>0){
+						reComSeeMoreCnt--;
+						$rCSM.val(reComSeeMoreCnt);
+					}
 					
 				}
 			});//ajax
@@ -661,9 +669,13 @@
     	
     	
     	$('body').on('click','button.btComLike',(function(){
+    		if(userNo==""){
+    			alert("로그인하세요");
+    			return;
+    		}
     		var comNo= $(this).parent().children('input[type=hidden]').val();
-    		
-			
+			var likeCnt = $(this).parent().children('.vidCommentLikeCnt').text();
+			var $ObjLikeCnt = $(this).parent().children('.vidCommentLikeCnt');
     		$.ajax({
 
 				url : "comLike_ok.jsp", //나중에볼 동영상
@@ -677,7 +689,55 @@
 
 				success : function(data) {							
  												
-					alert();
+					var obj = JSON.parse(data);
+
+					var likecheck = obj.likecheck;
+					
+					if(likecheck==1){
+						likeCnt++;
+						$ObjLikeCnt.html("&nbsp"+likeCnt+"&nbsp&nbsp&nbsp&nbsp");
+					}else{
+						likeCnt--;
+						$ObjLikeCnt.html("&nbsp"+likeCnt+"&nbsp&nbsp&nbsp&nbsp");
+					}
+					
+				}
+			});//ajax
+			
+    	}));//btComLike
+    	
+    	$('body').on('click','button.rebtComLike',(function(){
+    		if(userNo==""){
+    			alert("로그인하세요");
+    			return;
+    		}
+    		var comNo = $(this).parent().children('.rehid1').val();
+			var likeCnt = $(this).parent().children('.revidCommentLikeCnt').text();
+			var $ObjLikeCnt = $(this).parent().children('.revidCommentLikeCnt');
+    		$.ajax({
+
+				url : "comLike_ok.jsp", //나중에볼 동영상
+
+				type : "post", //get post둘중하나
+
+				data : {
+					"comNo" : comNo,
+					"userNo" : userNo
+				},
+
+				success : function(data) {							
+ 												
+					var obj = JSON.parse(data);
+
+					var likecheck = obj.likecheck;
+					
+					if(likecheck==1){
+						likeCnt++;
+						$ObjLikeCnt.html("&nbsp"+likeCnt+"&nbsp&nbsp&nbsp&nbsp");
+					}else{
+						likeCnt--;
+						$ObjLikeCnt.html("&nbsp"+likeCnt+"&nbsp&nbsp&nbsp&nbsp");
+					}
 					
 				}
 			});//ajax
