@@ -302,7 +302,7 @@
 	
 	<hr>
 	<p id='vidUploaderId'>id :&nbsp;<%=myuserVo.getUserId() %> </p>
-	<p id='vidG'>구독자<%=myuserVo.getUserSub() %> 명</p>
+	<p id='vidG'>구독자<span id='vidGs'><%=myuserVo.getUserSub() %></span> 명</p>
 	
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 		<%if(subCnt>0){%>
@@ -412,6 +412,8 @@
     			return;
     		}
 			
+			var vidGnum= $('#vidGs').text();
+			
 			if($('#subscribe').text()=='구독'){
 				$.ajax({
 	
@@ -432,6 +434,8 @@
 							$(function() {
 								$('#subscribe').text('구독 취소');
 								$('#subscribe').css('background', '#dc3545');
+								vidGnum++;
+								$('#vidGs').text(vidGnum);
 							})
 	
 						}
@@ -458,6 +462,8 @@
 							$(function() {
 								$('#subscribe').text('구독');
 								$('#subscribe').css('background', '#0d6efd');
+								vidGnum--;
+								$('#vidGs').text(vidGnum);
 							})
 	
 						}
@@ -642,7 +648,7 @@
 					}
 					
 				}
-			});
+			});//ajax
     		
     	}));//btReComDelete
     	
@@ -650,12 +656,34 @@
     		$(this).parent().children('.ReplyCom').toggle();
     		$(this).parent().children('.ReplyCom').children('.reComWrite').text("수정");
     		var content = $(this).parent().children('.otherContent').text();
-    		$(this).parent().children('.ReplyCom').children('.teReComCon').val(content);
-    		
-    		
-    		
-    		
+    		$(this).parent().children('.ReplyCom').children('.teReComCon').val(content);	
     	}));//btComUpdate
+    	
+    	
+    	$('body').on('click','button.btComLike',(function(){
+    		var comNo= $(this).parent().children('input[type=hidden]').val();
+    		
+			
+    		$.ajax({
+
+				url : "comLike_ok.jsp", //나중에볼 동영상
+
+				type : "post", //get post둘중하나
+
+				data : {
+					"comNo" : comNo,
+					"userNo" : userNo
+				},
+
+				success : function(data) {							
+ 												
+					alert();
+					
+				}
+			});//ajax
+			
+    	}));//btComLike
+    	
     	
     	
 		

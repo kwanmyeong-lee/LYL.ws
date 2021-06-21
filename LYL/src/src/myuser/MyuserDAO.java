@@ -169,5 +169,32 @@ public class MyuserDAO {
 			pool.dbClose(rs, ps, conn);
 		}
 	}
+	
+	public int updateSubCnt(int userNo,int check) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		
+		try {
+			conn = pool.getConnection();
+			
+			String sql = "update myuser set usersub=usersub+1 where userno=?";		
+			if(check==1) {
+				sql="update myuser set usersub=usersub-1 where userno=?";
+			}
+			
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, userNo);
+			
+			
+			int cnt = ps.executeUpdate();
+			
+			return cnt;
+			
+			
+		}finally {
+			pool.dbClose(ps, conn);
+		}
+		
+	}
 
 }
