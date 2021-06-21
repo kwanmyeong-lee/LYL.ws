@@ -565,3 +565,4 @@ commit;
 --(select rownum as rowcnt, ad.* from
 --(select * from mycomment where vidno=1 and comstep=0 order by comno)ad)
 --where rowcnt>=0 and rowcnt<10
+
