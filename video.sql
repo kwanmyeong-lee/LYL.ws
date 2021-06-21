@@ -141,6 +141,7 @@ CREATE TABLE VIDEO (
 	vidTheme NUMBER NOT NULL, /* 태마 번호 */
 	userNo NUMBER, /* 크리에이터 */
 	vidThu VARCHAR2(255) NOT NULL /* 썸네일경로 */
+    
 );
 
 CREATE UNIQUE INDEX PK_VIDEO
@@ -437,6 +438,7 @@ insert into theme values(theme_seq.nextval,'게임');
 insert into theme values(theme_seq.nextval,'영화');
 insert into theme values(theme_seq.nextval,'학습');
 insert into theme values(theme_seq.nextval,'스포츠');
+insert into theme values(theme_seq.nextval,'기타');
 --테마 정보--
 
 
