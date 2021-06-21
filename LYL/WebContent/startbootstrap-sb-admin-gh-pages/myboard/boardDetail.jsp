@@ -104,16 +104,13 @@
 	}
 	
 	.commentInsert{
-		margin: 0 80px;
+		margin: 0 80px 20px 80px;
 	}
-	.commentSec{
-		position: absolute;
-		margin-left: 15px;
-	}
-	.commentSec > .submit{
+	
+	.submit{
+		float:right;
 		width: 100px;
-		height: 48px;
-		margin-top: 5px;
+		height: 80px;
 		border-radius: 10px;
 	}
 	
@@ -139,6 +136,7 @@
 	}
 	td{
 		background: white;
+		height: 60px;
 		border-bottom: 1px solid gray;
 		text-align: center;
 	}
@@ -149,8 +147,23 @@
 	textarea{
 		resize: none;
 	}
+	
+	.bcDeleteBtn{
+		font-size:12px;
+		font-weight:bold;
+		float:right;
+		background: rgb(242, 242, 242);
+		border-radius:4px;
+		border:none;
+		margin: 5px;
+		
+	}
 </style>
 <%
+	//String userId=(String)session.getAttribute("userId");
+	String userId="textComm";       //==========임시 수정해야함!!!!!
+	
+
 	String boNo = request.getParameter("boNo");
 	if(boNo==null || boNo.isEmpty()){ %>
 		<script type="text/javascript">
@@ -192,6 +205,8 @@
 		$('#boardList').click(function(){
 			location.href="boardList.jsp";
 		});
+		
+		
 	});
 </script>
 <div class="listBody">
@@ -232,7 +247,11 @@
 				%>
 					<tr>
 						<td><%=commVo.getUserId() %></td>
-						<td class="commentTd"><%=commVo.getBcCom() %></td>
+						<td class="commentTd">
+							<%=commVo.getBcCom() %>
+							
+							<input type="button" class="bcDeleteBtn" value="삭제" onClick="location.href='bo_CommentDelete_ok.jsp?bcNo=<%=commVo.getBcNo()%>&boNo=<%=boNo%>'">
+						</td>
 						<td><%=sdf.format(commVo.getBcDate()) %></td>
 						<td><%=commVo.getBcLike() %></td>
 					</tr>
@@ -241,15 +260,15 @@
 			</table>
 		</div>
 		<div class="commentInsert">
-			<!-- 댓글 입력 -->
-			<span class="commentUser"><!-- 댓글 달 유저이름 --></span>
-			<span class="comment">
-			<textarea rows="3" cols="100" class="comment" ></textarea> 
-			<span class="commentSec">	
-				<input type="checkbox" class="chSec">비밀글<br>
-				<input type="submit" class="submit" value="등록" onclick="bo_CommentWrite_ok.jsp">
-			</span>
-			</span>
+			<form action="bo_CommentWrite_ok.jsp" method="post">
+				<input type="hidden" value="<%=boNo %>" name="boNo">
+				<!-- 댓글 입력 -->
+				<span class="commentUser"><!-- 댓글 달 유저이름 --></span>
+				<span class="comment">
+				<textarea rows="3" cols="100" class="comment" name="comment"></textarea> 
+					<input type="submit" class="submit" value="등록">
+				</span>
+			</form>
 		</div>
 </div>
 	
