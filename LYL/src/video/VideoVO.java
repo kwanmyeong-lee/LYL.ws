@@ -14,12 +14,15 @@ public class VideoVO {
 	private int vidTheme; /* �¸� ��ȣ */
 	private int userNo; /* ũ�������� */
 	private String vidThu; /* ����ϰ�� */
-	
+	private String vidName;
+	private int vidSize;
+	private String varchar;
+
 	public VideoVO() {
 	}
 
 	public VideoVO(int vidNo, String vidTitle, long vidHits, int vidCom, String vidurl, int vidLike, Timestamp vidDate,
-			String vidEx, int vidTheme, int userNo, String vidThu) {
+			String vidEx, int vidTheme, int userNo, String vidThu, String vidName, int vidSize, String varchar) {
 		super();
 		this.vidNo = vidNo;
 		this.vidTitle = vidTitle;
@@ -32,6 +35,34 @@ public class VideoVO {
 		this.vidTheme = vidTheme;
 		this.userNo = userNo;
 		this.vidThu = vidThu;
+		this.vidName = vidName;
+		this.vidSize = vidSize;
+		this.varchar = varchar;
+	}
+
+
+	public String getVidName() {
+		return vidName;
+	}
+
+	public void setVidName(String vidName) {
+		this.vidName = vidName;
+	}
+
+	public int getVidSize() {
+		return vidSize;
+	}
+
+	public void setVidSize(int vidSize) {
+		this.vidSize = vidSize;
+	}
+
+	public String getVarchar() {
+		return varchar;
+	}
+
+	public void setVarchar(String varchar) {
+		this.varchar = varchar;
 	}
 
 	public int getVidNo() {
@@ -122,13 +153,16 @@ public class VideoVO {
 		this.vidThu = vidThu;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "VideoVO [vidNo=" + vidNo + ", vidTitle=" + vidTitle + ", vidHits=" + vidHits + ", vidCom=" + vidCom
 				+ ", vidurl=" + vidurl + ", vidLike=" + vidLike + ", vidDate=" + vidDate + ", vidEx=" + vidEx
-				+ ", vidTheme=" + vidTheme + ", userNo=" + userNo + ", vidThu=" + vidThu + "]";
+				+ ", vidTheme=" + vidTheme + ", userNo=" + userNo + ", vidThu=" + vidThu + ", vidName=" + vidName
+				+ ", vidSize=" + vidSize + ", varchar=" + varchar + "]";
 	}
+
 	
-	
-	
+
 }

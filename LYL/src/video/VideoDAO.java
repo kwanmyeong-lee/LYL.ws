@@ -193,8 +193,10 @@ public class VideoDAO {
 		try {
 			conn = pool.getConnection();
 			
-			String sql = "";
+			String sql = "insert into video(vidNo, vidTitle, vidurl, vidEx, vidTheme, userNo, vidThu, vidName,vidSize, vidOriName) \r\n"
+					+ "values(video_seq.nextval, ?, ?,? , ?, ?, ?, ?, ?, ?)";
 			ps=conn.prepareStatement(sql);
+			
 			
 			int cnt = ps.executeUpdate();
 			
