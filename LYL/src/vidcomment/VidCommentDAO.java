@@ -145,11 +145,12 @@ public class VidCommentDAO {
 		try {
 			conn = pool.getConnection();
 			
-			String sql = "update mycomment set comre=comre+1 where comno=?";
+			String sql = "update mycomment set comre=comre+1 where comno=?";		
 			if(check==1) {
 				sql="update mycomment set comre=comre-1 where comno=?";
 				System.out.println("sdfsdf");
 			}
+			
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, comNo);
 			

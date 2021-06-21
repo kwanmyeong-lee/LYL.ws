@@ -8,13 +8,13 @@ VidCommentVO vvo= new VidCommentVO();
 	
 	String comCheck = request.getParameter("comCheck");
 	String comGroup = request.getParameter("comGroup");
+	String parentComNo = request.getParameter("parentComNo");
 	
 	if (!comGroup.isEmpty() && comGroup != null) {
 		int cnt = vsv.deleteComment(Integer.parseInt(comGroup));
 
 		if (Integer.parseInt(comCheck) != 0) {
-			int cnt2 = vsv.updateCommentCnt(Integer.parseInt(comGroup), 1);
-			System.out.println("asdf");
+			int cnt2 = vsv.updateCommentCnt(Integer.parseInt(parentComNo), 1);
 		}
 	}
 %>
