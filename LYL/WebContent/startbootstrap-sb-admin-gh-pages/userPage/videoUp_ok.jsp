@@ -1,4 +1,3 @@
-
 <%@page import="video.VideoVO"%>
 <%@page import="video.VideoDAO"%>
 <%@page import="src.common.Utility"%>
@@ -10,16 +9,18 @@
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<jsp:useBean id="myuserService" class="src.myuser.MyuserService" scope="page"></jsp:useBean>	
 <%
-String saveDir = application.getRealPath(Utility.VIDEO_UPLOAD_PATH);
 
-int maxSize = 100 * 1024 * 1024;
+String saveDir = Utility.VIDEO_UPLOAD_PATH;
+
+int maxSize = 2 * 1024 * 1024;
 String msg = "업로드 실패", url = "/startbootstrap-sb-admin-gh-pages/userPage/videoUp.jsp";
 try {
 	MultipartRequest mr = new MultipartRequest(request, saveDir, maxSize, "utf-8", new DefaultFileRenamePolicy());
-	System.out.println("업로드 완료");
 
 	String fileName = mr.getFilesystemName("upfile");
+	String vidThuName = mr.getFilesystemName("thuFile");
 	String originalFileName = "";
 	long fileSize = 0;
 	if (fileName != null && !fileName.isEmpty()) {
@@ -27,32 +28,38 @@ try {
 		File file = mr.getFile("upfile");
 		fileSize = file.length();
 	}
-	
-	
+
 	String vidTitle = mr.getParameter("title");
 	String vidurl = mr.getParameter("vidurl");
 	String vidEx = mr.getParameter("content");
 	String vidTheme = mr.getParameter("theme");
-	String userNo =(String) session.getAttribute("userNo");
-	String vidThu = mr.getParameter("vidurl");
-	
+	int userNo = (int)session.getAttribute("userNo");
+
 	VideoDAO dao = new VideoDAO();
 	VideoVO vo = new VideoVO();
-	
+
 	vo.setVidTitle(vidTitle);
 	vo.setVidurl(vidurl);
 	vo.setVidEx(vidEx);
 	vo.setVidTheme(Integer.parseInt(vidTheme));
-	vo.setUserNo(Integer.parseInt(userNo));
-	vo.setVidThu(vidThu);
+	vo.setUserNo(userNo);
+	int index = vidurl.lastIndexOf('/');
+	if(vidurl!=null){
+		vidThuName = "http://img.youtube.com/vi/"+vidurl.substring(index+1)+"/maxresdefault.jpg";
+		System.out.println(vidThuName);
+		vidurl = "https://www.youtube.com/embed/"+vidurl.substring(index+1);
+	}
+	vo.setVidThu(vidThuName);
+	vo.setVidName(fileName);
+	vo.setVidSize(fileSize);
+	vo.setVidOriName(originalFileName);
 	
-	
-	int cnt = 0;
-	System.out.println("회원 수정 여부" + cnt);
-	
-	if(cnt>0){
+	int cnt = dao.insertVideo(vo);
+	System.out.println("비디오 업로드 결과=" + cnt);
+
+	if (cnt > 0) {
 		msg = "비디오 업로드 성공!";
-		url = "/startbootstrap-sb-admin-gh-pages/login/login.jsp";
+		url = "/startbootstrap-sb-admin-gh-pages/userPage/myPage.jsp";
 	}
 } catch (SQLException e) {
 	e.printStackTrace();
@@ -63,16 +70,4 @@ request.setAttribute("url", url);
 %>
 
 <jsp:forward page="/startbootstrap-sb-admin-gh-pages/common/message.jsp"></jsp:forward>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	
-</body>
-</html>
 

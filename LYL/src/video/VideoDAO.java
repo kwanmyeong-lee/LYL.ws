@@ -214,7 +214,7 @@ public class VideoDAO {
 			ps.setString(5, Integer.toString(vo.getUserNo()));
 			ps.setString(6, vo.getVidThu());
 			ps.setString(7, vo.getVidName());
-			ps.setString(8, Integer.toString(vo.getVidSize()));
+			ps.setString(8, Long.toString(vo.getVidSize()));
 			ps.setString(9, vo.getVidOriName());
 			
 			

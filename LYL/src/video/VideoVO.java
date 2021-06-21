@@ -15,16 +15,15 @@ public class VideoVO {
 	private int userNo; /* ũ�������� */
 	private String vidThu; /* ����ϰ�� */
 	private String vidName;
-	private int vidSize;
+	private long vidSize;
 	private String vidOriName;
-	
 
 	public VideoVO() {
 		super();
 	}
-	
+
 	public VideoVO(int vidNo, String vidTitle, long vidHits, int vidCom, String vidurl, int vidLike, Timestamp vidDate,
-			String vidEx, int vidTheme, int userNo, String vidThu, String vidName, int vidSize, String vidOriName) {
+			String vidEx, int vidTheme, int userNo, String vidThu, String vidName, long vidSize, String vidOriName) {
 		super();
 		this.vidNo = vidNo;
 		this.vidTitle = vidTitle;
@@ -138,11 +137,11 @@ public class VideoVO {
 		this.vidName = vidName;
 	}
 
-	public int getVidSize() {
+	public long getVidSize() {
 		return vidSize;
 	}
 
-	public void setVidSize(int vidSize) {
+	public void setVidSize(long vidSize) {
 		this.vidSize = vidSize;
 	}
 
@@ -161,7 +160,5 @@ public class VideoVO {
 				+ ", vidTheme=" + vidTheme + ", userNo=" + userNo + ", vidThu=" + vidThu + ", vidName=" + vidName
 				+ ", vidSize=" + vidSize + ", vidOriName=" + vidOriName + "]";
 	}
-
-	
 
 }

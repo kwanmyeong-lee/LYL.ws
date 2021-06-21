@@ -150,16 +150,24 @@ public class MyuserDAO {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, vidno);
 
-			MyuserVO vo = new MyuserVO();
+			MyuserVO vo = null;
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				String userid = rs.getString("userId");
-				int userSub = rs.getInt("userSub");
 				int userNo = rs.getInt("userNo");
+				String userId = rs.getString("userId");
+				String userPwd = rs.getString("userPwd");
+				String userName = rs.getString("userName");
+				int userPhone = rs.getInt("userPhone");
+				String userEmail = rs.getString("userEmail");
+				Timestamp userJoin = rs.getTimestamp("userJoin");
+				int userSub = rs.getInt("userSub");
+				String userImgName = rs.getString("userImgName");
+				int userImgSize = rs.getInt("userImgSize");
+				String userImgOriName = rs.getString("userImgOriName");
+				String userDelFalg = rs.getString("userDelFalg");
 
-				vo.setUserId(userid);
-				vo.setUserSub(userSub);
-				vo.setUserNo(userNo);
+				vo = new MyuserVO(userNo, userId, userPwd, userName, userPhone, userEmail, userJoin, userSub,
+						userImgName, userImgSize, userImgOriName, userDelFalg);
 
 			}
 			System.out.println("비디오 번호로 유저 검색 결과 =" + vo + "매개변수 vidno=" + vidno);
