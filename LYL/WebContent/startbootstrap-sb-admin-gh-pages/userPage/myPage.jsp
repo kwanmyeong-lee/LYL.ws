@@ -40,6 +40,16 @@ if(vo.getUserImgName()!=null ){
 							}
 						}
 					});
+	
+
+</script>
+<script type="text/javascript">
+	$(function(){
+		$('#boardBt').click(function(){
+			alert();
+			location.href="../myboard/boardList.jsp";
+		}
+	})
 </script>
 
 
@@ -54,7 +64,7 @@ if(vo.getUserImgName()!=null ){
 			<%} %>
 			<div class="d-inline-flex position-relative start-50">
 				<button type="button" class="btn btn-primary me-2">영상 업로드</button>
-				<button type="button" class="btn btn-primary me-2">게시판</button>
+				<button id="boardBt" type="button" class="btn btn-primary me-2">게시판</button>
 				<button type="button" class="btn btn-primary">구독</button>
 			</div>
 			<div class="userInfo">
