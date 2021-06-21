@@ -8,7 +8,7 @@
 	request.setCharacterEncoding("utf-8");
 	String boNo=request.getParameter("boNo");
 	String bcNo=request.getParameter("bcNo");
-	String userId="textComm";
+	String userId="textComm"; //==========임시 수정해야함!!!!!
 	
 	System.out.println(boNo);
 	//2 
