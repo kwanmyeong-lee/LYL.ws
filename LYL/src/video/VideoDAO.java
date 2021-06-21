@@ -164,6 +164,28 @@ public class VideoDAO {
 			pool.dbClose(rs, ps, conn);
 		}
 	}
+	
+	public int updateHits(int vidNo) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		
+		
+		try {
+			conn = pool.getConnection();
+			
+			String sql = "update video set vidhits=vidhits+1 where vidno=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, vidNo);
+			
+			int cnt = ps.executeUpdate();
+			
+			return cnt;
+			
+			
+		}finally {
+			pool.dbClose(ps, conn);
+		}
+	}
 }
 
 
