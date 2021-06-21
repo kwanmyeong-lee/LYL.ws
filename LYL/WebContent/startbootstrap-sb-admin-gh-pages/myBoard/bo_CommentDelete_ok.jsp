@@ -6,30 +6,24 @@
 <%
 	//1
 	request.setCharacterEncoding("utf-8");
-	String comment=request.getParameter("comment");
-	String groupNo="2";//------
 	String boNo=request.getParameter("boNo");
-	String userNo="1";//------
+	String bcNo=request.getParameter("bcNo");
 	String userId="textComm";
 	
+	System.out.println(boNo);
 	//2 
 	BoCommentDAO dao = new BoCommentDAO();
-	BoCommentVO vo = new BoCommentVO();
-	vo.setBcCom(comment);
-	vo.setBcGroupNo(Integer.parseInt(groupNo));
-	vo.setBoNo(Integer.parseInt(boNo));
-	vo.setUserNo(Integer.parseInt(userNo));
-	vo.setUserId(userId);
 	
 	try{
-		int cnt = dao.insertBoComment(vo);
+		int cnt = dao.deleteBoComment(userId, Integer.parseInt(bcNo));
 		if(cnt>0){ %>
 			<script type="text/javascript">
+				confirm('댓글을 삭제 하시겠습니까?');
 				location.href="boardDetail.jsp?boNo=<%=boNo%>";
 			</script>
 		<%}else{%>
 			<script type="text/javascript">
-				alert("댓글 처리에 실패하였습니다.");
+				alert("댓글 삭제 처리에 실패하였습니다.");
 				location.back();
 			</script>
 		<%}
