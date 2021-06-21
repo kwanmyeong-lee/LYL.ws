@@ -10,7 +10,7 @@
 	String groupNo="2";     //==========임시 수정해야함!!!!!
 	String boNo=request.getParameter("boNo");
 	String userNo="1";    //==========임시 수정해야함!!!!!
-	String userId="textComm";    //==========임시 수정해야함!!!!!
+	String userId="yooh";    //==========임시 수정해야함!!!!!
 	
 	//2 
 	BoCommentDAO dao = new BoCommentDAO();

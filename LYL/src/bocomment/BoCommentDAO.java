@@ -27,7 +27,7 @@ public class BoCommentDAO {
 		try {
 			conn=pool.getConnection();
 
-			String sql="select * from BOARDCOMMENT where boNo=?";
+			String sql="select * from BOARDCOMMENT where boNo=? order by bcDate";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, boNo);
 			
@@ -87,7 +87,7 @@ public class BoCommentDAO {
 	}
 	
 	//삭제
-	public int deleteBoComment(String userId, int bcNo) throws SQLException {
+	public int deleteBoComment(String userId, int bcNo, int boNo) throws SQLException {
 		Connection conn=null;
 		PreparedStatement ps=null;
 		
@@ -95,10 +95,11 @@ public class BoCommentDAO {
 			conn=pool.getConnection();
 			
 			String sql="delete from BOARDCOMMENT"
-					+ " where bcNo=? and userId like '%' || ? || '%'";
+					+ " where boNo=? and bcNo=? and userId like '%' || ? || '%'";
 			ps=conn.prepareStatement(sql);
-			ps.setInt(1, bcNo);
-			ps.setString(2, userId);
+			ps.setInt(1, boNo);
+			ps.setInt(2, bcNo);
+			ps.setString(3, userId);
 			
 			int cnt = ps.executeUpdate();
 			System.out.println("댓글 삭제 결과 cnt="+cnt+", 매개변수 userId="+userId+", bcNo="+bcNo);
