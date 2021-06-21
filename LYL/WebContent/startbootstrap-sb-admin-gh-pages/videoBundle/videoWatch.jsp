@@ -10,7 +10,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
 
-
 <style>
 	#player{
 		padding-top: 10px;
@@ -261,9 +260,13 @@
 	<jsp:useBean id="subscribeService" class="src.subscribe.subscribeService" scope="page"></jsp:useBean>
 	
 	<%
-		int userNo = (int)session.getAttribute("userNo"); //세션 유저번호
+		int userNo=0;
+		if(session.getAttribute("userNo")!=null){
+			userNo = (int)session.getAttribute("userNo"); //세션 유저번호
+		}
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String vidno = request.getParameter("vidNo");  // 비디오 번호
+		
 		
 		VideoVO videoVo = null;
 		MyuserVO myuserVo = null;
@@ -272,6 +275,7 @@
 		int cnt= 0;
 		int subCnt = 0;
 		try{
+			videoService.updateHits(Integer.parseInt(vidno));
 			videoVo = videoService.videoSelect(vidno);
 			myuserVo = myuserService.selectMyuserByVidNo(vidno); //유저번호, 구독자, 타이틀 밖에 안들어있어요
 			cnt = aftervideoService.selectAftervideo(vidno, Integer.toString(userNo));
@@ -284,7 +288,10 @@
 		if(vidUrl.startsWith("https")){
 			vidUrl+="?autoplay=1&mute=1";
 		}
+		
 		System.out.println(cnt);
+		
+		
 	%>
 
    <header>
@@ -584,7 +591,8 @@
 				type : "post", //get post둘중하나
 
 				data : {
-					"comGroup" : comGroup
+					"comGroup" : comGroup,
+					"comCheck" : 0
 				},
 
 				success : function(data) {							
@@ -612,7 +620,8 @@
 				type : "post", //get post둘중하나
 
 				data : {
-					"comGroup" : comGroup
+					"comGroup" : comGroup,
+					"comCheck" : 1
 				},
 
 				success : function(data) {							
