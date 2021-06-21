@@ -112,6 +112,9 @@
 		width: 100px;
 		height: 80px;
 		border-radius: 10px;
+		background: #0d6efd;
+		color: white;
+		border:none;
 	}
 	
 	#content{
@@ -161,7 +164,7 @@
 </style>
 <%
 	//String userId=(String)session.getAttribute("userId");
-	String userId="textComm";       //==========임시 수정해야함!!!!!
+	String userId="yooh";       //==========임시 수정해야함!!!!!
 	
 
 	String boNo = request.getParameter("boNo");
@@ -181,7 +184,7 @@
 		e.printStackTrace();
 	}
 	//3
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm"); 
 	
 	//===============comment
 	//2
@@ -205,7 +208,13 @@
 		$('#boardList').click(function(){
 			location.href="boardList.jsp";
 		});
-		
+		$('.bcDeleteBtn').click(function(){
+			var delComm=confirm('댓글을 삭제하겠습니까?');
+			if(!delComm){
+				event.preventDefault();
+				location.href="boardDetail.jsp?boNo=<%=boNo%>"
+			}
+		});
 		
 	});
 </script>
@@ -239,7 +248,6 @@
 					<col style="width:20%;"/>
 					<col style="width:60%;"/>
 					<col style="wdith:10%;"/>
-					<col style="wdith:10%;"/>
 				</colgroup>
 				<tbody>
 				<%for(int i=0;i<list.size(); i++){ 
@@ -249,11 +257,15 @@
 						<td><%=commVo.getUserId() %></td>
 						<td class="commentTd">
 							<%=commVo.getBcCom() %>
-							
-							<input type="button" class="bcDeleteBtn" value="삭제" onClick="location.href='bo_CommentDelete_ok.jsp?bcNo=<%=commVo.getBcNo()%>&boNo=<%=boNo%>'">
+							<%=commVo.getBcNo()%>
+							<%if(userId.equals(commVo.getUserId())) {%>
+								<input type="button" class="bcDeleteBtn" onClick="location.href='bo_CommentDelete_ok.jsp?bcNo=<%=commVo.getBcNo()%>&boNo=<%=boNo%>'" value="삭제">
+							<%}else{ %>
+								<input type="hidden" class="bcDeleteBtn">
+							<%} %>
 						</td>
 						<td><%=sdf.format(commVo.getBcDate()) %></td>
-						<td><%=commVo.getBcLike() %></td>
+						
 					</tr>
 				<%} %>
 				</tbody>
