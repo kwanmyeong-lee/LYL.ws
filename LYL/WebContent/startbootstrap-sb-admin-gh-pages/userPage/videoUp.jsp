@@ -79,20 +79,46 @@
 <script type="text/javascript" src="/../js/datatables-simple-demo.js"></script>
 <script type="text/javascript">
 	$(function(){
-
 		$('#cancel').click(function(){
 			location.href="myPage.jsp";
 			alert('업로드 취소');
 		});
+		
+		$('form[name=videoUpfrm]').submit(function() {
+			if($('#vidFile').val().length<1 && $('#thuFile').val().length<1 && $('#vidurl').val().length<1){
+				alert("영상을 업로드 또는 URL을 입력해주세요");
+				event.preventDefault();
+				return false;
+			}
+			if($('#theme').val()=="선택"){
+				alert("태마를 선택해주세요");
+				event.preventDefault();
+				return false;
+			}
+			if($('#vidtitle').val().length<1){
+				alert("제목을 입력해주세요");
+				event.preventDefault();
+				return false;
+			}
+			if($('#content').val().length<1){
+				alert("영상 설명을 입력해주세요");
+				event.preventDefault();
+				return false;
+			}
+		});
+		
+	
+		
 	});
+	
 </script>
 <div class="listBody">
 	<div id="titleH"><h2>영상 업로드</h2></div>
 		<div>
-			<form action="videoUp_ok.jsp" method="post" enctype="multipart/form-data" >
+			<form name="videoUpfrm" action="videoUp_ok.jsp" method="post" enctype="multipart/form-data" >
 				<div class="titleDiv">
 					<label>태마 선택 : </label>
-					<select class="form-select-border-width:20px" aria-label="Default select example" name="theme">
+					<select id="theme" class="form-select-border-width:20px" aria-label="Default select example" name="theme">
 					  <option selected>선택</option>
 					  <option value="1">게임</option>
 					  <option value="2">영화</option>
@@ -101,7 +127,7 @@
 					  <option value="5">기타</option>
 					</select>
 					<label>제목 : </label>
-					<input type="text" class="title" name="title">&nbsp;
+					<input id="vidtitle" type="text" class="title" name="title">
 				</div>
 				<textarea id="content" cols="114" rows="15" name="content"></textarea>
 				<div class="mb-3 ms-5 me-5">
@@ -113,7 +139,7 @@
 				  <input class="form-control" type="file" id="thuFile" name="thuFile">
 				</div>
 				<div class="mb-3 ms-5 me-5">
-				  <label for="vidurl" class="form-label">video address</label>
+				  <label for="vidurl" class="form-label">유튜브 URL(영상아래쪽 공유버튼을 통해서 가져와주세요)</label>
 				  <input type="text" class="form-control" id="vidurl" name="vidurl">
 				</div>
 				<div class="btnList">
