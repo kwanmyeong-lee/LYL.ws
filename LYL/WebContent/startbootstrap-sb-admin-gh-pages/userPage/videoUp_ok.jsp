@@ -1,3 +1,4 @@
+
 <%@page import="video.VideoVO"%>
 <%@page import="video.VideoDAO"%>
 <%@page import="src.common.Utility"%>
@@ -61,3 +62,17 @@ request.setAttribute("url", url);
 %>
 
 <jsp:forward page="/startbootstrap-sb-admin-gh-pages/common/message.jsp"></jsp:forward>
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+</body>
+</html>
+

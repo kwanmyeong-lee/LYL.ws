@@ -10,7 +10,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
 
-
 <style>
 	#player{
 		padding-top: 10px;
@@ -261,9 +260,13 @@
 	<jsp:useBean id="subscribeService" class="src.subscribe.subscribeService" scope="page"></jsp:useBean>
 	
 	<%
-		int userNo = (int)session.getAttribute("userNo"); //세션 유저번호
+		int userNo=0;
+		if(session.getAttribute("userNo")!=null){
+			userNo = (int)session.getAttribute("userNo"); //세션 유저번호
+		}
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String vidno = request.getParameter("vidNo");  // 비디오 번호
+		
 		
 		VideoVO videoVo = null;
 		MyuserVO myuserVo = null;
@@ -272,6 +275,7 @@
 		int cnt= 0;
 		int subCnt = 0;
 		try{
+			videoService.updateHits(Integer.parseInt(vidno));
 			videoVo = videoService.videoSelect(vidno);
 			myuserVo = myuserService.selectMyuserByVidNo(vidno); //유저번호, 구독자, 타이틀 밖에 안들어있어요
 			cnt = aftervideoService.selectAftervideo(vidno, Integer.toString(userNo));
@@ -284,7 +288,10 @@
 		if(vidUrl.startsWith("https")){
 			vidUrl+="?autoplay=1&mute=1";
 		}
+		
 		System.out.println(cnt);
+		
+		
 	%>
 
    <header>
@@ -505,6 +512,8 @@
     		vidReComCnt=$('.vidComment').eq(comCntNo).children('.ReComDiv').children('.vidReComment').last().children('.reComCnt').val();
     		var btReWriteCheck = $(this).parent().parent().children('.ReplyCom').children('.reComWrite').text();
     		var $commentCon=$(this).parent().parent().children('.otherContent');
+    		var $comre = $(this).parent().parent().children('.vidCommentReCnt');
+    		var comreCnt = $(this).parent().parent().children('.vidCommentReCnt').text();
     		
     		if(btReWriteCheck=="답글"){
 	    		$.ajax({
@@ -547,7 +556,8 @@
 		    		    	$('.vidComment').eq(comCntNo).children('.ReComDiv').children('.vidReComment').last().append("<br>");
 		    		   
 	 					}
-						
+	 					comreCnt++;
+						$comre.html("&nbsp"+comreCnt+"&nbsp&nbsp&nbsp&nbsp");
 					}
 				});//ajax
     		}else{
@@ -584,7 +594,9 @@
 				type : "post", //get post둘중하나
 
 				data : {
-					"comGroup" : comGroup
+					"comGroup" : comGroup,
+					"comCheck" : 0,
+					"parentComNo" : 0
 				},
 
 				success : function(data) {							
@@ -601,10 +613,13 @@
     	}));//btComDelete
     	
     	$('body').on('click','button.btReComDelete',(function(){
+    		var parentComNo= $(this).parent().parent().parent().children('input[type=hidden]').val();
     		var comGroup = $(this).parent().children('.rehid1').val();
     		var comCntNo= $(this).parent().parent().parent().children('.hid2').val();   		
     		var rcn= $(this).parent().children('.reComCnt').val();
     		var $remove= $(this).parent();
+    		var $comre = $(this).parent().parent().parent().children('.vidCommentReCnt');
+    		var comreCnt = $(this).parent().parent().parent().children('.vidCommentReCnt').text();
     		$.ajax({
 
 				url : "comDelete_ok.jsp", //나중에볼 동영상
@@ -612,12 +627,16 @@
 				type : "post", //get post둘중하나
 
 				data : {
-					"comGroup" : comGroup
+					"comGroup" : comGroup,
+					"comCheck" : 1,
+					"parentComNo" : parentComNo
 				},
 
 				success : function(data) {							
  												
 					$remove.remove();
+					comreCnt--;
+					$comre.html("&nbsp"+comreCnt+"&nbsp&nbsp&nbsp&nbsp");
 					if(vidReComCnt!=0){
 						vidReComCnt--;
 					}

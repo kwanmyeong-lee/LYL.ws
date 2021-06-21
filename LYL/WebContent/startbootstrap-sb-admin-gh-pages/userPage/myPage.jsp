@@ -43,6 +43,7 @@ if(vo.getUserImgName()!=null ){
 	
 
 </script>
+
 <script type="text/javascript" src="/../js/datatables-simple-demo.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -51,7 +52,7 @@ if(vo.getUserImgName()!=null ){
 			alert("업로드로 이동");
 		};
 	});
-	
+
 </script>
 
 

@@ -79,6 +79,7 @@
 <script type="text/javascript" src="/../js/datatables-simple-demo.js"></script>
 <script type="text/javascript">
 	$(function(){
+
 		$('#cancel').click(function(){
 			location.href="myPage.jsp";
 			alert('업로드 취소');

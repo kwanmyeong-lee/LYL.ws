@@ -1,4 +1,4 @@
---ÀüÃ¼ Å×ÀÌºí, ½ÃÄö½º »èÁ¦--
+--ì „ì²´ í…Œì´ë¸”, ì‹œí€€ìŠ¤ ì‚­ì œ--
 drop table myuser CASCADE CONSTRAINTS;
 drop table video CASCADE CONSTRAINTS;
 drop table mycomment CASCADE CONSTRAINTS;
@@ -17,9 +17,9 @@ drop sequence mycomment_seq;
 drop sequence bobycom_seq;
 drop sequence myboard_seq;
 drop sequence theme_seq;
--- ÀüÃ¼ Å×ÀÌºí, ½ÃÄö½º »èÁ¦--
+-- ì „ì²´ í…Œì´ë¸”, ì‹œí€€ìŠ¤ ì‚­ì œ--
 
---½ÃÄö½º---
+--ì‹œí€€ìŠ¤---
 create sequence myuser_seq
 start with 1
 increment by 1
@@ -49,22 +49,22 @@ create sequence theme_seq
 start with 1
 increment by 1
 nocache;
---½ÃÄö½º----
+--ì‹œí€€ìŠ¤----
 
-/* È¸¿ø Á¤º¸ */
+/* íšŒì› ì •ë³´ */
 CREATE TABLE MYUSER (    
-	userNo NUMBER NOT NULL, /* Å©¸®¿¡ÀÌÅÍ */
-	userId VARCHAR2(100) NOT NULL, /* ¾ÆÀÌµð */
-	userPwd VARCHAR2(100) NOT NULL, /* ºñ¹Ð¹øÈ£ */
-	userName VARCHAR2(50) NOT NULL, /* ÀÌ¸§ */
-	userPhone NUMBER NOT NULL, /* Æù¹øÈ£ */
-	userEmail VARCHAR2(255) NOT NULL, /* ÀÌ¸ÞÀÏ */
-	userJoin TIMESTAMP DEFAULT sysdate, /* °¡ÀÔÀÏ */
-	userSub NUMBER DEFAULT 0, /* ±¸µ¶ÀÚ¼ö */
-    userImgName varchar(255)  NULL ,/* À¯ÀúÀÌ¹ÌÁöÀÌ¸§*/
-    userImgSize number default 0, /*À¯ÀúÀÌ¹ÌÁö»çÀÌÁî*/
-    userImgOriName varchar(255) null, /*ÀÌ¹ÌÁö º¯°æÀü ÆÄÀÏ¸í*/
-    userDelFalg char default 'N' /*»èÁ¦ Flag*/     
+	userNo NUMBER NOT NULL, /* í¬ë¦¬ì—ì´í„° */
+	userId VARCHAR2(100) NOT NULL, /* ì•„ì´ë”” */
+	userPwd VARCHAR2(100) NOT NULL, /* ë¹„ë°€ë²ˆí˜¸ */
+	userName VARCHAR2(50) NOT NULL, /* ì´ë¦„ */
+	userPhone NUMBER NOT NULL, /* í°ë²ˆí˜¸ */
+	userEmail VARCHAR2(255) NOT NULL, /* ì´ë©”ì¼ */
+	userJoin TIMESTAMP DEFAULT sysdate, /* ê°€ìž…ì¼ */
+	userSub NUMBER DEFAULT 0, /* êµ¬ë…ìžìˆ˜ */
+    userImgName varchar(255)  NULL ,/* ìœ ì €ì´ë¯¸ì§€ì´ë¦„*/
+    userImgSize number default 0, /*ìœ ì €ì´ë¯¸ì§€ì‚¬ì´ì¦ˆ*/
+    userImgOriName varchar(255) null, /*ì´ë¯¸ì§€ ë³€ê²½ì „ íŒŒì¼ëª…*/
+    userDelFalg char default 'N' /*ì‚­ì œ Flag*/     
 );
 
 CREATE UNIQUE INDEX PK_MYUSER
@@ -79,35 +79,35 @@ ALTER TABLE MYUSER
 			userNo
 		);
 
-/* ½ÃÃ» ±â·Ï */
+/* ì‹œì²­ ê¸°ë¡ */
 CREATE TABLE WATCHRECORD (
-	userNo NUMBER NOT NULL, /* Å©¸®¿¡ÀÌÅÍ */
-	vidNo NUMBER NOT NULL, /* ¿µ»ó ¹øÈ£ */
-	watchDate TIMESTAMP DEFAULT sysdate NOT NULL /* ½ÃÃ» ³¯Â¥ */
+	userNo NUMBER NOT NULL, /* í¬ë¦¬ì—ì´í„° */
+	vidNo NUMBER NOT NULL, /* ì˜ìƒ ë²ˆí˜¸ */
+	watchDate TIMESTAMP DEFAULT sysdate NOT NULL /* ì‹œì²­ ë‚ ì§œ */
 );
 
-/* ¿µ»óÁÁ¾Æ¿ä */
+/* ì˜ìƒì¢‹ì•„ìš” */
 CREATE TABLE VIDEOLIKE (
-	vidNo NUMBER NOT NULL, /* ¿µ»ó ¹øÈ£ */
-	userNo NUMBER NOT NULL /* Å©¸®¿¡ÀÌÅÍ */
+	vidNo NUMBER NOT NULL, /* ì˜ìƒ ë²ˆí˜¸ */
+	userNo NUMBER NOT NULL /* í¬ë¦¬ì—ì´í„° */
 );
 
-/* ³ªÁß¿¡º¼ µ¿¿µ»ó */
+/* ë‚˜ì¤‘ì—ë³¼ ë™ì˜ìƒ */
 CREATE TABLE AFTERVIDEO (
-	userNo NUMBER NOT NULL, /* Å©¸®¿¡ÀÌÅÍ */
-	vidNo NUMBER NOT NULL /* ¿µ»ó ¹øÈ£ */
+	userNo NUMBER NOT NULL, /* í¬ë¦¬ì—ì´í„° */
+	vidNo NUMBER NOT NULL /* ì˜ìƒ ë²ˆí˜¸ */
 );
 
-/* ´ñ±ÛÁÁ¾Æ¿ä */
+/* ëŒ“ê¸€ì¢‹ì•„ìš” */
 CREATE TABLE COMMENTLIKE (
-	comNo NUMBER NOT NULL, /* ´ñ±Û ¹øÈ£ */
-	userNo NUMBER NOT NULL /* Å©¸®¿¡ÀÌÅÍ */
+	comNo NUMBER NOT NULL, /* ëŒ“ê¸€ ë²ˆí˜¸ */
+	userNo NUMBER NOT NULL /* í¬ë¦¬ì—ì´í„° */
 );
 
-/* ÅÂ¸¶º° ¿µ»ó */
+/* íƒœë§ˆë³„ ì˜ìƒ */
 CREATE TABLE THEME (
-	thNo NUMBER NOT NULL, /* ÅÂ¸¶¹øÈ£ */
-	thName VARCHAR2(100) NOT NULL /* ÅÂ¸¶ÀÌ¸§ */
+	thNo NUMBER NOT NULL, /* íƒœë§ˆë²ˆí˜¸ */
+	thName VARCHAR2(100) NOT NULL /* íƒœë§ˆì´ë¦„ */
 );
 
 CREATE UNIQUE INDEX PK_THEME
@@ -122,28 +122,29 @@ ALTER TABLE THEME
 			thNo
 		);
 
-/* ±¸µ¶ ÀÚ */
+/* êµ¬ë… ìž */
 CREATE TABLE SUBSCRIB (
-	userNo2 NUMBER, /* Å©¸®¿¡ÀÌÅÍ */
-	userNo NUMBER /* ±¸µ¶ÀÚ */
+	userNo2 NUMBER, /* í¬ë¦¬ì—ì´í„° */
+	userNo NUMBER /* êµ¬ë…ìž */
 );
 
-/* ¿µ»ó */
+/* ì˜ìƒ */
 CREATE TABLE VIDEO (
-	vidNo NUMBER NOT NULL, /* ¿µ»ó ¹øÈ£ */
-	vidTitle VARCHAR2(255) NOT NULL, /* Á¦¸ñ */
-	vidHits NUMBER DEFAULT 0, /* Á¶È¸¼ö */
-	vidCom NUMBER DEFAULT 0, /* ´ñ±Û */
-	vidurl VARCHAR2(255) NOT NULL, /* ¿µ»ó°æ·Î */
-	vidLike NUMBER DEFAULT 0, /* ÁÁ¾Æ¿ä */
-	vidDate TIMESTAMP DEFAULT sysdate, /* ¾÷·Îµå ½Ã°£ */
-	vidEx VARCHAR2(255), /* ¿µ»ó ¼³¸í */
-	vidTheme NUMBER NOT NULL, /* ÅÂ¸¶ ¹øÈ£ */
-	userNo NUMBER, /* Å©¸®¿¡ÀÌÅÍ */
-	vidThu VARCHAR2(255) NOT NULL, /* ½æ³×ÀÏ°æ·Î */
-    vidName varchar(255)  NULL ,/* ¿µ»ó ÆÄÀÏ ÀÌ¸§*/
-    vidSize number default 0, /*¿µ»ó »çÀÌÁî*/
-    vidOriName varchar(255) null /*¿µ»ó º¯°æÀü ÆÄÀÏ¸í*/
+	vidNo NUMBER NOT NULL, /* ì˜ìƒ ë²ˆí˜¸ */
+	vidTitle VARCHAR2(255) NOT NULL, /* ì œëª© */
+	vidHits NUMBER DEFAULT 0, /* ì¡°íšŒìˆ˜ */
+	vidCom NUMBER DEFAULT 0, /* ëŒ“ê¸€ */
+	vidurl VARCHAR2(255) NOT NULL, /* ì˜ìƒê²½ë¡œ */
+	vidLike NUMBER DEFAULT 0, /* ì¢‹ì•„ìš” */
+	vidDate TIMESTAMP DEFAULT sysdate, /* ì—…ë¡œë“œ ì‹œê°„ */
+	vidEx VARCHAR2(255), /* ì˜ìƒ ì„¤ëª… */
+	vidTheme NUMBER NOT NULL, /* íƒœë§ˆ ë²ˆí˜¸ */
+	userNo NUMBER, /* í¬ë¦¬ì—ì´í„° */
+	vidThu VARCHAR2(255) NOT NULL, /* ì¸ë„¤ì¼ê²½ë¡œ */
+  vidName varchar(255)  NULL ,/* ì˜ìƒ íŒŒì¼ ì´ë¦„*/
+  vidSize number default 0, /*ì˜ìƒ ì‚¬ì´ì¦ˆ*/
+  vidOriName varchar(255) null /*ì˜ìƒ ë³€ê²½ì „ íŒŒì¼ëª…*/
+
     
 );
 
@@ -159,19 +160,19 @@ ALTER TABLE VIDEO
 			vidNo
 		);
 
-/* ¿µ»ó´ñ±Û */
+/* ì˜ìƒëŒ“ê¸€ */
 CREATE TABLE MYCOMMENT (
-	comNo NUMBER NOT NULL, /* ´ñ±Û ¹øÈ£ */
-	comCon VARCHAR2(255), /* ³»¿ë */
-	comDate TIMESTAMP DEFAULT sysdate, /* ³¯Â¥ */
-	comRe NUMBER DEFAULT 0, /* ´ä±Û¼ö */
-	comLike NUMBER DEFAULT 0, /* ÁÁ¾Æ¿ä */
-	comSec NUMBER DEFAULT 0, /* ºñ¹Ð±Û ¿©ºÎ */
-	vidNo NUMBER, /* ¿µ»ó ¹øÈ£ */
-	userNo NUMBER, /* Å©¸®¿¡ÀÌÅÍ */
-	comStep NUMBER DEFAULT 0, /* ´ñ±Û ´Ü°è */
-	comSort NUMBER DEFAULT 0, /* ´ñ±Û Á¤·Ä ¹øÈ£ */
-	comGroup NUMBER /* ´ñ±Û ±×·ì ¹øÈ£ */
+	comNo NUMBER NOT NULL, /* ëŒ“ê¸€ ë²ˆí˜¸ */
+	comCon VARCHAR2(255), /* ë‚´ìš© */
+	comDate TIMESTAMP DEFAULT sysdate, /* ë‚ ì§œ */
+	comRe NUMBER DEFAULT 0, /* ë‹µê¸€ìˆ˜ */
+	comLike NUMBER DEFAULT 0, /* ì¢‹ì•„ìš” */
+	comSec NUMBER DEFAULT 0, /* ë¹„ë°€ê¸€ ì—¬ë¶€ */
+	vidNo NUMBER, /* ì˜ìƒ ë²ˆí˜¸ */
+	userNo NUMBER, /* í¬ë¦¬ì—ì´í„° */
+	comStep NUMBER DEFAULT 0, /* ëŒ“ê¸€ ë‹¨ê³„ */
+	comSort NUMBER DEFAULT 0, /* ëŒ“ê¸€ ì •ë ¬ ë²ˆí˜¸ */
+	comGroup NUMBER /* ëŒ“ê¸€ ê·¸ë£¹ ë²ˆí˜¸ */
 );
 
 CREATE UNIQUE INDEX PK_MYCOMMENT
@@ -186,19 +187,19 @@ ALTER TABLE MYCOMMENT
 			comNo
 		);
 
-/* °Ô½Ã±Û ´ñ±Û */
+/* ê²Œì‹œê¸€ ëŒ“ê¸€ */
 CREATE TABLE BOBYCOM (
-	bcNo NUMBER NOT NULL, /* ´ñ±Û ¹øÈ£ */
-	bcCom VARCHAR2(255), /* ³»¿ë */
-	bcDate TIMESTAMP DEFAULT sysdate, /* ³¯Â¥ */
-	bcRe NUMBER DEFAULT 0, /* ´ä±Û¼ö */
-	bcLike NUMBER DEFAULT 0, /* ÁÁ¾Æ¿ä */
-	bcSec NUMBER DEFAULT 0, /* ºñ¹Ð±Û ¿©ºÎ */
-	bcStep NUMBER DEFAULT 0, /* ´ñ±Û ´Ü°è */
-	bcSort NUMBER DEFAULT 0, /* ´ñ±Û Á¤·Ä ¹øÈ£ */
-	bcGroupNo NUMBER, /* ´ñ±Û ±×·ì ¹øÈ£ */
-	boNo NUMBER, /* ¹øÈ£ */
-	userNo NUMBER /* Å©¸®¿¡ÀÌÅÍ */
+	bcNo NUMBER NOT NULL, /* ëŒ“ê¸€ ë²ˆí˜¸ */
+	bcCom VARCHAR2(255), /* ë‚´ìš© */
+	bcDate TIMESTAMP DEFAULT sysdate, /* ë‚ ì§œ */
+	bcRe NUMBER DEFAULT 0, /* ë‹µê¸€ìˆ˜ */
+	bcLike NUMBER DEFAULT 0, /* ì¢‹ì•„ìš” */
+	bcSec NUMBER DEFAULT 0, /* ë¹„ë°€ê¸€ ì—¬ë¶€ */
+	bcStep NUMBER DEFAULT 0, /* ëŒ“ê¸€ ë‹¨ê³„ */
+	bcSort NUMBER DEFAULT 0, /* ëŒ“ê¸€ ì •ë ¬ ë²ˆí˜¸ */
+	bcGroupNo NUMBER, /* ëŒ“ê¸€ ê·¸ë£¹ ë²ˆí˜¸ */
+	boNo NUMBER, /* ë²ˆí˜¸ */
+	userNo NUMBER /* í¬ë¦¬ì—ì´í„° */
 );
 
 CREATE UNIQUE INDEX PK_BOBYCOM
@@ -213,21 +214,21 @@ ALTER TABLE BOBYCOM
 			bcNo
 		);
 
-/* °Ô½ÃÆÇ */
+/* ê²Œì‹œíŒ */
 CREATE TABLE MYBOARD (
-	boNo NUMBER NOT NULL, /* ¹øÈ£ */
-	boTitle VARCHAR2(255) NOT NULL, /* Á¦¸ñ */
-	boCon CLOB, /* ³»¿ë */
-	boHits NUMBER DEFAULT 0, /* Á¶È¸¼ö */
-	boCom NUMBER DEFAULT 0, /* ´ñ±Û¼ö */
-	boDate TIMESTAMP DEFAULT sysdate, /* ÀÛ¼ºÀÏ */
-	boSec NUMBER DEFAULT 0, /* ºñ¹Ð±Û ¿©ºÎ */
-	userNo NUMBER, /* Å©¸®¿¡ÀÌÅÍ */
-	userNo2 NUMBER, /* ±Û¾´ÀÌ */
-	boMyNo NUMBER DEFAULT 1, /* ¸¶ÀÌÆäÀÌÁöº° ±Û¹øÈ£ */
-	boStep NUMBER DEFAULT 0, /* °Ô½Ã±Û ´Ü°è */
-	boSort NUMBER DEFAULT 0, /* °Ô½Ã±Û Á¤·Ä ¹øÈ£ */
-	boGroupNo NUMBER /* °Ô½Ã±Û ±×·ì¹øÈ£ */
+	boNo NUMBER NOT NULL, /* ë²ˆí˜¸ */
+	boTitle VARCHAR2(255) NOT NULL, /* ì œëª© */
+	boCon CLOB, /* ë‚´ìš© */
+	boHits NUMBER DEFAULT 0, /* ì¡°íšŒìˆ˜ */
+	boCom NUMBER DEFAULT 0, /* ëŒ“ê¸€ìˆ˜ */
+	boDate TIMESTAMP DEFAULT sysdate, /* ìž‘ì„±ì¼ */
+	boSec NUMBER DEFAULT 0, /* ë¹„ë°€ê¸€ ì—¬ë¶€ */
+	userNo NUMBER, /* í¬ë¦¬ì—ì´í„° */
+	userNo2 NUMBER, /* ê¸€ì“´ì´ */
+	boMyNo NUMBER DEFAULT 1, /* ë§ˆì´íŽ˜ì´ì§€ë³„ ê¸€ë²ˆí˜¸ */
+	boStep NUMBER DEFAULT 0, /* ê²Œì‹œê¸€ ë‹¨ê³„ */
+	boSort NUMBER DEFAULT 0, /* ê²Œì‹œê¸€ ì •ë ¬ ë²ˆí˜¸ */
+	boGroupNo NUMBER /* ê²Œì‹œê¸€ ê·¸ë£¹ë²ˆí˜¸ */
 );
 
 CREATE UNIQUE INDEX PK_MYBOARD
@@ -242,11 +243,11 @@ ALTER TABLE MYBOARD
 			boNo
 		);
 
-/* ÈùÆ® Áú¹®  */
+/* ížŒíŠ¸ ì§ˆë¬¸  */
 CREATE TABLE HINT (
-	hintQuest VARCHAR2(255) NOT NULL, /* Áú¹® */
-	hintAns VARCHAR2(255) NOT NULL, /* ´ä */
-	userNo NUMBER NOT NULL /* Å©¸®¿¡ÀÌÅÍ */
+	hintQuest VARCHAR2(255) NOT NULL, /* ì§ˆë¬¸ */
+	hintAns VARCHAR2(255) NOT NULL, /* ë‹µ */
+	userNo NUMBER NOT NULL /* í¬ë¦¬ì—ì´í„° */
 );
 
 ALTER TABLE WATCHRECORD
@@ -429,123 +430,123 @@ ALTER TABLE HINT
 			userNo
 		);
         
---À¯Àú Á¤º¸--        
+--ìœ ì € ì •ë³´--        
 insert into myuser values(myuser_seq.nextval,'admin','admin','admin',01000000000,'lyl@gmail.com',default,default,null,default,null, default );
 insert into myuser values(myuser_seq.nextval,'aaa','aaa','aaa',01000000001,'aaa@gmail.com',default,default,null,default,null, default );
 insert into myuser values(myuser_seq.nextval,'bbb','bbb','bbb',01000000002,'bbb@gmail.com',default,default,null,default,null, default );
---À¯Àú Á¤º¸--
+--ìœ ì € ì •ë³´--
 
 
---Å×¸¶ Á¤º¸--
-insert into theme values(theme_seq.nextval,'°ÔÀÓ');
-insert into theme values(theme_seq.nextval,'¿µÈ­');
-insert into theme values(theme_seq.nextval,'ÇÐ½À');
-insert into theme values(theme_seq.nextval,'½ºÆ÷Ã÷');
-insert into theme values(theme_seq.nextval,'±âÅ¸');
---Å×¸¶ Á¤º¸--
+--í…Œë§ˆ ì •ë³´--
+insert into theme values(theme_seq.nextval,'ê²Œìž„');
+insert into theme values(theme_seq.nextval,'ì˜í™”');
+insert into theme values(theme_seq.nextval,'í•™ìŠµ');
+insert into theme values(theme_seq.nextval,'ìŠ¤í¬ì¸ ');
+insert into theme values(theme_seq.nextval,'ê¸°íƒ€');
+--í…Œë§ˆ ì •ë³´--
 
 
---ºñµð¿À Á¤º¸--
---°ÔÀÓ no 1--
-insert into video values(video_seq.nextval,'2021³âPC¿Â¶óÀÎ°ÔÀÓ¼øÀ§ Àü¼¼°èTOP10',1000,14,'https://www.youtube.com/embed/XDB-ew_nFjo',default,default,'2021³â PC ¿Â¶óÀÎ°ÔÀÓ¼øÀ§ (1¿ùÅëÇÕ)',1,1,'http://img.youtube.com/vi/XDB-ew_nFjo/maxresdefault.jpg');
-insert into video values(video_seq.nextval,'°ÔÀÓÆÇ »ç°í»ç·Ê´Â °ÔÀÓº¸´Ù ´õ È²´çÇÏ´Ù [2021 2ºÐ±â ÀÌ¿ÖÁø °ÔÀÓ´º½º]',99999,default,'https://www.youtube.com/embed/0eiDYPxnt4c',default,default,'30³âÂ÷ Å×Æ®¸®½º °íÀÎ¹° / BTS¸¶Àú Âî¹Ù¸£´Â °×´ö·Â / Ãß½Å¼ö ºü¸¥¹«ÇÑ / ÀÏº» ±¹¹Î°ÔÀÓ¿¡¼­ ÀÏº» ¶§·ÁÀâ´Â ÇÑ±¹ÀÎ / »ïÅ»¿ö Âü¼ö »çÅÂ µî',1,1,'http://img.youtube.com/vi/0eiDYPxnt4c/maxresdefault.jpg');
-insert into video values(video_seq.nextval,'´º¿å¿¡ ¶Ç´Ù½Ã ÆÛÁø ¹ÙÀÌ·¯½º, ¾Ë·º½º ¸Ó¼­´Â Á×¾î¾ß¸¸ ÇÑ´Ù - ÇÁ·ÎÅäÅ¸ÀÔ 2 ½ºÅä¸® ÇÑ´«¿¡ º¸±â',100000,default,'https://www.youtube.com/embed/12280TgSiwU',default,default,'¡Ø °ÔÀÓ ±¸¸Å',1,1,'http://img.youtube.com/vi/12280TgSiwU/maxresdefault.jpg');
-insert into video values(video_seq.nextval,'¿µ»ó Á¦¸ñ',4863215,default,'../video/alal.mp4',1000000,default,'³»¿ë',1,1,'../thumbnail/lala.png');
+--ë¹„ë””ì˜¤ ì •ë³´--
+--ê²Œìž„ no 1--
+insert into video values(video_seq.nextval,'2021ë…„PCì˜¨ë¼ì¸ê²Œìž„ìˆœìœ„ ì „ì„¸ê³„TOP10',1000,14,'https://www.youtube.com/embed/XDB-ew_nFjo',default,default,'2021ë…„ PC ì˜¨ë¼ì¸ê²Œìž„ìˆœìœ„ (1ì›”í†µí•©)',1,1,'http://img.youtube.com/vi/XDB-ew_nFjo/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'ê²Œìž„íŒ ì‚¬ê³ ì‚¬ë¡€ëŠ” ê²Œìž„ë³´ë‹¤ ë” í™©ë‹¹í•˜ë‹¤ [2021 2ë¶„ê¸° ì´ì™œì§„ ê²Œìž„ë‰´ìŠ¤]',99999,default,'https://www.youtube.com/embed/0eiDYPxnt4c',default,default,'30ë…„ì°¨ í…ŒíŠ¸ë¦¬ìŠ¤ ê³ ì¸ë¬¼ / BTSë§ˆì € ì°Œë°”ë¥´ëŠ” ê²œë•ë ¥ / ì¶”ì‹ ìˆ˜ ë¹ ë¥¸ë¬´í•œ / ì¼ë³¸ êµ­ë¯¼ê²Œìž„ì—ì„œ ì¼ë³¸ ë•Œë ¤ìž¡ëŠ” í•œêµ­ì¸ / ì‚¼íƒˆì›Œ ì°¸ìˆ˜ ì‚¬íƒœ ë“±',1,1,'http://img.youtube.com/vi/0eiDYPxnt4c/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'ë‰´ìš•ì— ë˜ë‹¤ì‹œ í¼ì§„ ë°”ì´ëŸ¬ìŠ¤, ì•Œë ‰ìŠ¤ ë¨¸ì„œëŠ” ì£½ì–´ì•¼ë§Œ í•œë‹¤ - í”„ë¡œí† íƒ€ìž… 2 ìŠ¤í† ë¦¬ í•œëˆˆì— ë³´ê¸°',100000,default,'https://www.youtube.com/embed/12280TgSiwU',default,default,'â€» ê²Œìž„ êµ¬ë§¤',1,1,'http://img.youtube.com/vi/12280TgSiwU/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'ì˜ìƒ ì œëª©',4863215,default,'../video/alal.mp4',1000000,default,'ë‚´ìš©',1,1,'../thumbnail/lala.png');
 
---¿µÈ­ no 2--
-insert into video values(video_seq.nextval,'Á¤¸»... ÀÌ ¿µÈ­°¡ °³ºÀÇÑ´Ù°í...?',8888,default,'https://www.youtube.com/embed/R7HGsxi47l8',default,default,'*º» ¿µ»óÀº À¯·á±¤°í¸¦ Æ÷ÇÔÇÏ°í ÀÖ½À´Ï´Ù.',2,1,'http://img.youtube.com/vi/R7HGsxi47l8/maxresdefault.jpg');
-insert into video values(video_seq.nextval,'10,000¸í ¸ù°ñ ´ë±ºÀ» ¸·¾Æ³½ »ê°ñ ¸¶À» »ç³É²ÛÀÇ Àü¼³ [¿µÈ­¸®ºä °á¸»Æ÷ÇÔ]',666666,default,'https://www.youtube.com/embed/aH9BWyAP2JI',default,default,'[ ¶óÀÌÂ¡ È£Å©, 2019 ]',2,1,'http://img.youtube.com/vi/aH9BWyAP2JI/maxresdefault.jpg');
-insert into video values(video_seq.nextval,'ÀÌ ¿©ÀÚ¸¦ À§ÇùÇÏ¸é ¾î¸¶¹«½ÃÇÑ ÀÏÀÌ ¹ú¾îÁý´Ï´Ù... (°á¸» Æ÷ÇÔ)',333333,default,'https://www.youtube.com/embed/RNbJTDSgTLY',default,default,'Æ²µüÀÌ ¼Ò°³ÇÏ´Â ¿µÈ­¸®ºä ½ÃÀÛÇÕ´Ï´Ù.',2,1,'http://img.youtube.com/vi/RNbJTDSgTLY/maxresdefault.jpg');
-insert into video values(video_seq.nextval,'¿µÈ­ ¼Ó ''Á¶Á¤¼®'' ¿ô±äÀå¸é ¸ðÀ½ ZIP',99999999,default,'https://www.youtube.com/embed/j5jbymJVGT4',default,default,'¿µÈ­´Â [¿¢½ÃÆ®], [°ÇÃàÇÐ°³·Ð], [Çü]ÀÔ´Ï´Ù. ¾È³çÇÏ¼¼¿ä ''¿µÈ­¿¡¹ÌÄ¡´Ù'' ¸Åµå¹«ºñÀÔ´Ï´Ù.',2,1,'http://img.youtube.com/vi/j5jbymJVGT4/maxresdefault.jpg');
-
-
---ÇÐ½À no 3 --
-insert into video values(video_seq.nextval, '¾ÆÀÎ½´Å¸ÀÎÀÌ ¹Þ¾Ò´ø °øºÎ', 8888888,default,'https://www.youtube.com/embed/hcymislezjI', default, default, '¹«¾ð°¡¸¦ ¹è¿ì°íÀÚ ÇÒ ¶§ ÀÌ °øºÎ¸¦ ¿Ö ÇØ¾ß ÇÏ´Â°¡ ', 3, 1,'http://img.youtube.com/vi/hcymislezjI/maxresdefault.jpg');
-insert into video values(video_seq.nextval, 'ÀÌ °èÈ¹´ë·Î °øºÎÇÏ¸é ¹Ýµå½Ã ¼º°øÇÕ´Ï´Ù. (ÇÐ½À °èÈ¹Ç¥)', 123132132,default,'https://www.youtube.com/embed/KQYJ_0yr-1Q', default, default, '°øºÎ°¡ ¾î·Á¿ì½Å°¡¿ä? ÀÌ °èÈ¹´ë·Î¶ó¸é ¹Ýµå½Ã ¼º°øÇÕ´Ï´Ù! °èÈ¹Ç¥µµ ¹Þ¾Æ°¡¼¼¿ä', 3, 1,'http://img.youtube.com/vi/KQYJ_0yr-1Q/maxresdefault.jpg');
-insert into video values(video_seq.nextval, '¼­¿ï´ë ¼ö¼®ÀÇ ½ºÅÍµð ÇÃ·¡³Ê. [ÇÐ½À °èÈ¹¹ý + °øºÎ ÁýÁß·Â] ÇÑ²¨¹ø¿¡ 2°¡Áö.', 456454,default,'https://www.youtube.com/embed/o2-rsPs47Zw', default, default, '¼öÇè»ýÀÇ ÃÖ´ë °í¹ÎÀÎ °èÈ¹ ¼¼¿ì´Â ¹ý, ÁýÁß ÀßÇÏ´Â ¹ý.', 3, 1,'http://img.youtube.com/vi/o2-rsPs47Zw/maxresdefault.jpg');
-insert into video values(video_seq.nextval, 'ÃÊµîÇÐ»ý ÀÚ±âÁÖµµÇÐ½À ÁöµµÇÏ´Â 10°¡Áö ¹æ¹ý + ¹Ì½© ±³À°Ã¶ÇÐ', 8188181,default,'https://www.youtube.com/embed/wxdmIjLMPJM', default, default, '¾ÆÄ§Çü ÀÎ°£ÀÎ ÀúÈñ ¾ÆÀÌ°¡ ÁÖµµÀûÀ¸·Î ½º½º·Î ÇÐ½ÀÀ» ÇÒ ¼ö ÀÖ°Ô ', 3, 1,'http://img.youtube.com/vi/wxdmIjLMPJM/maxresdefault.jpg');
-insert into video values(video_seq.nextval, 'ÀÚ±âÁÖµµÇÐ½ÀÀº Áß¿äÇÕ´Ï´Ù. ±×·¯³ª ¿Ö°îµÇ¾î ÀÖ½À´Ï´Ù. | ÀÚ±âÁÖµµÇÐ½ÀÀÇ Á¤È®ÇÑ ¹æ¹ý', 354354,default,'https://www.youtube.com/embed/qIUDyLBAOdg', default, default, '¸ðµÎ°¡ Áß¿äÇÏ´Ù°í ÇÏ´Â ÀÚ±âÁÖµµÇÐ½À ', 3, 1,'http://img.youtube.com/vi/qIUDyLBAOdg/maxresdefault.jpg');
-insert into video values(video_seq.nextval, '°øºÎÇÏ´Â Èû, ¸ôÀÔ | È²³ó¹® ¼­¿ï´ëÇÐ±³ Àç·á°øÇÐºÎ ±³¼ö | °øºÎ ÇÐ½À ½ÃÇè °­¿¬', 123,default,'https://www.youtube.com/embed/ukjYwSiYT1I', default, default, '? °­¿¬ ¼Ò°³ : µµÀüÀÌ ¾Æ¹«¸® ¾î·Æ´Ù°í ÇØµµ, ³»°¡ ', 3, 1,'http://img.youtube.com/vi/ukjYwSiYT1I/maxresdefault.jpg');
-insert into video values(video_seq.nextval, '[µ¿±âºÎ¿©,°øºÎÀÚ±Ø] °øºÎÀÇÁö´Â ¾îµð¼­ ¿À´Â°¡?', 4545454,default,'https://www.youtube.com/embed/3XvGdiE_RlI', default, default, '³ª´Â ¿Ö ''°øºÎÀÇÁö''°¡ Á»Ã³·³ »ý±âÁö ¾ÊÀ»±î¿ä? ', 3, 1,'http://img.youtube.com/vi/3XvGdiE_RlI/maxresdefault.jpg');
-insert into video values(video_seq.nextval, '¼­¿ï´ë3121¸íÀÌ °øÅëÀûÀ¸·Î ¾²´Â °øºÎ¹ýÀ» °ø°³ÇÕ´Ï´Ù', 98498,default,'https://www.youtube.com/embed/sacbcLnZt8w', default, default, '¼­¿ï´ë3121¸íÀÌ °øÅëÀûÀ¸·Î ¾²´Â °øºÎ¹ýÀ» °ø°³ÇÕ´Ï´Ù. ', 3, 1,'http://img.youtube.com/vi/sacbcLnZt8w/maxresdefault.jpg');
-
---½ºÆ÷Ã÷ no 4--
-insert into video values(video_seq.nextval, '½ºÆ÷Ã÷ ¿ª»ç»ó °¡Àå ¸»µµ ¾ÈµÇ´Â 30°¡Áö ¼ø°£', 34543,default,'https://www.youtube.com/embed/kRbC5CJeXec', default, default, 'ÀÌ°Ç »õ·Î ³ª¿Â ÇÇÆÄ °ÔÀÓÀÇ ¹ö±×°¡ ¾Æ´Õ´Ï´Ù, ´«À¸·Î Á÷Á¢ ºÁ¾ßÁö¸¸ ¹ÏÀ» ¼ö ÀÖ´Â ½ºÆ÷Ã÷', 4, 1,'http://img.youtube.com/vi/kRbC5CJeXec/maxresdefault.jpg');
-insert into video values(video_seq.nextval, '2020³â, ±×·³¿¡µµ ¿ì¸®°¡ ½ºÆ÷Ã÷¸¦ »ç¶ûÇÏ´Â ÀÌÀ¯', 818181,default,'https://www.youtube.com/embed/aJzltMZQ2IA', default, default, '2020³âÀ» Áö³»¿Â ¸ðµç ºÐµé, ¼ö°íÇÏ¼Ì½À´Ï´Ù.', 4, 1,'http://img.youtube.com/vi/aJzltMZQ2IA/maxresdefault.jpg');
-insert into video values(video_seq.nextval, 'ÇÁ·Î ¼±¼öµµ ÇÇÇØ°¥¼ö ¾ø´Â ½Ç¼öµé - ½ºÆ÷Ã÷ ½ÇÆÐ ¸ðÀ½', 879898,default,'https://www.youtube.com/embed/A3P4c5mwgtA', default, default, '¿ø¼þÀÌµµ ³ª¹«¿¡¼­ ¶³¾îÁú ¶§°¡ ÀÖ´Ù', 4, 1,'http://img.youtube.com/vi/A3P4c5mwgtA/maxresdefault.jpg');
-insert into video values(video_seq.nextval, '[½ºÆ÷Ã÷½ÇÇè½Ç] ''¼¼ÆÅÅ¸Å©·ÎvsÁ·±¸''°¡ ºÙÀ¸¸é ÀÌ·± ¸ð½ÀÀÔ´Ï´Ù', 456465,default,'https://www.youtube.com/embed/Fm1GRdXS17k', default, default, '½ºÆ÷Ã÷ ½ÇÇè½Ç 2Åº!', 4, 1,'http://img.youtube.com/vi/Fm1GRdXS17k/maxresdefault.jpg');
-insert into video values(video_seq.nextval, '¼¼°è¿¡¼­ °¡Àå À§ÇèÇÑ ½ºÆ÷Ã÷ ±â³×½º TOP9', 1561651,default,'https://www.youtube.com/embed/RAMmLllvZlo', default, default, '400¸¸ºä°¡ ³Ñ¾ú´ø ÀÌ ¿µ»óÀÌ »ç°íÀå¸éÀÌ Çø¿À½º·´´Ù´Â', 4, 1,'http://img.youtube.com/vi/RAMmLllvZlo/maxresdefault.jpg');
-insert into video values(video_seq.nextval, '½ºÆ÷Ã÷ ¼±¼ö¸¦ ¿ï°Ô ¸¸µç ¼ø°£µé', 98498,default,'https://www.youtube.com/embed/G1mGhvG3bbw', default, default, '°­ÀÎÇÑ ½ºÆ÷Ã÷ ¼±¼öµéÀ» ¿ï°Ô ¸¸µé¾ú´ø ½½ÇÁ°í ¾ÆÇÂ ¼ø°£µé', 4, 1,'http://img.youtube.com/vi/G1mGhvG3bbw/maxresdefault.jpg');
-insert into video values(video_seq.nextval, 'ÀÇµµÄ¡ ¾Ê°Ô ¹ß»ýÇÑ ³î¶ó¿î ½ºÆ÷Ã÷ ¼ø°£µé', 7897987,default,'https://www.youtube.com/embed/rMPTkPlFhwo', default, default, '½ºÆ÷Ã÷ ¼±¼öµéµµ ³î¶õ ¼ø°£µé', 4, 1,'http://img.youtube.com/vi/rMPTkPlFhwo/maxresdefault.jpg');
-insert into video values(video_seq.nextval, '¹Ï±âÁö ¾Ê´Â ½ºÆ÷Ã÷ ¼±¼öµéÀÇ ±«·Â', 35473,default,'https://www.youtube.com/embed/Eaad-9jEfdo', default, default, '½ºÆ÷Ã÷ ¼±¼ö°¡ ÀÚ½ÅÀÇ ÇÑ°è¸¦ ³Ñ¾î¼³ ¶§', 4, 1,'http://img.youtube.com/vi/Eaad-9jEfdo/maxresdefault.jpg');
-
---ºñµð¿À Á¤º¸--
-
---´ñ±Û Á¤º¸--
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù1',default,3,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù2',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù3',default,22,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù4',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù5',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù6',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù7',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù8',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù9',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù10',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù11',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù12',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù13',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù14',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù15',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù16',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù17',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù18',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù19',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù20',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù21',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù22',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù23',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù24',default,default,default,default,1,1,default,default,0);
-insert into mycomment values(mycomment_seq.nextval,'´ñ±Û³»¿ëÀÔ´Ï´Ù25',default,default,default,default,1,1,default,default,0);
+--ì˜í™” no 2--
+insert into video values(video_seq.nextval,'ì •ë§... ì´ ì˜í™”ê°€ ê°œë´‰í•œë‹¤ê³ ...?',8888,default,'https://www.youtube.com/embed/R7HGsxi47l8',default,default,'*ë³¸ ì˜ìƒì€ ìœ ë£Œê´‘ê³ ë¥¼ í¬í•¨í•˜ê³  ìžˆìŠµë‹ˆë‹¤.',2,1,'http://img.youtube.com/vi/R7HGsxi47l8/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'10,000ëª… ëª½ê³¨ ëŒ€êµ°ì„ ë§‰ì•„ë‚¸ ì‚°ê³¨ ë§ˆì„ ì‚¬ëƒ¥ê¾¼ì˜ ì „ì„¤ [ì˜í™”ë¦¬ë·° ê²°ë§í¬í•¨]',666666,default,'https://www.youtube.com/embed/aH9BWyAP2JI',default,default,'[ ë¼ì´ì§• í˜¸í¬, 2019 ]',2,1,'http://img.youtube.com/vi/aH9BWyAP2JI/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'ì´ ì—¬ìžë¥¼ ìœ„í˜‘í•˜ë©´ ì–´ë§ˆë¬´ì‹œí•œ ì¼ì´ ë²Œì–´ì§‘ë‹ˆë‹¤... (ê²°ë§ í¬í•¨)',333333,default,'https://www.youtube.com/embed/RNbJTDSgTLY',default,default,'í‹€ë”±ì´ ì†Œê°œí•˜ëŠ” ì˜í™”ë¦¬ë·° ì‹œìž‘í•©ë‹ˆë‹¤.',2,1,'http://img.youtube.com/vi/RNbJTDSgTLY/maxresdefault.jpg');
+insert into video values(video_seq.nextval,'ì˜í™” ì† ''ì¡°ì •ì„'' ì›ƒê¸´ìž¥ë©´ ëª¨ìŒ ZIP',99999999,default,'https://www.youtube.com/embed/j5jbymJVGT4',default,default,'ì˜í™”ëŠ” [ì—‘ì‹œíŠ¸], [ê±´ì¶•í•™ê°œë¡ ], [í˜•]ìž…ë‹ˆë‹¤. ì•ˆë…•í•˜ì„¸ìš” ''ì˜í™”ì—ë¯¸ì¹˜ë‹¤'' ë§¤ë“œë¬´ë¹„ìž…ë‹ˆë‹¤.',2,1,'http://img.youtube.com/vi/j5jbymJVGT4/maxresdefault.jpg');
 
 
---´ä±Û
-insert into mycomment values(mycomment_seq.nextval,'1´ä±Û³»¿ëÀÔ´Ï´Ù1',default,default,default,default,1,1,1,default,1);
-insert into mycomment values(mycomment_seq.nextval,'1´ä±Û³»¿ëÀÔ´Ï´Ù1',default,default,default,default,1,1,1,default,1);
-insert into mycomment values(mycomment_seq.nextval,'1´ä±Û³»¿ëÀÔ´Ï´Ù1',default,default,default,default,1,1,1,default,1);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù1',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù2',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù3',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù4',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù5',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù6',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù7',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù8',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù9',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù10',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù11',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù12',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù13',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù14',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù15',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù16',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù17',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù18',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù19',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù20',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù21',default,default,default,default,1,1,1,default,3);
-insert into mycomment values(mycomment_seq.nextval,'´ä±Û³»¿ëÀÔ´Ï´Ù22',default,default,default,default,1,1,1,default,3);
+--í•™ìŠµ no 3 --
+insert into video values(video_seq.nextval, 'ì•„ì¸ìŠˆíƒ€ì¸ì´ ë°›ì•˜ë˜ ê³µë¶€', 8888888,default,'https://www.youtube.com/embed/hcymislezjI', default, default, 'ë¬´ì–¸ê°€ë¥¼ ë°°ìš°ê³ ìž í•  ë•Œ ì´ ê³µë¶€ë¥¼ ì™œ í•´ì•¼ í•˜ëŠ”ê°€ ', 3, 1,'http://img.youtube.com/vi/hcymislezjI/maxresdefault.jpg');
+insert into video values(video_seq.nextval, 'ì´ ê³„íšëŒ€ë¡œ ê³µë¶€í•˜ë©´ ë°˜ë“œì‹œ ì„±ê³µí•©ë‹ˆë‹¤. (í•™ìŠµ ê³„íší‘œ)', 123132132,default,'https://www.youtube.com/embed/KQYJ_0yr-1Q', default, default, 'ê³µë¶€ê°€ ì–´ë ¤ìš°ì‹ ê°€ìš”? ì´ ê³„íšëŒ€ë¡œë¼ë©´ ë°˜ë“œì‹œ ì„±ê³µí•©ë‹ˆë‹¤! ê³„íší‘œë„ ë°›ì•„ê°€ì„¸ìš”', 3, 1,'http://img.youtube.com/vi/KQYJ_0yr-1Q/maxresdefault.jpg');
+insert into video values(video_seq.nextval, 'ì„œìš¸ëŒ€ ìˆ˜ì„ì˜ ìŠ¤í„°ë”” í”Œëž˜ë„ˆ. [í•™ìŠµ ê³„íšë²• + ê³µë¶€ ì§‘ì¤‘ë ¥] í•œêº¼ë²ˆì— 2ê°€ì§€.', 456454,default,'https://www.youtube.com/embed/o2-rsPs47Zw', default, default, 'ìˆ˜í—˜ìƒì˜ ìµœëŒ€ ê³ ë¯¼ì¸ ê³„íš ì„¸ìš°ëŠ” ë²•, ì§‘ì¤‘ ìž˜í•˜ëŠ” ë²•.', 3, 1,'http://img.youtube.com/vi/o2-rsPs47Zw/maxresdefault.jpg');
+insert into video values(video_seq.nextval, 'ì´ˆë“±í•™ìƒ ìžê¸°ì£¼ë„í•™ìŠµ ì§€ë„í•˜ëŠ” 10ê°€ì§€ ë°©ë²• + ë¯¸ì‰˜ êµìœ¡ì² í•™', 8188181,default,'https://www.youtube.com/embed/wxdmIjLMPJM', default, default, 'ì•„ì¹¨í˜• ì¸ê°„ì¸ ì €í¬ ì•„ì´ê°€ ì£¼ë„ì ìœ¼ë¡œ ìŠ¤ìŠ¤ë¡œ í•™ìŠµì„ í•  ìˆ˜ ìžˆê²Œ ', 3, 1,'http://img.youtube.com/vi/wxdmIjLMPJM/maxresdefault.jpg');
+insert into video values(video_seq.nextval, 'ìžê¸°ì£¼ë„í•™ìŠµì€ ì¤‘ìš”í•©ë‹ˆë‹¤. ê·¸ëŸ¬ë‚˜ ì™œê³¡ë˜ì–´ ìžˆìŠµë‹ˆë‹¤. | ìžê¸°ì£¼ë„í•™ìŠµì˜ ì •í™•í•œ ë°©ë²•', 354354,default,'https://www.youtube.com/embed/qIUDyLBAOdg', default, default, 'ëª¨ë‘ê°€ ì¤‘ìš”í•˜ë‹¤ê³  í•˜ëŠ” ìžê¸°ì£¼ë„í•™ìŠµ ', 3, 1,'http://img.youtube.com/vi/qIUDyLBAOdg/maxresdefault.jpg');
+insert into video values(video_seq.nextval, 'ê³µë¶€í•˜ëŠ” íž˜, ëª°ìž… | í™©ë†ë¬¸ ì„œìš¸ëŒ€í•™êµ ìž¬ë£Œê³µí•™ë¶€ êµìˆ˜ | ê³µë¶€ í•™ìŠµ ì‹œí—˜ ê°•ì—°', 123,default,'https://www.youtube.com/embed/ukjYwSiYT1I', default, default, '? ê°•ì—° ì†Œê°œ : ë„ì „ì´ ì•„ë¬´ë¦¬ ì–´ë µë‹¤ê³  í•´ë„, ë‚´ê°€ ', 3, 1,'http://img.youtube.com/vi/ukjYwSiYT1I/maxresdefault.jpg');
+insert into video values(video_seq.nextval, '[ë™ê¸°ë¶€ì—¬,ê³µë¶€ìžê·¹] ê³µë¶€ì˜ì§€ëŠ” ì–´ë””ì„œ ì˜¤ëŠ”ê°€?', 4545454,default,'https://www.youtube.com/embed/3XvGdiE_RlI', default, default, 'ë‚˜ëŠ” ì™œ ''ê³µë¶€ì˜ì§€''ê°€ ì¢€ì²˜ëŸ¼ ìƒê¸°ì§€ ì•Šì„ê¹Œìš”? ', 3, 1,'http://img.youtube.com/vi/3XvGdiE_RlI/maxresdefault.jpg');
+insert into video values(video_seq.nextval, 'ì„œìš¸ëŒ€3121ëª…ì´ ê³µí†µì ìœ¼ë¡œ ì“°ëŠ” ê³µë¶€ë²•ì„ ê³µê°œí•©ë‹ˆë‹¤', 98498,default,'https://www.youtube.com/embed/sacbcLnZt8w', default, default, 'ì„œìš¸ëŒ€3121ëª…ì´ ê³µí†µì ìœ¼ë¡œ ì“°ëŠ” ê³µë¶€ë²•ì„ ê³µê°œí•©ë‹ˆë‹¤. ', 3, 1,'http://img.youtube.com/vi/sacbcLnZt8w/maxresdefault.jpg');
+
+--ìŠ¤í¬ì¸  no 4--
+insert into video values(video_seq.nextval, 'ìŠ¤í¬ì¸  ì—­ì‚¬ìƒ ê°€ìž¥ ë§ë„ ì•ˆë˜ëŠ” 30ê°€ì§€ ìˆœê°„', 34543,default,'https://www.youtube.com/embed/kRbC5CJeXec', default, default, 'ì´ê±´ ìƒˆë¡œ ë‚˜ì˜¨ í”¼íŒŒ ê²Œìž„ì˜ ë²„ê·¸ê°€ ì•„ë‹™ë‹ˆë‹¤, ëˆˆìœ¼ë¡œ ì§ì ‘ ë´ì•¼ì§€ë§Œ ë¯¿ì„ ìˆ˜ ìžˆëŠ” ìŠ¤í¬ì¸ ', 4, 1,'http://img.youtube.com/vi/kRbC5CJeXec/maxresdefault.jpg');
+insert into video values(video_seq.nextval, '2020ë…„, ê·¸ëŸ¼ì—ë„ ìš°ë¦¬ê°€ ìŠ¤í¬ì¸ ë¥¼ ì‚¬ëž‘í•˜ëŠ” ì´ìœ ', 818181,default,'https://www.youtube.com/embed/aJzltMZQ2IA', default, default, '2020ë…„ì„ ì§€ë‚´ì˜¨ ëª¨ë“  ë¶„ë“¤, ìˆ˜ê³ í•˜ì…¨ìŠµë‹ˆë‹¤.', 4, 1,'http://img.youtube.com/vi/aJzltMZQ2IA/maxresdefault.jpg');
+insert into video values(video_seq.nextval, 'í”„ë¡œ ì„ ìˆ˜ë„ í”¼í•´ê°ˆìˆ˜ ì—†ëŠ” ì‹¤ìˆ˜ë“¤ - ìŠ¤í¬ì¸  ì‹¤íŒ¨ ëª¨ìŒ', 879898,default,'https://www.youtube.com/embed/A3P4c5mwgtA', default, default, 'ì›ìˆ­ì´ë„ ë‚˜ë¬´ì—ì„œ ë–¨ì–´ì§ˆ ë•Œê°€ ìžˆë‹¤', 4, 1,'http://img.youtube.com/vi/A3P4c5mwgtA/maxresdefault.jpg');
+insert into video values(video_seq.nextval, '[ìŠ¤í¬ì¸ ì‹¤í—˜ì‹¤] ''ì„¸íŒíƒ€í¬ë¡œvsì¡±êµ¬''ê°€ ë¶™ìœ¼ë©´ ì´ëŸ° ëª¨ìŠµìž…ë‹ˆë‹¤', 456465,default,'https://www.youtube.com/embed/Fm1GRdXS17k', default, default, 'ìŠ¤í¬ì¸  ì‹¤í—˜ì‹¤ 2íƒ„!', 4, 1,'http://img.youtube.com/vi/Fm1GRdXS17k/maxresdefault.jpg');
+insert into video values(video_seq.nextval, 'ì„¸ê³„ì—ì„œ ê°€ìž¥ ìœ„í—˜í•œ ìŠ¤í¬ì¸  ê¸°ë„¤ìŠ¤ TOP9', 1561651,default,'https://www.youtube.com/embed/RAMmLllvZlo', default, default, '400ë§Œë·°ê°€ ë„˜ì—ˆë˜ ì´ ì˜ìƒì´ ì‚¬ê³ ìž¥ë©´ì´ í˜ì˜¤ìŠ¤ëŸ½ë‹¤ëŠ”', 4, 1,'http://img.youtube.com/vi/RAMmLllvZlo/maxresdefault.jpg');
+insert into video values(video_seq.nextval, 'ìŠ¤í¬ì¸  ì„ ìˆ˜ë¥¼ ìš¸ê²Œ ë§Œë“  ìˆœê°„ë“¤', 98498,default,'https://www.youtube.com/embed/G1mGhvG3bbw', default, default, 'ê°•ì¸í•œ ìŠ¤í¬ì¸  ì„ ìˆ˜ë“¤ì„ ìš¸ê²Œ ë§Œë“¤ì—ˆë˜ ìŠ¬í”„ê³  ì•„í”ˆ ìˆœê°„ë“¤', 4, 1,'http://img.youtube.com/vi/G1mGhvG3bbw/maxresdefault.jpg');
+insert into video values(video_seq.nextval, 'ì˜ë„ì¹˜ ì•Šê²Œ ë°œìƒí•œ ë†€ë¼ìš´ ìŠ¤í¬ì¸  ìˆœê°„ë“¤', 7897987,default,'https://www.youtube.com/embed/rMPTkPlFhwo', default, default, 'ìŠ¤í¬ì¸  ì„ ìˆ˜ë“¤ë„ ë†€ëž€ ìˆœê°„ë“¤', 4, 1,'http://img.youtube.com/vi/rMPTkPlFhwo/maxresdefault.jpg');
+insert into video values(video_seq.nextval, 'ë¯¿ê¸°ì§€ ì•ŠëŠ” ìŠ¤í¬ì¸  ì„ ìˆ˜ë“¤ì˜ ê´´ë ¥', 35473,default,'https://www.youtube.com/embed/Eaad-9jEfdo', default, default, 'ìŠ¤í¬ì¸  ì„ ìˆ˜ê°€ ìžì‹ ì˜ í•œê³„ë¥¼ ë„˜ì–´ì„¤ ë•Œ', 4, 1,'http://img.youtube.com/vi/Eaad-9jEfdo/maxresdefault.jpg');
+
+--ë¹„ë””ì˜¤ ì •ë³´--
+
+--ëŒ“ê¸€ ì •ë³´--
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤1',default,3,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤2',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤3',default,22,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤4',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤5',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤6',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤7',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤8',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤9',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤10',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤11',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤12',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤13',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤14',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤15',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤16',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤17',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤18',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤19',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤20',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤21',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤22',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤23',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤24',default,default,default,default,1,1,default,default,0);
+insert into mycomment values(mycomment_seq.nextval,'ëŒ“ê¸€ë‚´ìš©ìž…ë‹ˆë‹¤25',default,default,default,default,1,1,default,default,0);
+
+
+--ë‹µê¸€
+insert into mycomment values(mycomment_seq.nextval,'1ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤1',default,default,default,default,1,1,1,default,1);
+insert into mycomment values(mycomment_seq.nextval,'1ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤1',default,default,default,default,1,1,1,default,1);
+insert into mycomment values(mycomment_seq.nextval,'1ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤1',default,default,default,default,1,1,1,default,1);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤1',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤2',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤3',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤4',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤5',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤6',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤7',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤8',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤9',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤10',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤11',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤12',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤13',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤14',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤15',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤16',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤17',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤18',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤19',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤20',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤21',default,default,default,default,1,1,1,default,3);
+insert into mycomment values(mycomment_seq.nextval,'ë‹µê¸€ë‚´ìš©ìž…ë‹ˆë‹¤22',default,default,default,default,1,1,1,default,3);
 
 
 
 
---´ñ±Û Á¤º¸
+--ëŒ“ê¸€ ì •ë³´
 
 
 commit;
 
 
---Å×ÀÌºí È®ÀÎ
+--í…Œì´ë¸” í™•ì¸
 --select * from myuser;
 --select * from myboard;
 --select * from mycomment order by comno;
@@ -563,7 +564,7 @@ commit;
 
 --select * from 
 --(select  ad.*, rownum as rowcnt from 
---(select * from video where vidtitle like '%'||'°ÔÀÓ'||'%' order by vidhits desc)ad)
+--(select * from video where vidtitle like '%'||'ê²Œìž„'||'%' order by vidhits desc)ad)
 -- where rowcnt>=0 and rowcnt<10;
 
 --select * from
