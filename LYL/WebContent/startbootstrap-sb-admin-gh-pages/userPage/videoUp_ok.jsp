@@ -28,6 +28,7 @@ try {
 		fileSize = file.length();
 	}
 	
+	
 	String vidTitle = mr.getParameter("title");
 	String vidurl = mr.getParameter("vidurl");
 	String vidEx = mr.getParameter("content");
