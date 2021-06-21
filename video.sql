@@ -140,7 +140,10 @@ CREATE TABLE VIDEO (
 	vidEx VARCHAR2(255), /* 영상 설명 */
 	vidTheme NUMBER NOT NULL, /* 태마 번호 */
 	userNo NUMBER, /* 크리에이터 */
-	vidThu VARCHAR2(255) NOT NULL /* 썸네일경로 */
+	vidThu VARCHAR2(255) NOT NULL, /* 썸네일경로 */
+    vidName varchar(255)  NULL ,/* 영상 파일 이름*/
+    vidSize number default 0, /*영상 사이즈*/
+    vidOriName varchar(255) null /*영상 변경전 파일명*/
     
 );
 

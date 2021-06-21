@@ -79,24 +79,19 @@
 <script type="text/javascript" src="/../js/datatables-simple-demo.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$('input[type=submit]').click(function(){
-			location.href="myPage.jsp";
-			alert('비디오 업로드 완료');
-		});
-		
 		$('#cancel').click(function(){
 			location.href="myPage.jsp";
-			alert('비디오 업로드 완료');
+			alert('업로드 취소');
 		});
 	});
 </script>
 <div class="listBody">
 	<div id="titleH"><h2>영상 업로드</h2></div>
 		<div>
-			<form action="videoUp_ok.jsp" method="post" >
+			<form action="videoUp_ok.jsp" method="post" enctype="multipart/form-data" >
 				<div class="titleDiv">
 					<label>태마 선택 : </label>
-					<select class="form-select-border-width:20px" aria-label="Default select example">
+					<select class="form-select-border-width:20px" aria-label="Default select example" name="theme">
 					  <option selected>선택</option>
 					  <option value="1">게임</option>
 					  <option value="2">영화</option>
@@ -113,8 +108,8 @@
 				  <input class="form-control" type="file" id="vidFile" name="upfile">
 				</div>
 				<div class="mb-3 ms-5 me-5">
-				  <label for="http" class="form-label">video address</label>
-				  <input type="text" class="form-control" id="http" name="http">
+				  <label for="vidurl" class="form-label">video address</label>
+				  <input type="text" class="form-control" id="vidurl" name="vidurl">
 				</div>
 				<div class="btnList">
 					<input type="submit" value="확인" class="btn11">
