@@ -43,13 +43,16 @@ if(vo.getUserImgName()!=null ){
 	
 
 </script>
+
+<script type="text/javascript" src="/../js/datatables-simple-demo.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$('#boardBt').click(function(){
-			alert();
-			location.href="../myboard/boardList.jsp";
-		}
-	})
+			location.href="videoUp.jsp";
+			alert("업로드로 이동");
+		};
+	});
+
 </script>
 
 
