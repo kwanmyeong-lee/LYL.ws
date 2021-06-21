@@ -119,6 +119,7 @@
     		var reSeeMore = $(this).parent().children('.reComSeeMore').val();
     		
     		if(firstCheck==0){
+    			
     			$.ajax({
 
         			url : "videoWatch_ok.jsp",
@@ -160,15 +161,15 @@
     	    		    	if(comList[i].comUserNo==userNo){
     	    		    		var otherBtComment4='&nbsp&nbsp<button class="btn btn-primary btReComUpdate" type="button">수정</button>';
     	    		    		var otherBtComment5	='&nbsp&nbsp<button class="btn btn-primary btReComDelete" type="button">삭제</button>';
-    	    		    		var otherBtComment6	='<div class="vidComment" id ="myComment" style="display:none">';
+    	    		    		var otherBtComment6	='<div class="vidComment2" style="display:none">';
     	    		    		var otherBtComment7	='<textarea rows="2" cols="100" class="teComCon"></textarea>';
     	    		    		var otherBtComment8	='<button type="button" class="recomWrite">수정</button>';
     	    		    		
     	    		    		$('.vidComment').eq(reComNo2).children('.ReComDiv').children('.vidReComment').last().append(otherBtComment4);
     	    		    		$('.vidComment').eq(reComNo2).children('.ReComDiv').children('.vidReComment').last().append(otherBtComment5);
     	    		    		$('.vidComment').eq(reComNo2).children('.ReComDiv').children('.vidReComment').last().append(otherBtComment6);
-    	    		    		$('.vidComment').eq(reComNo2).children('.ReComDiv').children('.vidReComment').last().children('.vidComment').append(otherBtComment7);
-    	    		    		$('.vidComment').eq(reComNo2).children('.ReComDiv').children('.vidReComment').last().children('.vidComment').append(otherBtComment8);
+    	    		    		$('.vidComment').eq(reComNo2).children('.ReComDiv').children('.vidReComment').last().children('.vidComment2').append(otherBtComment7);
+    	    		    		$('.vidComment').eq(reComNo2).children('.ReComDiv').children('.vidReComment').last().children('.vidComment2').append(otherBtComment8);
     	    		    	}
     	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').children('.vidReComment').last().append("<br>");
     	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').children('.vidReComment').last().append("<br>");
@@ -236,15 +237,15 @@
     	    		    	if(comList[i].comUserNo==userNo){
     	    		    		var otherBtComment4='&nbsp&nbsp<button class="btn btn-primary btReComUpdate" type="button">수정</button>';
     	    		    		var otherBtComment5	='&nbsp&nbsp<button class="btn btn-primary btReComDelete" type="button">삭제</button>';
-    	    		    		var otherBtComment6	='<div class="vidComment" id ="myComment" style="display:none">';
+    	    		    		var otherBtComment6	='<div class="vidComment2" style="display:none">';
     	    		    		var otherBtComment7	='<textarea rows="2" cols="100" class="teComCon"></textarea>';
     	    		    		var otherBtComment8	='<button type="button" class="recomWrite">수정</button>';
     	    		    		
     	    		    		$('.vidComment').eq(reComNo2).children('.ReComDiv').children('.vidReComment').last().append(otherBtComment4);
     	    		    		$('.vidComment').eq(reComNo2).children('.ReComDiv').children('.vidReComment').last().append(otherBtComment5);
     	    		    		$('.vidComment').eq(reComNo2).children('.ReComDiv').children('.vidReComment').last().append(otherBtComment6);
-    	    		    		$('.vidComment').eq(reComNo2).children('.ReComDiv').children('.vidReComment').last().children('.vidComment').append(otherBtComment7);
-    	    		    		$('.vidComment').eq(reComNo2).children('.ReComDiv').children('.vidReComment').last().children('.vidComment').append(otherBtComment8);
+    	    		    		$('.vidComment').eq(reComNo2).children('.ReComDiv').children('.vidReComment').last().children('.vidComment2').append(otherBtComment7);
+    	    		    		$('.vidComment').eq(reComNo2).children('.ReComDiv').children('.vidReComment').last().children('.vidComment2').append(otherBtComment8);
     	    		    	}
     	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').children('.vidReComment').last().append("<br>");
     	    		    	$('.vidComment').eq(reComNo2).children('.ReComDiv').children('.vidReComment').last().append("<br>");
@@ -574,7 +575,7 @@
 		    		    	var reotherCommentLikeCnt='<span class="revidCommentLikeCnt">&nbsp0&nbsp&nbsp&nbsp&nbsp</span>';
 		    		    	var otherBtComment4='&nbsp&nbsp<button class="btn btn-primary btReComUpdate" type="button">수정</button>';
 		    		    	var otherBtComment5	='&nbsp&nbsp<button class="btn btn-primary btReComDelete" type="button">삭제</button>';
-		    		    	var otherBtComment6	='<div class="vidComment" id ="myComment" style="display:none">';
+		    		    	var otherBtComment6	='<div class="vidComment2" id ="myComment" style="display:none">';
 	    		    		var otherBtComment7	='<textarea rows="2" cols="100" class="teComCon"></textarea>';
 	    		    		var otherBtComment8	='<button type="button" class="recomWrite">수정</button>';
 		    		    	vidReComCnt++;
@@ -590,8 +591,8 @@
 		    		    	$('.vidComment').eq(comCntNo).children('.ReComDiv').children('.vidReComment').last().append(otherBtComment4);
 		    		    	$('.vidComment').eq(comCntNo).children('.ReComDiv').children('.vidReComment').last().append(otherBtComment5);
 		    		    	$('.vidComment').eq(comCntNo).children('.ReComDiv').children('.vidReComment').last().append(otherBtComment6);
-	    		    		$('.vidComment').eq(comCntNo).children('.ReComDiv').children('.vidReComment').last().children('.vidComment').append(otherBtComment7);
-	    		    		$('.vidComment').eq(comCntNo).children('.ReComDiv').children('.vidReComment').last().children('.vidComment').append(otherBtComment8);
+	    		    		$('.vidComment').eq(comCntNo).children('.ReComDiv').children('.vidReComment').last().children('.vidComment2').append(otherBtComment7);
+	    		    		$('.vidComment').eq(comCntNo).children('.ReComDiv').children('.vidReComment').last().children('.vidComment2').append(otherBtComment8);
 		    		    	$('.vidComment').eq(comCntNo).children('.ReComDiv').children('.vidReComment').last().append("<br>");
 		    		    	$('.vidComment').eq(comCntNo).children('.ReComDiv').children('.vidReComment').last().append("<br>");
 		    		   
