@@ -347,12 +347,12 @@
    <header>
    </header>
    <iframe id="player" width="1200" height="650" src=<%=vidUrl%> allowfullscreen=""></iframe>
-	<p id='vidTitle'>title : &nbsp;<%=videoVo.getVidTitle() %></p>
+	<p id='vidTitle' class="h4">title : &nbsp;<%=videoVo.getVidTitle() %></p>
 	<p id='vidHits'>조회수 <%=videoVo.getVidHits() %> 회 <%=sdf.format(videoVo.getVidDate()) %></p>
 	
 	<hr>
-	<p id='vidUploaderId'>id :&nbsp; <a href="../userPage/myPage.jsp?vidno=<%=vidno %>"><%=myuserVo.getUserId() %></a> </p>
-	<p id='vidG'>구독자<%=myuserVo.getUserSub() %> 명</p>
+	<p id='vidUploaderId' class="fs-5">id :&nbsp; <a class="text-decoration-none" href="../userPage/myPage.jsp?vidno=<%=vidno %>"><%=myuserVo.getUserId() %></a> </p>
+	<p id='vidG'>구독자&nbsp;<%=myuserVo.getUserSub() %> 명</p>
 	
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 		<%if(subCnt>0){%>
@@ -368,7 +368,7 @@
 	
 	</div>
 
-	<p id='vidContent'>내용 : &nbsp;<%=videoVo.getVidEx() %></p>
+	<p id='vidContent'><%=videoVo.getVidEx() %></p>
     <hr>
     <div id='vidCommentCnt'>
     	<span>댓글 </span><span><%=videoVo.getVidCom() %></span><span>개</span>
