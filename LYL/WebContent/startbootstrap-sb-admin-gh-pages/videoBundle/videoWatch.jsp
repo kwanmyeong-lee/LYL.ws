@@ -328,8 +328,8 @@
 	<p id='vidHits'>조회수 <%=videoVo.getVidHits() %> 회 <%=sdf.format(videoVo.getVidDate()) %></p>
 	
 	<hr>
-	<p id='vidUploaderId'>id :&nbsp;<%=myuserVo.getUserId() %> </p>
-	<p id='vidG'>구독자<span id='vidGs'><%=myuserVo.getUserSub() %></span> 명</p>
+	<p id='vidUploaderId'>id :&nbsp; <a href="../userPage/myPage.jsp?vidno=<%=vidno %>"><%=myuserVo.getUserId() %></a> </p>
+	<p id='vidG'>구독자<%=myuserVo.getUserSub() %> 명</p>
 	
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 		<%if(subCnt>0){%>

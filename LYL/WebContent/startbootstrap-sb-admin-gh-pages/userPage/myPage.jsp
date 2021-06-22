@@ -9,12 +9,12 @@
 <jsp:useBean id="myuserService" class="src.myuser.MyuserService" scope="session" ></jsp:useBean>
 <jsp:useBean id="subscribeService" class="src.subscribe.subscribeService" scope="page"></jsp:useBean>
 <% 
-MyuserVO vo = new MyuserVO();
+MyuserVO vo = null;
 boolean isMine = true;
 int subCnt=0;
 	try{
 		String vidNo = request.getParameter("vidno");//비디오에서 마이페이지 온다 가정
-		if(vidNo!=null){
+		if(vidNo!=null && !vidNo.isEmpty()){
 			vo = myuserService.selectMyuserByVidNo(vidNo);
 			String userid =(String) session.getAttribute("userid");
 			int userNo = (int) session.getAttribute("userNo");
@@ -75,8 +75,11 @@ if(vo.getUserImgName()!=null ){
 
 </script>
 
-
+<%if(isMine==true){ %>
 <h1 class="mt-4">마이페이지</h1>
+<%} else {%>
+<h1 class="mt-4"><%=vo.getUserId() %>의 페이지</h1>
+<%} %>
 <div class="container position-relative px-4 px-lg-5">
 	<div class="row gx-4 gx-lg-5 justify-content-center">
 		<div class="col-md-10 col-lg-8 col-xl-7">
@@ -93,11 +96,11 @@ if(vo.getUserImgName()!=null ){
 				</div>
 			<%}else{ %>
 				<%if(subCnt>0){%>
-					<div>
+					<div class="d-inline-flex position-relative start-50">
 					<button id="subscribe" class="btn btn-primary" type="button" value="<%=vo.getUserNo()%>" style="background: #dc3545">구독 취소</button>
 					</div>
 				<%}else { %>
-					<div>
+					<div class="d-inline-flex position-relative start-50">
 					<button id="subscribe" class="btn btn-primary" type="button" value="<%=vo.getUserNo()%>">구독</button>
 					</div>
 				<%} %>
