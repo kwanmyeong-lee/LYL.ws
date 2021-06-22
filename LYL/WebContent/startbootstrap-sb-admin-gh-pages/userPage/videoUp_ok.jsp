@@ -1,6 +1,7 @@
+<%@page import="src.common.Utility"%>
 <%@page import="video.VideoVO"%>
 <%@page import="video.VideoDAO"%>
-<%@page import="src.common.Utility"%>
+
 <%@page import="java.sql.SQLException"%>
 <%@page import="src.myuser.MyuserVO"%>
 <%@page import="src.myuser.MyuserDAO"%>
@@ -49,7 +50,11 @@ try {
 		vidurl = "https://www.youtube.com/embed/"+vidurl.substring(index+1);
 		vo.setVidurl(vidurl);
 	}else{
-		vo.setVidurl(" ");
+		
+		vidurl = "../videoFile/"+fileName;
+		vidThuName = "../videoFile/"+vidThuName;
+		vo.setVidurl(vidurl);
+		
 	}
 
 	vo.setVidThu(vidThuName);
