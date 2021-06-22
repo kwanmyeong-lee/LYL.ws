@@ -9,8 +9,8 @@
 <%@page import="video.VideoService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link href="../css/videoStyles.css" rel="stylesheet">
 <%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
+<link href="../css/videoStyles.css?after" rel="stylesheet">
 
    
 	
@@ -50,7 +50,7 @@
 	    				var scVidNo=vidList[i].vidNo;
 	    				
 						
-	    		    	$("main").children().first().append('<a class="awatch" href="videoWatch.jsp?vidNo='+scVidNo+'">');
+	    		    	$("main").children().first().append('<a class="awatch" href="../videoBundle/videoWatch.jsp?vidNo='+scVidNo+'">');
 	    		    	$(".awatch").last().append('<div class="video_info">');
 	    	        	$(".video_info").last().append('<div class="video_search_list">');
 	    	        	$('.video_search_list').last().append(scVidImg);
@@ -90,7 +90,7 @@
 	}
 	for(int i=0; i<list.size(); i++){
 		VideoVO vo = list.get(i);
-		String VidWatch ="videoWatch.jsp?vidNo="+vo.getVidNo();
+		String VidWatch ="../videoBundle/videoWatch.jsp?vidNo="+vo.getVidNo();
 		String title=vo.getVidTitle();
 		/* if(title.length()>15){
 			title=title.substring(0, 15);

@@ -51,8 +51,8 @@ try {
 		vo.setVidurl(vidurl);
 	}else{
 		
-		vidurl = "../videoFile/"+fileName;
-		vidThuName = "../videoFile/"+vidThuName;
+		vidurl = "../videoFile/"+fileName+"";
+		vidThuName = "../videoFile/"+vidThuName+"";
 		vo.setVidurl(vidurl);
 		
 	}

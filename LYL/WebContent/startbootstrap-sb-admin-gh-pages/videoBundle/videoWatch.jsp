@@ -48,7 +48,7 @@
 	var vidComCnt2= 1;
 	var vidReComCnt=1;
 	var vidNo=${param.vidNo};
-	var userNo = "${sessionScope.userNo}";
+	var userNo = ${sessionScope.userNo};
     $(window).scroll(function() {
     	
     	
@@ -135,7 +135,7 @@
     		$(this).parent().children('.ReComDiv').toggle();
     		var reComNo= $(this).parent().children('.hid1').val();
     		var reComNo2= parseInt($(this).parent().children('.hid2').val());
-    		var userNumber = "${sessionScope.userNo}";
+    		var userNo = ${sessionScope.userNo};
     		var firstCheck = $(this).parent().children('.reComBtFirstCheck').val();
     		var reSeeMore = $(this).parent().children('.reComSeeMore').val();
     		
@@ -147,7 +147,7 @@
 
         			type : "post", //get post둘중하나
 
-        			data : {"vidComCnt":0,"vidNo":vidNo, "vidGroup":reComNo, "loginUserNo":userNumber},
+        			data : {"vidComCnt":0,"vidNo":vidNo, "vidGroup":reComNo, "loginUserNo":userNo},
         			
 
         			success : function(data) {
@@ -156,7 +156,6 @@
 						
         				var comList = obj.comList;
         				var comListSize = obj.comListSize;
-        				
         				if(comListSize>0){
         					$('.vidComment').eq(reComNo2).children('.ReComDiv').append("<br>");
         					$('.vidComment').eq(reComNo2).children('.reComBtFirstCheck').val(1);
@@ -220,7 +219,7 @@
     		var reComNo= $(this).parent().parent().children('.hid1').val();
     		var reComNo2= parseInt($(this).parent().parent().children('.hid2').val());
     		var reSeeMore = $(this).parent().parent().children('.reComSeeMore').val();
-    		var userNumber = "${sessionScope.userNo}";
+    		var userNo = ${sessionScope.userNo};
     		
     		
     			$.ajax({
@@ -229,7 +228,7 @@
 
         			type : "post", //get post둘중하나
 
-        			data : {"vidComCnt":reSeeMore,"vidNo":vidNo, "vidGroup":reComNo, "loginUserNo":userNumber},
+        			data : {"vidComCnt":reSeeMore,"vidNo":vidNo, "vidGroup":reComNo, "loginUserNo":userNo},
         			
 
         			success : function(data) {
@@ -238,6 +237,7 @@
 
         				var comList = obj.comList;
         				var comListSize = obj.comListSize;
+        				
         				vidReComCnt=$('.vidComment').eq(reComNo2).children('.ReComDiv').children('.vidReComment').last().children('.reComCnt').val();
         				for(var i=0; i<comListSize; i++){
         					var reotherComNo='<input type="hidden" class="rehid1" value="'+comList[i].comNo+'">';
@@ -352,7 +352,7 @@
 	
 	<hr>
 	<p id='vidUploaderId' class="fs-5">id :&nbsp; <a class="text-decoration-none" href="../userPage/myPage.jsp?vidno=<%=vidno %>"><%=myuserVo.getUserId() %></a> </p>
-	<p id='vidG'>구독자&nbsp;<%=myuserVo.getUserSub() %> 명</p>
+	<p id='vidG'>구독자&nbsp;<span id=vidGs><%=myuserVo.getUserSub() %></span> 명</p>
 	
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 		<%if(subCnt>0){%>
@@ -374,7 +374,7 @@
     	<span>댓글 </span><span><%=videoVo.getVidCom() %></span><span>개</span>
     </div>
     <div class='vidComment' id ='myComment'>
-    	<textarea class='comText' rows="2" cols="100" class="teComCon"></textarea>
+    	<textarea class='comText teComCon' rows="2" cols="100"></textarea>
    	 	<button type="button" class="comWrite btn btn-primary">댓글 쓰기</button>
     </div>
     <input type="hidden" class="vidComCnt" value=0>
@@ -724,9 +724,9 @@
     	}));//btComUpdate
     	
     	$('body').on('click','button.btReComUpdate',(function(){
-    		$(this).parent().children('.vidComment').toggle();
+    		$(this).parent().children('.vidComment2').toggle();
     		var content = $(this).parent().children('.reotherContent').text();
-    		$(this).parent().children('.vidComment').children('.teComCon').val(content);
+    		$(this).parent().children('.vidComment2').children('.teComCon').val(content);
     	}));//btReComUpdate
     	
     	$('body').on('click','button.recomWrite',(function(){
