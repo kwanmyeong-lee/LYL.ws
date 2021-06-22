@@ -64,7 +64,7 @@
               			data : {"scThNum":scThNum},
               			
 
-              			success : function(data) {              				
+              			success : function(data) {              				 
               				var obj = JSON.parse(data);
 
               				var vidList = obj.vidList;
