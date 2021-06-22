@@ -17,10 +17,7 @@ int subCnt=0;
 		if(vidNo!=null && !vidNo.isEmpty()){
 			vo = myuserService.selectMyuserByVidNo(vidNo);
 			String userid =(String) session.getAttribute("userid");
-			int userNo = 0;
-			if(session.getAttribute("userNo") !=null){
-				userNo = (int) session.getAttribute("userNo");
-			}
+			int userNo = (int) session.getAttribute("userNo");
 			isMine = false;
 			subCnt = subscribeService.selectSubscribe(Integer.toString(vo.getUserNo()), Integer.toString(userNo));
 		}else{
@@ -40,25 +37,59 @@ if(vo.getUserImgName()!=null ){
 
 <script type="text/javascript" src="../../js/jquery-3.6.0.min.js"></script>
 <script>
+	var userId = <%=vo.getUserNo()%>;
+	var vidCnt = 0;
 	$(window)
 			.scroll(
 					function() {
 						var videoinfo = '<div class="video_info"></div>';
-						var a = '<img class="main_Thumbnail" src="http://img.youtube.com/vi/lgPi5GhEj0c/maxresdefault.jpg">';
-						var videotitle = '<p class="video_tilte">title</p>';
-						var uploaderid = '<p class="video_uploaderid">id</p>';
-						var videohits = '<p class="video_hits">조회수</p>';
+					
 
 						if ($(window).scrollTop() == $(document).height()
 								- $(window).height()) {
-							$("#video").append('<div class="video_main_list">');
-							for (var i = 0; i < 4; i++) {
-								$('.video_main_list').last().append(videoinfo);
-								$('.video_info').last().append(a);
-								$('.video_info').last().append(videotitle);
-								$('.video_info').last().append(uploaderid);
-								$('.video_info').last().append(videohits);
-							}
+							$.ajax({
+
+				    			url : "maPage_ok.jsp",
+
+				    			type : "post", //get post둘중하나
+
+				    			data : {"vidCnt":vidCnt, "userId":userId},
+				    			
+
+				    			success : function(data) {
+				    				
+				    				var obj = JSON.parse(data);
+
+				    				var vidList = obj.vidList;
+				    				var vidListSize = obj.vidListSize;
+				    				if(vidListSize==0){
+				    					return;
+				    				}
+				    				
+				    				var videoinfo= '<div class="video_info"></div>';
+				    				$("#video").append('<div class="video_main_list">');
+
+				    				for(var i=0; i<vidListSize; i++){
+				    					
+					    				var scVidImg='<img class="main_Thumbnail" src="'+vidList[i].vidImg+'">';
+					    		    	var scVidTitle='<p class="video_tilte">'+vidList[i].vidTitle+'</p>';
+					    		    	var scVidUserId='<p class="video_uploaderid">'+vidList[i].vidUserId+'</p>';
+					    		    	var scVidHits='<p class="video_hits">'+vidList[i].vidHits+'</p>';
+					    				var scVidNo=vidList[i].vidNo;	
+				                        
+				                        $('.video_main_list').last().append('<a class="awatch" href="../videoBundle/videoWatch.jsp?vidNo='+scVidNo+'">');
+		          	    				$('.awatch').last().append(videoinfo);
+		          	    	        	$('.video_info').last().append(scVidImg);
+		          	    	        	$('.video_info').last().append(scVidTitle);
+		          	    	        	$('.video_info').last().append(scVidUserId);
+		          	    	        	$('.video_info').last().append(scVidHits);
+
+					    	        	
+				    				}
+				    				vidCnt+=4;
+				    			}
+
+				    		});
 						}
 					});
 	
@@ -149,13 +180,8 @@ if(vo.getUserImgName()!=null ){
 		
 		
 		$('#subscribe').click(function() {
-			if(userNo==""){
-    			alert("로그인하세요")
-    			return;
-    		}
 			
 			if($('#subscribe').text()=='구독'){
-			
 				$.ajax({
 	
 					url : "usbscribe_ok.jsp", //나중에볼 동영상
