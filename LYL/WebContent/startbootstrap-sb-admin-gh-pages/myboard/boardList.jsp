@@ -159,10 +159,9 @@
 	<table class="box2">
 		<colgroup>
 			<col style="width:15%;" />
-			<col style="width:54%;" />
-			<col style="width:14%;" />
-			<col style="width:9%;" />
-			<col style="width:9%;" />      
+			<col style="width:60%;" />
+			<col style="width:15%;" />
+			<col style="width:10%;" />
 		</colgroup>
 		<thead>
 			<tr>

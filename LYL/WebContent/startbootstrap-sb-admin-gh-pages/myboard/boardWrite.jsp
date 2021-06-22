@@ -84,21 +84,37 @@
 <script type="text/javascript" src="/../js/datatables-simple-demo.js"></script>
 <script type="text/javascript">
 	$(function(){
+		$('#pwd').hide();
+
+		$('#frmWrite').submit(function(){
+			if($(".title").val().length<1){
+				alert('제목을 입력하세요');
+				event.preventDefault();
+				$(".title").focus();
+			}
+
+			if($("#content").val().length<1){
+				alert('내용을 입력하세요');
+				event.preventDefault();
+				$("#content").focus();
+			}
+		});
+
 		$('#boardList').click(function(){
 			location.href="boardList.jsp?userNo="+<%=userNo%>;
 		});
+		
+		
 	});
 </script>
 <div class="listBody">
 	<div id="titleH"><h2>글작성</h2></div>
 	<div>
-		<form action="boardWrite_ok.jsp" method="post" >
+		<form action="boardWrite_ok.jsp" method="post" id="frmWrite">
 		<input type="hidden" name="userNo" value="<%=userNo%>">
 		<div class="titleDiv">
 			<label>제목 : </label>
 			<input type="text" name="title" class="title">&nbsp;
-			<input type="checkbox" name="private" id="private">&nbsp;비공개
-			<div id="pwd">비밀번호 : <input type="password" name="pwd" class="pwd" value="0"></div>
 		</div>
 		<textarea name="content" id="content" cols="114" rows="30"></textarea>
 		<div class="btnList">
