@@ -24,8 +24,6 @@ int subCnt=0;
 			String userid =(String) session.getAttribute("userid");
 			vo = myuserService.selectMyuser(userid);
 		}
-		
-		
 	}catch(SQLException e){
 		e.printStackTrace();
 		
@@ -118,13 +116,15 @@ if(vo.getUserImgName()!=null ){
 	<div class="justify-content-center">
 		<div class="col-me-10">
 			<div class="d-inline-flex me-5">
-
 				<iframe class="col me-2" id="player" width="640" height="360"
 					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
 
 				<iframe id="player" width="640" height="360"
 					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
 			</div>
+				<video class="video-fluid z-depth-1" autoplay loop controls muted width="640" height="360">
+				  <source src="../videoFile/KakaoTalk_20200811_181555854.mp4" type="video/mp4" />
+				</video>
 		</div>
 	</div>
 </div>
