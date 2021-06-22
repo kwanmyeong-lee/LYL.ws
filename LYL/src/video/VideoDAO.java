@@ -226,6 +226,33 @@ public class VideoDAO {
 			pool.dbClose(ps, conn);
 		}
 	}
+	
+	public String selectVideoMostView() throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = pool.getConnection();
+			
+			String sql = "select * from \r\n"
+					+ "(select vidurl from video order by vidhits desc)\r\n"
+					+ "where rownum <2";
+			ps = conn.prepareStatement(sql);
+			
+			rs= ps.executeQuery();
+			String vidurl = null;
+			if(rs.next()) {
+				vidurl = rs.getString(1);
+				
+			}
+			System.out.println("결과 값 vidurl="+vidurl);
+			return vidurl;
+	
+			
+		}finally {
+			pool.dbClose(rs, ps, conn);
+		}
+	}
 }
 
 

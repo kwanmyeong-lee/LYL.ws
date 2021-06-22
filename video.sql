@@ -543,6 +543,9 @@ insert into mycomment values(mycomment_seq.nextval,'답글내용입니다22',default,de
 
 commit;
 
+select * from 
+(select vidurl from video order by vidhits desc)
+where rownum <2;
 
 --테이블 확인
 select * from commentLike;

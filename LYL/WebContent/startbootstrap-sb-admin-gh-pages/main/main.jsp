@@ -1,3 +1,4 @@
+<%@page import="java.sql.SQLException"%>
 <%@page import="theme.ThemeVO"%>
 <%@page import="theme.ThemeService"%>
 <%@page import="video.VideoDAO"%>
@@ -33,6 +34,12 @@
 			vidUrl[i] = voRandom[i].getVidurl();
 		
 		vidWatch[i] = "../videoBundle/videoWatch.jsp?vidNo="+voRandom[i].getVidNo();
+	}
+	String mostView = null;
+	try{
+		mostView=vvs.selectVideoMostView();
+	}catch(SQLException e){
+		e.printStackTrace();
 	}
 %>
 <script>
@@ -160,8 +167,7 @@
    </div>
 
    <iframe id="player" width="630" height="360"
-      src="https://www.youtube.com/embed/4TWR90KJl84"></iframe>
-   <video src="https://www.youtube.com/embed/4TWR90KJl84"></video>
+      src="<%=mostView%>"></iframe>
    
    
    
