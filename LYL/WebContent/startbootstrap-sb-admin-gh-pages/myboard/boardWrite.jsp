@@ -76,11 +76,16 @@
 	}
 
 </style>
+<%
+	String userId=(String)session.getAttribute("userid");
+	String userNo=request.getParameter("userNo");
+
+%>
 <script type="text/javascript" src="/../js/datatables-simple-demo.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$('#boardList').click(function(){
-			location.href="boardList.jsp";
+			location.href="boardList.jsp?userNo="+<%=userNo%>;
 		});
 	});
 </script>
@@ -88,6 +93,7 @@
 	<div id="titleH"><h2>글작성</h2></div>
 	<div>
 		<form action="boardWrite_ok.jsp" method="post" >
+		<input type="hidden" name="userNo" value="<%=userNo%>">
 		<div class="titleDiv">
 			<label>제목 : </label>
 			<input type="text" name="title" class="title">&nbsp;

@@ -11,6 +11,7 @@
 <body>
 	<%
 		String boNo=request.getParameter("boNo");
+		String userNo=request.getParameter("userNo");
 	
 		//2
 		BoardDAO dao = new BoardDAO();
@@ -20,7 +21,7 @@
 			if(cnt>0){ %>
 			<script type="text/javascript">
 			 	alert('게시글을 삭제하였습니다.');
-		        location.href="boardList.jsp";
+		        location.href="boardList.jsp?userNo=<%=userNo%>";
 	        </script>
 		<%}else{ %>
 			<script type="text/javascript">

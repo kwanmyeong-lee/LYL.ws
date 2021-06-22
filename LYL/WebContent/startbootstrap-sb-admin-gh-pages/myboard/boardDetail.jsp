@@ -163,15 +163,14 @@
 	}
 </style>
 <%
-	//String userId=(String)session.getAttribute("userId");
-	String userId="yooh";       //==========임시 수정해야함!!!!!
-	
-
+	String userId=(String)session.getAttribute("userid");
 	String boNo = request.getParameter("boNo");
+	String userNo = request.getParameter("userNo");
+	
 	if(boNo==null || boNo.isEmpty()){ %>
 		<script type="text/javascript">
 			alert("잘못된 url입니다.");
-			location.href="boardList.jsp";
+			location.back();
 		</script>	
 	<% return;
 	}
@@ -203,16 +202,16 @@
 			location.href="boardEdit.jsp?boNo=<%=vo.getBoNo()%>";
 		});
 		$('#boardDelete').click(function(){
-			location.href="boardDelete.jsp?boNo=<%=vo.getBoNo()%>";
+			location.href="boardDelete.jsp?boNo=<%=vo.getBoNo()%>&userNo=<%=userNo%>";
 		});
 		$('#boardList').click(function(){
-			location.href="boardList.jsp";
+			location.href="boardList.jsp?userNo=<%=userNo%>";
 		});
 		$('.bcDeleteBtn').click(function(){
 			var delComm=confirm('댓글을 삭제하겠습니까?');
 			if(!delComm){
 				event.preventDefault();
-				location.href="boardDetail.jsp?boNo=<%=boNo%>"
+				location.href="boardDetail.jsp?boNo=<%=boNo%>&userNo=<%=userNo%>"
 			}
 		});
 		
@@ -257,9 +256,8 @@
 						<td><%=commVo.getUserId() %></td>
 						<td class="commentTd">
 							<%=commVo.getBcCom() %>
-							<%=commVo.getBcNo()%>
 							<%if(userId.equals(commVo.getUserId())) {%>
-								<input type="button" class="bcDeleteBtn" onClick="location.href='bo_CommentDelete_ok.jsp?bcNo=<%=commVo.getBcNo()%>&boNo=<%=boNo%>'" value="삭제">
+								<input type="button" class="bcDeleteBtn" onClick="location.href='bo_CommentDelete_ok.jsp?bcNo=<%=commVo.getBcNo()%>&boNo=<%=boNo%>&userNo=<%=userNo%>'" value="삭제">
 							<%}else{ %>
 								<input type="hidden" class="bcDeleteBtn">
 							<%} %>
@@ -273,9 +271,9 @@
 		</div>
 		<div class="commentInsert">
 			<form action="bo_CommentWrite_ok.jsp" method="post">
+				<input type="text" value="<%=userNo %>" name="userNo">
 				<input type="hidden" value="<%=boNo %>" name="boNo">
 				<!-- 댓글 입력 -->
-				<span class="commentUser"><!-- 댓글 달 유저이름 --></span>
 				<span class="comment">
 				<textarea rows="3" cols="100" class="comment" name="comment"></textarea> 
 					<input type="submit" class="submit" value="등록">

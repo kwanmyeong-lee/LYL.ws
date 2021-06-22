@@ -68,7 +68,7 @@ if(vo.getUserImgName()!=null ){
 		});
 		
 		$('#myboard').click(function(){
-			location.href="../myboard/boardList.jsp";
+			location.href="../myBoard/boardList.jsp?userNo="+<%=vo.getUserNo()%>;
 		});
 		
 	});
