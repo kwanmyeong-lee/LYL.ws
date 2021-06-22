@@ -27,7 +27,7 @@
 
     			type : "post", //get post둘중하나
 
-    			data : {"vidCnt":vidCnt, "userNo":userNo},
+    			data : {"vidCnt":vidCnt, "userNo":userNo, "pageCheck":0},
     			
 
     			success : function(data) {
