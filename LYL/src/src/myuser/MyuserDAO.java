@@ -139,6 +139,27 @@ public class MyuserDAO {
 			pool.dbClose(ps, conn);
 		}
 	}
+	public int pwdUpdate(String userEmail, String pwd) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		
+		try {
+			conn = pool.getConnection();
+			String sql = "update myuser\r\n"
+					+ "set userpwd = ? \r\n"
+					+ "where useremail = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, pwd);
+			ps.setString(2, userEmail);
+			
+			int cnt = ps.executeUpdate();
+			
+			return cnt;
+			
+		} finally {
+			pool.dbClose(ps, conn);
+		}
+	}
 
 	public MyuserVO selectMyuserByVidNo(String vidno) throws SQLException {
 		Connection conn = null;
