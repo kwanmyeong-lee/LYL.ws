@@ -1,3 +1,8 @@
+<%@page import="src.aftervideo.aftervideoVO"%>
+<%@page import="src.aftervideo.aftervideoService"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="src.watchrecord.watchrecordVO"%>
+<%@page import="src.watchrecord.watchrecordService"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="src.myuser.MyuserService"%>
 <%@page import="src.myuser.MyuserVO"%>
@@ -13,7 +18,7 @@
 	
 <script>
 	var vidCnt=5;
-	var vidTitle="${param.vidTitle}";
+	var userNo = "${sessionScope.userNo}";
     $(window).scroll(function() {
 		
     	if ($(window).scrollTop() == $(document).height() - $(window).height()) {
@@ -24,7 +29,7 @@
 
     			type : "post", //get post둘중하나
 
-    			data : {"vidCnt":vidCnt, "vidTitle":vidTitle},
+    			data : {"vidCnt":vidCnt, "userNo":userNo, "pageCheck":1},
     			
 
     			success : function(data) {
@@ -69,12 +74,22 @@
     });
 </script>
 <%
+	int userNo = (int)session.getAttribute("userNo");
 	String vidTitle = request.getParameter("vidTitle");
 	VideoService sv = new VideoService();
-	List<VideoVO> list = sv.videoSearch(vidTitle, 0);
+	List<VideoVO> list = new ArrayList<>();
 	DecimalFormat df = new DecimalFormat("#,###.#");
 	MyuserService msv = new MyuserService();
 	
+	aftervideoService avsv = new aftervideoService();
+	List<aftervideoVO> afterList = new ArrayList<>();
+	afterList=avsv.selectAllByUserNo(String.valueOf(userNo), 0);
+	
+	for(int i=0; i<afterList.size();i++){
+		aftervideoVO avvo = afterList.get(i);
+		VideoVO vvo= sv.videoSelect(String.valueOf(avvo.getVidNo()));
+		list.add(vvo);
+	}
 	for(int i=0; i<list.size(); i++){
 		VideoVO vo = list.get(i);
 		String VidWatch ="videoWatch.jsp?vidNo="+vo.getVidNo();
