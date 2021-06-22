@@ -535,24 +535,46 @@ insert into mycomment values(mycomment_seq.nextval,'답글내용입니다20',default,de
 insert into mycomment values(mycomment_seq.nextval,'답글내용입니다21',default,default,default,default,1,1,1,default,3);
 insert into mycomment values(mycomment_seq.nextval,'답글내용입니다22',default,default,default,default,1,1,1,default,3);
 
-
-
-
 --댓글 정보
 
+--시청기록--
+insert into watchrecord values(3,1,'2021-06-19');
+insert into watchrecord values(3,5,'2021-06-21');
+insert into watchrecord values(3,3,'2021-06-20');
+insert into watchrecord values(3,2,'2021-06-18');
+insert into watchrecord values(3,4,'2021-06-16');
+insert into watchrecord values(3,6,'2021-06-17');
+insert into watchrecord values(3,7,'2021-06-10');
+insert into watchrecord values(3,8,'2021-06-12');
+insert into watchrecord values(3,9,'2021-06-13');
+--시청기록--
+
+--나중에 볼 동영상--
+insert into aftervideo values(3,1);
+insert into aftervideo values(3,11);
+insert into aftervideo values(3,10);
+insert into aftervideo values(3,9);
+insert into aftervideo values(3,8);
+insert into aftervideo values(3,7);
+insert into aftervideo values(3,6);
+insert into aftervideo values(3,5);
+insert into aftervideo values(3,4);
+insert into aftervideo values(3,3);
+insert into aftervideo values(3,2);
+--나중에 볼 동영상--
 
 commit;
 
-select * from 
-(select vidurl from video order by vidhits desc)
-where rownum <2;
+--select * from 
+--(select vidurl from video order by vidhits desc)
+--where rownum <2;
 
 --테이블 확인
-select * from commentLike;
+--select * from commentLike;
 --select count(*) from commentlike where comno=4 and userno=1;
 --select * from myuser;
 --select * from myboard;
-select * from mycomment order by comno;
+--select * from mycomment order by comno;
 --select * from bobycom;
 --select * from video;   
 --select * from theme;
@@ -562,7 +584,7 @@ select * from mycomment order by comno;
 --select * from AFTERVIDEO;
 --select * from WATCHRECORD;
 --select * from SUBSCRIB;
---
+--select * from WATCHRECORD where userNo=3 order by watchdate desc;
 --insert into SUBSCRIB(userNo2, userNo) values(1, 2);
 
 --select * from 
@@ -574,3 +596,8 @@ select * from mycomment order by comno;
 --(select rownum as rowcnt, ad.* from
 --(select * from mycomment where vidno=1 and comstep=0 order by comno)ad)
 --where rowcnt>=0 and rowcnt<10
+
+select * from 
+(select  ad.*, rownum as rowcnt from
+(select * from WATCHRECORD where userno=3 order by watchdate desc)ad)
+where rowcnt>0 and rowcnt<=5
