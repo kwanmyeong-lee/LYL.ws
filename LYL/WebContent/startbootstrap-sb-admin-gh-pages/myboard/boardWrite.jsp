@@ -3,7 +3,7 @@
 <%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
 <style>
 	.listBody{
-		background: lightgray;
+		background: rgb(242, 242, 242);
 		width: 1000px;
 		height: auto;
 		margin: 10px auto;
@@ -36,7 +36,7 @@
 	}
 	
 	.title{
-		width: 350px;
+		width: 450px;
 		height: 30px;
 		border-radius: 10px;
 		border:none;
