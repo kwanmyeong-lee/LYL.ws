@@ -52,7 +52,6 @@ public class BoCommentDAO {
 		} finally {
 			pool.dbClose(rs, ps, conn);
 		}
-		
 	}
 	
 	//입력
@@ -78,8 +77,6 @@ public class BoCommentDAO {
 		} finally {
 			pool.dbClose(ps, conn);
 		}
-		
-		
 	}
 	
 	//삭제
@@ -104,6 +101,5 @@ public class BoCommentDAO {
 		} finally {
 			pool.dbClose(ps, conn);
 		}
-		
 	}
 }

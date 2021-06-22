@@ -41,7 +41,15 @@
 		margin-left: 50px;
 		float: left;
 	}
+	.userIdLabel{
+		margin-top: 5px;
+		font-weight: bold;
+		font-size: 15px;
+		margin-left: 35px;
+		float: left;
+	}
 	#title{
+		background: white;
 		border: none;
 	}
 	.title{
@@ -54,10 +62,10 @@
 	}
 	.userName{
 		float:left;
-		font-size: 12px;
+		font-size: 15px;
 		width: 150px;
 		height:20px;
-		margin: 2px 30px;
+		margin: 6px 0px 5px 15px;
 		border: none;
 		background: none;
 	}
@@ -148,6 +156,7 @@
 		padding-left: 15px;
 	}
 	textarea{
+		background: white;
 		resize: none;
 	}
 	
@@ -216,12 +225,13 @@
 		});
 		
 		$('#frmComm').submit(function(){
-			if($(".comment").val().length<1){
-				alert('내용을 입력하세요');
+			if($(".comment").html().length<1){
+				alert('댓글 내용을 입력하세요');
 				event.preventDefault();
 				$(".comment").focus();
 			}
 		});
+		
 	});
 </script>
 <div class="listBody">
@@ -230,14 +240,15 @@
 		<div class="detailBlock">
 			<label class="titleLabel">제목 : </label>
 			<div class="title">
-				<input type="text" name="title" id="title" value="<%=vo.getBoTitle() %>">
+				<input type="text" name="title" id="title" value="<%=vo.getBoTitle() %>" disabled>
 			</div>
-				<input type="text" name="userid" class="userName" value="<%=vo.getUserId() %>">
-				<input type="text" name="regdate" class="regdate" value="<%=sdf.format(vo.getBoDate()) %>">
+				<label class="userIdLabel">글쓴이 : </label>
+				<input type="text" name="userid" class="userName" value="<%=vo.getUserId() %>" disabled>
+				<input type="text" name="regdate" class="regdate" value="<%=sdf.format(vo.getBoDate()) %>" disabled>
 				<label class="regdateLabel"> 등록일 : </label><br><br>
 			<div class="contentDiv">
 				<div class="content" >
-					<textarea rows="114" cols="30" name="content" id="content"><%=vo.getBoCon() %></textarea> 
+					<textarea rows="114" cols="30" name="content" id="content" disabled><%=vo.getBoCon() %></textarea> 
 				</div>
 			</div>
 		</div>
@@ -282,7 +293,7 @@
 				<input type="hidden" value="<%=boNo %>" name="boNo">
 				<!-- 댓글 입력 -->
 				<span class="comment">
-				<textarea rows="3" cols="100" class="comment" name="comment"></textarea> 
+				<textarea rows="3" cols="100" class="comment" name="comment" ></textarea> 
 					<input type="submit" class="submit" value="등록">
 				</span>
 			</form>

@@ -20,9 +20,6 @@ CREATE TABLE BOARDCOMMENT (
 	bcNo NUMBER NOT NULL, /* 댓글 번호 */
 	bcCom VARCHAR2(255) NOT NULL, /* 내용 */
 	bcDate TIMESTAMP DEFAULT sysdate NOT NULL, /* 날짜 */
-	bcRe NUMBER DEFAULT 0, /* 답글수 */
-	bcLike NUMBER DEFAULT 0, /* 좋아요 */
-	bcPwd NUMBER DEFAULT 0, /* 비밀번호 */
 	bcStep NUMBER DEFAULT 0, /* 댓글 단계 */
 	bcSort NUMBER DEFAULT 0, /* 댓글 정렬 번호 */
 	bcGroupNo NUMBER, /* 댓글 그룹 번호 */
@@ -46,12 +43,8 @@ CREATE TABLE MYBOARD (
 	boHits NUMBER DEFAULT 0, /* 조회수 */
 	boCom NUMBER DEFAULT 0, /* 댓글수 */
 	boDate TIMESTAMP DEFAULT sysdate NOT NULL, /* 작성일 */
-	boPwd NUMBER DEFAULT 0, /* 비밀번호 */
 	userNo NUMBER NOT NULL, /* 크리에이터 */
-	userId VARCHAR2(100) NOT NULL, /* 글쓴이 */
-	boStep NUMBER DEFAULT 0, /* 게시글 단계 */
-	boSort NUMBER DEFAULT 0, /* 게시글 정렬 번호 */
-	boGroupNo NUMBER /* 게시글 그룹번호 */
+	userId VARCHAR2(100) NOT NULL /* 글쓴이 */
 );
 
 ALTER TABLE MYBOARD
@@ -74,7 +67,7 @@ ALTER TABLE BOARDCOMMENT
 
 ALTER TABLE BOARDCOMMENT
 	ADD
-		CONSTRAINT FK_USER_TO_BOARDCOMMENT
+		CONSTRAINT FK_USER_TO_MYBOARD
 		FOREIGN KEY (
 			userNo
 		)
