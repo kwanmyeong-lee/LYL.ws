@@ -1,3 +1,5 @@
+<%@page import="src.aftervideo.aftervideoVO"%>
+<%@page import="src.aftervideo.aftervideoService"%>
 <%@page import="src.watchrecord.watchrecordService"%>
 <%@page import="src.watchrecord.watchrecordVO"%>
 <%@page import="java.util.ArrayList"%>
@@ -13,18 +15,31 @@
 <%
 	String userNo = request.getParameter("userNo");
 	String vidCnt = request.getParameter("vidCnt");
+	String pageCheck = request.getParameter("pageCheck");
 	VideoService sv = new VideoService();
 	List<VideoVO> list = new ArrayList<>();
 	DecimalFormat df = new DecimalFormat("#,###.#");
 	MyuserService msv = new MyuserService();
 
-	watchrecordService wrsv = new watchrecordService();
-	List<watchrecordVO> watchList = new ArrayList<>();
-	watchList=wrsv.selectAllByUserNo(userNo, Integer.parseInt(vidCnt));
-	for(int i=0; i<watchList.size();i++){
-		watchrecordVO wrvo = watchList.get(i);
-		VideoVO vvo= sv.videoSelect(String.valueOf(wrvo.getVidNo()));
-		list.add(vvo);
+	if(pageCheck.equals("0")){
+		watchrecordService wrsv = new watchrecordService();
+		List<watchrecordVO> watchList = new ArrayList<>();
+		watchList=wrsv.selectAllByUserNo(userNo, Integer.parseInt(vidCnt));
+		for(int i=0; i<watchList.size();i++){
+			watchrecordVO wrvo = watchList.get(i);
+			VideoVO vvo= sv.videoSelect(String.valueOf(wrvo.getVidNo()));
+			list.add(vvo);
+		}
+	}else{
+		aftervideoService avsv = new aftervideoService();
+		List<aftervideoVO> afterList = new ArrayList<>();
+		afterList=avsv.selectAllByUserNo(String.valueOf(userNo), Integer.parseInt(vidCnt));
+		
+		for(int i=0; i<afterList.size();i++){
+			aftervideoVO avvo = afterList.get(i);
+			VideoVO vvo= sv.videoSelect(String.valueOf(avvo.getVidNo()));
+			list.add(vvo);
+		}
 	}
 %>{ 
 	"vidList" : [
