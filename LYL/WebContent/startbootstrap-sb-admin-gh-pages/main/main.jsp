@@ -34,6 +34,7 @@
 		
 		vidWatch[i] = "../videoBundle/videoWatch.jsp?vidNo="+voRandom[i].getVidNo();
 	}
+//
 %>
 <script>
    var scThNum =1;
@@ -95,7 +96,7 @@
                });
    
       
-   
+  
 </script>
 
    <div id="carouselExampleCaptions" class="carousel slide"
