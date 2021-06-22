@@ -17,7 +17,7 @@ public class BoardDAO {
 		pool=new ConnectionPoolMgr2();
 	}	
 	
-	public List<BoardVO> selectAllBoard() throws SQLException {
+	public List<BoardVO> selectBoard(int userNo) throws SQLException {
 		Connection conn=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
@@ -26,8 +26,9 @@ public class BoardDAO {
 		try {
 			conn=pool.getConnection();
 			
-			String sql="select * from myboard order by boNo desc";
+			String sql="select * from myboard where userNo=? order by boNo desc";
 			ps=conn.prepareStatement(sql);
+			ps.setInt(1, userNo);
 			
 			rs=ps.executeQuery();
 			while(rs.next()) {
@@ -38,13 +39,13 @@ public class BoardDAO {
 				int boCom=rs.getInt("boCom");
 				Timestamp boDate=rs.getTimestamp("boDate");
 				int boPwd=rs.getInt("boPwd");
-				int userNo=rs.getInt("userNo");
+				int userNo1=rs.getInt("userNo");
 				String userId=rs.getString("userId");
 				int boStep=rs.getInt("boStep");
 				int boSort=rs.getInt("boSort");
 				int boGroupNo=rs.getInt("boGroupNo");
 				
-				BoardVO vo = new BoardVO(boNo, boTitle, boCon, boHits, boCom, boDate, boPwd, userNo, userId, boStep, boSort, boGroupNo);
+				BoardVO vo = new BoardVO(boNo, boTitle, boCon, boHits, boCom, boDate, boPwd, userNo1, userId, boStep, boSort, boGroupNo);
 				list.add(vo);
 			}
 			
@@ -55,7 +56,7 @@ public class BoardDAO {
 		
 	}
 	
-	public int insertBoard(BoardVO vo) throws SQLException {
+	public int insertBoard(BoardVO vo, int userNo) throws SQLException {
 		Connection conn=null;
 		PreparedStatement ps=null;
 
@@ -66,17 +67,17 @@ public class BoardDAO {
 			//insert into myboard(boNo, boTitle, boCon, boPwd, boDate, boHits, boCom, boStep, boSort, boGroupno, UserId, userNo)
 			//values(myboard_seq.nextval, '제목입니다', '내용입니다.', '0', default, default, default, default, default,1 ,'yooh' ,1)
 			String sql="insert into myboard(boNo, boTitle, boCon, boPwd, boDate, boHits, boCom, boStep, boSort, boGroupno, UserId, userNo)"
-					+ "values(myboard_seq.nextval, ?, ?, ?, default, default, default, default, default,1 ,? ,?)";
+					+ "values(myboard_seq.nextval, ?, ?, ?, default, default, default, default, default, 1 ,? ,?)";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, vo.getBoTitle());
 			ps.setString(2, vo.getBoCon());
 			ps.setInt(3, vo.getBoPwd());
 			ps.setString(4, vo.getUserId());
-			ps.setInt(5, vo.getUserNo());
+			ps.setInt(5, userNo);
 			
 			//4 exec
 			int cnt=ps.executeUpdate();
-			System.out.println("글쓰기 결과, cnt="+cnt+", 매개변수 vo="+vo);
+			System.out.println("글쓰기 결과, cnt="+cnt+", 매개변수 vo="+vo+", userNo="+userNo);
 
 			return cnt;
 		}finally {
