@@ -478,6 +478,14 @@ insert into video values(video_seq.nextval, '스포츠 선수를 울게 만든 순간들', 98
 insert into video values(video_seq.nextval, '의도치 않게 발생한 놀라운 스포츠 순간들', 7897987,default,'https://www.youtube.com/embed/rMPTkPlFhwo', default, default, '스포츠 선수들도 놀란 순간들', 4, 1,'http://img.youtube.com/vi/rMPTkPlFhwo/maxresdefault.jpg', 'fileName', 100, 'fileOriName');
 insert into video values(video_seq.nextval, '믿기지 않는 스포츠 선수들의 괴력', 35473,default,'https://www.youtube.com/embed/Eaad-9jEfdo', default, default, '스포츠 선수가 자신의 한계를 넘어설 때', 4, 1,'http://img.youtube.com/vi/Eaad-9jEfdo/maxresdefault.jpg', 'fileName', 100, 'fileOriName');
 
+
+insert into video values(video_seq.nextval,'영상 제목',4863215,default,'../videoFile/KakaoTalk_20200811_181555854.mp4',1000000,default,'내용',5,3,'../videoFile/200x200.jpg', 'fileName', 100, 'fileOriName');
+insert into video values(video_seq.nextval,'영상 제목',4863215,default,'../videoFile/KakaoTalk_20200811_1815558541.mp4',1000000,default,'내용',5,3,'../videoFile/200x2001.jpg', 'fileName', 100, 'fileOriName');
+insert into video values(video_seq.nextval,'영상 제목',4863215,default,'../videoFile/KakaoTalk_20200811_1815558542.mp4',1000000,default,'내용',5,3,'../videoFile/200x2002.jpg', 'fileName', 100, 'fileOriName');
+insert into video values(video_seq.nextval,'영상 제목',4863215,default,'../videoFile/KakaoTalk_20200811_1815558543.mp4',1000000,default,'내용',5,3,'../videoFile/200x2003.jpg', 'fileName', 100, 'fileOriName');
+insert into video values(video_seq.nextval,'영상 제목',4863215,default,'../videoFile/KakaoTalk_20200811_1815558544.mp4',1000000,default,'내용',5,3,'../videoFile/200x2004.jpg', 'fileName', 100, 'fileOriName');
+insert into video values(video_seq.nextval,'영상 제목',4863215,default,'../videoFile/KakaoTalk_20200811_1815558545.mp4',1000000,default,'내용',5,3,'../videoFile/200x2005.jpg', 'fileName', 100, 'fileOriName');
+insert into video values(video_seq.nextval,'영상 제목',4863215,default,'../videoFile/KakaoTalk_20200811_1815558546.mp4',1000000,default,'내용',5,3,'../videoFile/200x2006.jpg', 'fileName', 100, 'fileOriName');
 --비디오 정보--
 
 --댓글 정보--
