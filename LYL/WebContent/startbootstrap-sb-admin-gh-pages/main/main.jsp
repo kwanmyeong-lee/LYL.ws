@@ -9,7 +9,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
-<link href="../css/videoStyles.css" rel="stylesheet">
+<link href="../css/videoStyles.css?after" rel="stylesheet">
 <%
 	VideoService vvs = new VideoService();
 	int vidCnt = vvs.vidAllCnt();

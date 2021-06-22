@@ -584,7 +584,7 @@ commit;
 --select * from myboard;
 --select * from mycomment order by comno;
 --select * from bobycom;
---select * from video;   
+--select * from video order by vidno desc;   
 --select * from theme;
 --select * from mycomment;
 --select * from (select ROWNUM as rowcnt, a.* from mycomment a where vidno=1 and comgroup is null)
@@ -605,7 +605,7 @@ commit;
 --(select * from mycomment where vidno=1 and comstep=0 order by comno)ad)
 --where rowcnt>=0 and rowcnt<10
 
-select * from 
-(select  ad.*, rownum as rowcnt from
-(select * from WATCHRECORD where userno=3 order by watchdate desc)ad)
-where rowcnt>0 and rowcnt<=5
+--select * from 
+--(select  ad.*, rownum as rowcnt from
+--(select * from WATCHRECORD where userno=3 order by watchdate desc)ad)
+--where rowcnt>0 and rowcnt<=5

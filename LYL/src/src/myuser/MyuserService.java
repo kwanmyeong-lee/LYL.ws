@@ -41,4 +41,7 @@ public class MyuserService {
 	public int pwdUpdate(String userEmail, String pwd) throws SQLException {
 		return userDao.pwdUpdate(userEmail, pwd);
 	}
+	public MyuserVO selectByUserNo(String no) throws SQLException {
+		return userDao.selectByUserNo(no);
+	}
 }
