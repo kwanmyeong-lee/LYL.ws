@@ -17,7 +17,10 @@ int subCnt=0;
 		if(vidNo!=null && !vidNo.isEmpty()){
 			vo = myuserService.selectMyuserByVidNo(vidNo);
 			String userid =(String) session.getAttribute("userid");
-			int userNo = (int) session.getAttribute("userNo");
+			int userNo = 0;
+			if(session.getAttribute("userNo") !=null){
+				userNo = (int) session.getAttribute("userNo");
+			}
 			isMine = false;
 			subCnt = subscribeService.selectSubscribe(Integer.toString(vo.getUserNo()), Integer.toString(userNo));
 		}else{
@@ -146,8 +149,13 @@ if(vo.getUserImgName()!=null ){
 		
 		
 		$('#subscribe').click(function() {
+			if(userNo==""){
+    			alert("로그인하세요")
+    			return;
+    		}
 			
 			if($('#subscribe').text()=='구독'){
+			
 				$.ajax({
 	
 					url : "usbscribe_ok.jsp", //나중에볼 동영상
