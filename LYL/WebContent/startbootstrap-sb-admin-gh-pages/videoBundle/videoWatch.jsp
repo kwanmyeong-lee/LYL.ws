@@ -20,6 +20,27 @@
 	.ReComDiv{
 		padding-left: 50px;
 	}
+	.comText {
+ 
+	padding: 9px;
+	 
+	border: solid 1px #460023;
+	 
+	outline: 0;
+	 
+	background: -webkit-gradient(linear, left top, left 25, from(#edfcff), color-stop(4%, #cff6ff), to(#edfcff));
+	 
+	background: -moz-linear-gradient(top, #edfcff, #edfcff 1px, #edfcff 25px);
+	 
+	box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	 
+	-moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	 
+	-webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	 
+	 
+	 
+	}
 </style>
 
 <script>
@@ -285,6 +306,7 @@
 	<jsp:useBean id="myuserService" class="src.myuser.MyuserService" scope="page"></jsp:useBean>
 	<jsp:useBean id="aftervideoService" class="src.aftervideo.aftervideoService" scope="page"></jsp:useBean>
 	<jsp:useBean id="subscribeService" class="src.subscribe.subscribeService" scope="page"></jsp:useBean>
+	<jsp:useBean id="watchrecordService" class="src.watchrecord.watchrecordService" scope="page"></jsp:useBean>
 	
 	<%
 		int userNo=0;
@@ -307,6 +329,7 @@
 			myuserVo = myuserService.selectMyuserByVidNo(vidno); //유저번호, 구독자, 타이틀 밖에 안들어있어요
 			cnt = aftervideoService.selectAftervideo(vidno, Integer.toString(userNo));
 			subCnt = subscribeService.selectSubscribe(Integer.toString(myuserVo.getUserNo()), Integer.toString(userNo));
+			int watCnt= watchrecordService.insertWatchrecord(Integer.toString(userNo), vidno);
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -351,8 +374,8 @@
     	<span>댓글 </span><span><%=videoVo.getVidCom() %></span><span>개</span>
     </div>
     <div class='vidComment' id ='myComment'>
-    	<textarea rows="2" cols="100" class="teComCon"></textarea>
-   	 	<button type="button" class="comWrite">댓글</button>
+    	<textarea class='comText' rows="2" cols="100" class="teComCon"></textarea>
+   	 	<button type="button" class="comWrite btn btn-primary">댓글 쓰기</button>
     </div>
     <input type="hidden" class="vidComCnt" value=0>
     
