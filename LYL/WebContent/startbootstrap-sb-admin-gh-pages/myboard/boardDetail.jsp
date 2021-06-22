@@ -215,6 +215,13 @@
 			}
 		});
 		
+		$('#frmComm').submit(function(){
+			if($(".comment").val().length<1){
+				alert('내용을 입력하세요');
+				event.preventDefault();
+				$(".comment").focus();
+			}
+		});
 	});
 </script>
 <div class="listBody">
@@ -270,8 +277,8 @@
 			</table>
 		</div>
 		<div class="commentInsert">
-			<form action="bo_CommentWrite_ok.jsp" method="post">
-				<input type="text" value="<%=userNo %>" name="userNo">
+			<form action="bo_CommentWrite_ok.jsp" method="post" id="frmComm">
+				<input type="hidden" value="<%=userNo %>" name="userNo">
 				<input type="hidden" value="<%=boNo %>" name="boNo">
 				<!-- 댓글 입력 -->
 				<span class="comment">

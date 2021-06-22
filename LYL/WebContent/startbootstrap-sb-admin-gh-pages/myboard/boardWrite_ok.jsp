@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8"">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -17,7 +17,6 @@
 	String userNo = request.getParameter("userNo");
 	String title = request.getParameter("title");
 	String content = request.getParameter("content");
-	String pwd = request.getParameter("pwd");
 	String userId =(String) session.getAttribute("userid");
 	 
 	//2.
@@ -25,7 +24,6 @@
 	BoardVO vo =  new BoardVO();
 	vo.setBoTitle(title);
 	vo.setBoCon(content);
-	vo.setBoPwd(Integer.parseInt(pwd));
 	vo.setUserNo(Integer.parseInt(userNo));
 	vo.setUserId(userId);
 	try {
