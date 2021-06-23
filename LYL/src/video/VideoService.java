@@ -38,4 +38,7 @@ public class VideoService {
 	public String selectVideoMostView() throws SQLException {
 		return dao.selectVideoMostView();
 	}
+	public List<VideoVO> selectMyVideoMostView(String userNo) throws SQLException {
+		return dao.selectMyVideoMostView(userNo);
+	}
 }

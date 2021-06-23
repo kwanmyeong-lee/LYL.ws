@@ -1,3 +1,6 @@
+<%@page import="video.VideoVO"%>
+<%@page import="java.util.List"%>
+<%@page import="video.VideoService"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -9,6 +12,7 @@
 <jsp:useBean id="myuserService" class="src.myuser.MyuserService" scope="session" ></jsp:useBean>
 <jsp:useBean id="subscribeService" class="src.subscribe.subscribeService" scope="page"></jsp:useBean>
 <% 
+VideoService vvs = new VideoService();
 MyuserVO vo = null;
 boolean isMine = true;
 int subCnt=0;
@@ -36,6 +40,12 @@ int subCnt=0;
 String imgName = null;
 if(vo.getUserImgName()!=null ){
 	imgName = vo.getUserImgName();
+}
+List<VideoVO> list = null;
+try{
+	list= vvs.selectMyVideoMostView(Integer.toString(vo.getUserNo()));
+}catch(SQLException e){
+	e.printStackTrace();
 }
 
 %>
@@ -159,10 +169,10 @@ if(vo.getUserImgName()!=null ){
 		<div class="col-me-10">
 			<div class="d-inline-flex me-5">
 				<iframe class="col me-2" id="player" width="640" height="360"
-					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
+					src="<%=list.get(0).getVidurl()%>?autoplay=1&mute=1"></iframe>
 
 				<iframe id="player" width="640" height="360"
-					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
+					src="<%=list.get(1).getVidurl()%>?autoplay=1&mute=1"></iframe>
 			</div>
 		</div>
 	</div>

@@ -295,6 +295,35 @@ public class VideoDAO {
 	         pool.dbClose(rs, ps, conn);
 	      }
 	   }
+	public List<VideoVO> selectMyVideoMostView(String userNo) throws SQLException {
+	      Connection conn = null;
+	      PreparedStatement ps = null;
+	      ResultSet rs = null;
+	      try {
+	         conn = pool.getConnection();
+	         
+	         String sql = "select * from \r\n"
+	               + "(select vidurl from video where userNo=? order by vidhits desc)\r\n"
+	               + "where rownum <3";
+	         ps = conn.prepareStatement(sql);
+	         ps.setString(1, userNo);
+	         
+	         rs= ps.executeQuery();
+	         
+	         List<VideoVO> list = new ArrayList<VideoVO>();
+	         while(rs.next()) {
+	        	 VideoVO vvo = new VideoVO();
+				 vvo.setVidurl(rs.getString(1));
+				 
+				 list.add(vvo);
+	         }
+	         System.out.println("결과 값 list="+list);
+	         return list;
+	         
+	      }finally {
+	         pool.dbClose(rs, ps, conn);
+	      }
+	   }
 }
 
 

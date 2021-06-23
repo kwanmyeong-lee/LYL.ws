@@ -19,20 +19,47 @@ public class watchrecordDAO {
 	public int insertWatchrecord(String userNo, String vidNo) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
+		PreparedStatement ps2 = null;
+		ResultSet rs = null;
 		
 		try {
+			
 			conn= pool.getConnection();
-			String sql = "insert into WATCHRECORD(userNo, vidNo) values(?, ?)";
-			ps = conn.prepareStatement(sql);
+			String sql2 = "select * from WATCHRECORD where userNo=? and vidNo=?";
+			ps = conn.prepareStatement(sql2);
 			ps.setString(1, userNo);
 			ps.setString(2, vidNo);
+			rs = ps.executeQuery();
+			int cnt2 = 0;
 			
-			int cnt = ps.executeUpdate();
-			System.out.println("시청기록 insert 결과 = "+cnt+"매개변수 ="+userNo+vidNo);
+			while(rs.next()){
+				cnt2++;
+			}
+			int cnt = 0;
+			
+			
+			if(cnt2==0) {
+				String sql = "insert into WATCHRECORD(userNo, vidNo) values(?, ?)";
+				ps2 = conn.prepareStatement(sql);
+				ps2.setString(1, userNo);
+				ps2.setString(2, vidNo);
+				cnt = ps2.executeUpdate();
+				
+				System.out.println("시청기록 insert 결과 = "+cnt+"매개변수 ="+userNo+vidNo);
+				
+			}else {
+				String sql = "update WATCHRECORD set watchdate= sysdate where vidNo = ? and userNo = ?";
+				ps2 = conn.prepareStatement(sql);
+				ps2.setString(1, vidNo);
+				ps2.setString(2, userNo);
+				cnt = ps2.executeUpdate();
+				System.out.println("시청기록 insert 결과 = "+cnt+"매개변수 ="+userNo+vidNo);
+				
+			}
 			return cnt;
-			
 		}finally {
-			pool.dbClose(ps, conn);
+			if(ps2!=null)ps2.close();
+			pool.dbClose(rs, ps, conn);
 		}
 	}
 	public List<watchrecordVO> selectAllByUserNo(String userNo, int rowcnt) throws SQLException{

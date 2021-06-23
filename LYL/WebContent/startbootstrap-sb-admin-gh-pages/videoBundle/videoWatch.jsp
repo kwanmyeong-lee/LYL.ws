@@ -371,7 +371,7 @@
 	<p id='vidContent'><%=videoVo.getVidEx() %></p>
     <hr>
     <div id='vidCommentCnt'>
-    	<span>댓글 </span><span><%=videoVo.getVidCom() %></span><span>개</span>
+    	
     </div>
     <div class='vidComment' id ='myComment'>
     	<textarea class='comText teComCon' rows="2" cols="100"></textarea>
