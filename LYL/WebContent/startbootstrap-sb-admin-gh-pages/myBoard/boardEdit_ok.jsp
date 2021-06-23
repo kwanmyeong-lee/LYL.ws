@@ -10,7 +10,7 @@
 	String boNo = request.getParameter("boNo");
 	String title = request.getParameter("title");
 	String content = request.getParameter("content");
-	
+	String userNo = request.getParameter("userNo");
 	System.out.println(boNo);
 	
 	BoardDAO dao = new BoardDAO();
@@ -26,7 +26,7 @@
 			%>
 			<script type="text/javascript">
 				alert('게시글을 수정하였습니다.');
-				location.href = "boardDetail.jsp?boNo=<%=boNo%>";
+				location.href = "boardDetail.jsp?boNo=<%=boNo%>&userNo=<%=userNo%>";
 			</script>
 		<%} else {%>
 			<script type="text/javascript">

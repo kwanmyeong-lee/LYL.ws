@@ -208,29 +208,30 @@
 <script type="text/javascript">
 	$(function(){
 		$('#boardEdit').click(function(){
-			location.href="boardEdit.jsp?boNo=<%=vo.getBoNo()%>";
+			location.href="boardEdit.jsp?boNo=<%=vo.getBoNo()%>&userNo=<%=userNo%>";
 		});
 		$('#boardDelete').click(function(){
 			location.href="boardDelete.jsp?boNo=<%=vo.getBoNo()%>&userNo=<%=userNo%>";
 		});
 		$('#boardList').click(function(){
-			location.href="boardList.jsp?userNo=<%=userNo%>";
+			location.href="boardList.jsp?boNo=<%=vo.getBoNo()%>&userNo=<%=userNo%>";
 		});
+		
+		
 		$('.bcDeleteBtn').click(function(){
 			var delComm=confirm('댓글을 삭제하겠습니까?');
+			var vvvv =$(this).next('.hiddenbcNo').val();
 			if(!delComm){
 				event.preventDefault();
 				location.href="boardDetail.jsp?boNo=<%=boNo%>&userNo=<%=userNo%>"
+				return false;
+			}else{
+				location.href="bo_CommentDelete_ok.jsp?bcNo="+vvvv+"&boNo=<%=boNo%>&userNo=<%=userNo%>";
 			}
+			
 		});
 		
-		$('#frmComm').submit(function(){
-			if($(".comment").html().length<1){
-				alert('댓글 내용을 입력하세요');
-				event.preventDefault();
-				$(".comment").focus();
-			}
-		});
+		
 		
 	});
 </script>
@@ -275,7 +276,8 @@
 						<td class="commentTd">
 							<%=commVo.getBcCom() %>
 							<%if(userId.equals(commVo.getUserId())) {%>
-								<input type="button" class="bcDeleteBtn" onClick="location.href='bo_CommentDelete_ok.jsp?bcNo=<%=commVo.getBcNo()%>&boNo=<%=boNo%>&userNo=<%=userNo%>'" value="삭제">
+								<input type="button" class="bcDeleteBtn" value="삭제">
+								<input type="hidden" class="hiddenbcNo" value="<%=commVo.getBcNo()%>">
 							<%}else{ %>
 								<input type="hidden" class="bcDeleteBtn">
 							<%} %>

@@ -17,7 +17,12 @@ int subCnt=0;
 		if(vidNo!=null && !vidNo.isEmpty()){
 			vo = myuserService.selectMyuserByVidNo(vidNo);
 			String userid =(String) session.getAttribute("userid");
-			int userNo = (int) session.getAttribute("userNo");
+			int userNo;
+			if(session.getAttribute("userNo")==null){
+				userNo=0;
+			}else{
+			 userNo = (int) session.getAttribute("userNo");
+			}
 			isMine = false;
 			subCnt = subscribeService.selectSubscribe(Integer.toString(vo.getUserNo()), Integer.toString(userNo));
 		}else{
@@ -159,9 +164,6 @@ if(vo.getUserImgName()!=null ){
 				<iframe id="player" width="640" height="360"
 					src="http://www.youtube.com/embed/lgPi5GhEj0c?autoplay=1&mute=1"></iframe>
 			</div>
-				<video class="video-fluid z-depth-1" autoplay loop controls muted width="640" height="360">
-				  <source src="../videoFile/KakaoTalk_20200811_181555854.mp4" type="video/mp4" />
-				</video>
 		</div>
 	</div>
 </div>

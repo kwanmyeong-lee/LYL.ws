@@ -8,6 +8,8 @@
 <%
 	//session으로 사용자아이디 받기
 	String boNo = request.getParameter("boNo");
+	String userNo = request.getParameter("userNo");
+
 	//2
 		BoardDAO dao = new BoardDAO();
 		BoardVO vo = null;
@@ -113,6 +115,7 @@
 <div class="listBody">
 	<form action="boardEdit_ok.jsp" method="post" id="frmEdit">
 	<input type="hidden" name="boNo" value="<%=boNo%>">
+	<input type="hidden" name="userNo" value="<%=userNo%>">
 		<div id="titleH"><h2>게시글 수정</h2></div>
 		<div class="titleDiv">
 			<label>제목 : </label>
@@ -121,7 +124,7 @@
 		<textarea name="content" id="content" cols="114" rows="30"><%=vo.getBoCon()%></textarea>
 		<div class="btnList">
 			<input type="submit" value="수정" class="btn11" id="submit" />
-			<input type="button" value="취소" class="btn11" id="btnCancle" onclick="location.href='boardDetail.jsp?boNo=<%=boNo%>'">
+			<input type="button" value="취소" class="btn11" id="btnCancle" onclick="location.href='boardDetail.jsp?boNo=<%=boNo%>&userNo=<%=userNo%>">
 		</div>
 	</form>
 </div>
