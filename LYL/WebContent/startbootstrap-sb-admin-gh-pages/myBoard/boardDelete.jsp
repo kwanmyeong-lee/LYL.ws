@@ -10,8 +10,8 @@
 </head>
 <body>
 	<%
-		String boNo=request.getParameter("boNo");
 		String userNo=request.getParameter("userNo");
+		String boNo=request.getParameter("boNo");
 	
 		//2
 		BoardDAO dao = new BoardDAO();
