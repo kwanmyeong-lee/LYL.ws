@@ -11,7 +11,7 @@
 	.listBody{
 		width: 1000px;
 		height: auto;
-		margin: 10px auto;
+		margin: 10px 13%;
 		padding-top: 20px;
 	}
 	.titleH{
