@@ -3,7 +3,7 @@ drop table myuser CASCADE CONSTRAINTS;
 drop table video CASCADE CONSTRAINTS;
 drop table mycomment CASCADE CONSTRAINTS;
 drop table myboard CASCADE CONSTRAINTS;
-drop table bobycom CASCADE CONSTRAINTS;
+drop table boardcomment CASCADE CONSTRAINTS;
 drop table commentlike CASCADE CONSTRAINTS;
 drop table watchrecord CASCADE CONSTRAINTS;
 drop table aftervideo CASCADE CONSTRAINTS;
@@ -14,8 +14,8 @@ drop table subscrib CASCADE CONSTRAINTS;
 drop sequence myuser_seq;
 drop sequence video_seq;
 drop sequence mycomment_seq;
-drop sequence bobycom_seq;
 drop sequence myboard_seq;
+drop sequence boardcomment_seq;
 drop sequence theme_seq;
 -- 전체 테이블, 시퀀스 삭제--
 
@@ -35,12 +35,12 @@ start with 1
 increment by 1
 nocache;
 
-create sequence bobycom_seq
+create sequence myboard_seq
 start with 1
 increment by 1
 nocache;
 
-create sequence myboard_seq
+create sequence boardcomment_seq
 start with 1
 increment by 1
 nocache;
@@ -186,53 +186,42 @@ ALTER TABLE MYCOMMENT
 		);
 
 /* 게시글 댓글 */
-CREATE TABLE BOBYCOM (
+CREATE TABLE BOARDCOMMENT (
 	bcNo NUMBER NOT NULL, /* 댓글 번호 */
-	bcCom VARCHAR2(255), /* 내용 */
-	bcDate TIMESTAMP DEFAULT sysdate, /* 날짜 */
-	bcRe NUMBER DEFAULT 0, /* 답글수 */
-	bcLike NUMBER DEFAULT 0, /* 좋아요 */
-	bcSec NUMBER DEFAULT 0, /* 비밀글 여부 */
+	bcCom VARCHAR2(255) NOT NULL, /* 내용 */
+	bcDate TIMESTAMP DEFAULT sysdate NOT NULL, /* 날짜 */
 	bcStep NUMBER DEFAULT 0, /* 댓글 단계 */
 	bcSort NUMBER DEFAULT 0, /* 댓글 정렬 번호 */
 	bcGroupNo NUMBER, /* 댓글 그룹 번호 */
-	boNo NUMBER, /* 번호 */
-	userNo NUMBER /* 크리에이터 */
+	boNo NUMBER NOT NULL, /* 게시판번호 */
+	userNo NUMBER NOT NULL, /* 크리에이터 */
+	userId VARCHAR2(100) NOT NULL /* 글쓴이 */
 );
 
 CREATE UNIQUE INDEX PK_BOBYCOM
 	ON BOBYCOM (
 		bcNo ASC
 	);
-
-ALTER TABLE BOBYCOM
+    
+ALTER TABLE BOARDCOMMENT
 	ADD
-		CONSTRAINT PK_BOBYCOM
+		CONSTRAINT PK_BOARDCOMMENT
 		PRIMARY KEY (
 			bcNo
 		);
 
+
 /* 게시판 */
 CREATE TABLE MYBOARD (
-	boNo NUMBER NOT NULL, /* 번호 */
+	boNo NUMBER NOT NULL, /* 게시판번호 */
 	boTitle VARCHAR2(255) NOT NULL, /* 제목 */
-	boCon CLOB, /* 내용 */
+	boCon VARCHAR2(255) NOT NULL, /* 내용 */
 	boHits NUMBER DEFAULT 0, /* 조회수 */
 	boCom NUMBER DEFAULT 0, /* 댓글수 */
-	boDate TIMESTAMP DEFAULT sysdate, /* 작성일 */
-	boSec NUMBER DEFAULT 0, /* 비밀글 여부 */
-	userNo NUMBER, /* 크리에이터 */
-	userNo2 NUMBER, /* 글쓴이 */
-	boMyNo NUMBER DEFAULT 1, /* 마이페이지별 글번호 */
-	boStep NUMBER DEFAULT 0, /* 게시글 단계 */
-	boSort NUMBER DEFAULT 0, /* 게시글 정렬 번호 */
-	boGroupNo NUMBER /* 게시글 그룹번호 */
+	boDate TIMESTAMP DEFAULT sysdate NOT NULL, /* 작성일 */
+	userNo NUMBER NOT NULL, /* 크리에이터 */
+	userId VARCHAR2(100) NOT NULL /* 글쓴이 */
 );
-
-CREATE UNIQUE INDEX PK_MYBOARD
-	ON MYBOARD (
-		boNo ASC
-	);
 
 ALTER TABLE MYBOARD
 	ADD
@@ -240,6 +229,13 @@ ALTER TABLE MYBOARD
 		PRIMARY KEY (
 			boNo
 		);
+
+CREATE UNIQUE INDEX PK_MYBOARD
+	ON MYBOARD (
+		boNo ASC
+	);
+
+
 
 /* 힌트 질문  */
 CREATE TABLE HINT (
@@ -378,9 +374,9 @@ ALTER TABLE MYCOMMENT
 			userNo
 		);
 
-ALTER TABLE BOBYCOM
+ALTER TABLE BOARDCOMMENT
 	ADD
-		CONSTRAINT FK_MYBOARD_TO_BOBYCOM
+		CONSTRAINT FK_MYBOARD_TO_BOARDCOMMENT
 		FOREIGN KEY (
 			boNo
 		)
@@ -388,31 +384,12 @@ ALTER TABLE BOBYCOM
 			boNo
 		);
 
-ALTER TABLE BOBYCOM
-	ADD
-		CONSTRAINT FK_MYUSER_TO_BOBYCOM
-		FOREIGN KEY (
-			userNo
-		)
-		REFERENCES MYUSER (
-			userNo
-		);
 
 ALTER TABLE MYBOARD
 	ADD
 		CONSTRAINT FK_MYUSER_TO_MYBOARD
 		FOREIGN KEY (
 			userNo
-		)
-		REFERENCES MYUSER (
-			userNo
-		);
-
-ALTER TABLE MYBOARD
-	ADD
-		CONSTRAINT FK_MYUSER_TO_MYBOARD2
-		FOREIGN KEY (
-			userNo2
 		)
 		REFERENCES MYUSER (
 			userNo
