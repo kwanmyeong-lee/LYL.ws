@@ -48,7 +48,7 @@
 	var vidComCnt2= 1;
 	var vidReComCnt=1;
 	var vidNo=${param.vidNo};
-	var userNo = ${sessionScope.userNo};
+	var userNo = "${sessionScope.userNo}";
     $(window).scroll(function() {
     	
     	
@@ -135,7 +135,7 @@
     		$(this).parent().children('.ReComDiv').toggle();
     		var reComNo= $(this).parent().children('.hid1').val();
     		var reComNo2= parseInt($(this).parent().children('.hid2').val());
-    		var userNo = ${sessionScope.userNo};
+    		var userNo = "${sessionScope.userNo}";
     		var firstCheck = $(this).parent().children('.reComBtFirstCheck').val();
     		var reSeeMore = $(this).parent().children('.reComSeeMore').val();
     		
@@ -219,7 +219,7 @@
     		var reComNo= $(this).parent().parent().children('.hid1').val();
     		var reComNo2= parseInt($(this).parent().parent().children('.hid2').val());
     		var reSeeMore = $(this).parent().parent().children('.reComSeeMore').val();
-    		var userNo = ${sessionScope.userNo};
+    		var userNo = "${sessionScope.userNo}";
     		
     		
     			$.ajax({
@@ -347,11 +347,11 @@
    <header>
    </header>
    <iframe id="player" width="1200" height="650" src=<%=vidUrl%> allowfullscreen=""></iframe>
-	<p id='vidTitle' class="h4">title : &nbsp;<%=videoVo.getVidTitle() %></p>
+	<p id='vidTitle' class="h4"><%=videoVo.getVidTitle() %></p>
 	<p id='vidHits'>조회수 <%=videoVo.getVidHits() %> 회 <%=sdf.format(videoVo.getVidDate()) %></p>
 	
 	<hr>
-	<p id='vidUploaderId' class="fs-5">id :&nbsp; <a class="text-decoration-none" href="../userPage/myPage.jsp?vidno=<%=vidno %>"><%=myuserVo.getUserId() %></a> </p>
+	<p id='vidUploaderId' class="fs-5"><a class="text-decoration-none" href="../userPage/myPage.jsp?vidno=<%=vidno %>"><%=myuserVo.getUserId() %></a> </p>
 	<p id='vidG'>구독자&nbsp;<span id=vidGs><%=myuserVo.getUserSub() %></span> 명</p>
 	
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end">

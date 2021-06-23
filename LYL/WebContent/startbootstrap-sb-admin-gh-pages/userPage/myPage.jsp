@@ -102,7 +102,7 @@ if(vo.getUserImgName()!=null ){
 		});
 		
 		$('#myboard').click(function(){
-			location.href="../myBoard/boardList.jsp?userNo="+<%=vo.getUserNo()%>;
+			location.href="../myboard/boardList.jsp?userNo="+<%=vo.getUserNo()%>;
 		});
 		
 	});
