@@ -19,15 +19,19 @@ int subCnt=0;
 	try{
 		String vidNo = request.getParameter("vidno");//비디오에서 마이페이지 온다 가정
 		if(vidNo!=null && !vidNo.isEmpty()){
-			vo = myuserService.selectMyuserByVidNo(vidNo);
-			String userid =(String) session.getAttribute("userid");
-			int userNo;
+			vo = myuserService.selectMyuserByVidNo(vidNo); //비디오 올린사람
+			String userid =(String) session.getAttribute("userid"); // 로그인한 사람
+			int userNo = 0;
 			if(session.getAttribute("userNo")==null){
 				userNo=0;
 			}else{
 			 userNo = (int) session.getAttribute("userNo");
+				 if(userNo == vo.getUserNo()){
+					 isMine=true;
+				 }else{
+					 isMine = false;
+				 }
 			}
-			isMine = false;
 			subCnt = subscribeService.selectSubscribe(Integer.toString(vo.getUserNo()), Integer.toString(userNo));
 		}else{
 			String userid =(String) session.getAttribute("userid");
@@ -150,7 +154,8 @@ try{
 					</div>
 				<%}else { %>
 					<div class="d-inline-flex position-relative start-50">
-					<button id="subscribe" class="btn btn-primary" type="button" value="<%=vo.getUserNo()%>">구독</button>
+					<button id="subscribe" class="btn btn-primary  me-2" type="button" value="<%=vo.getUserNo()%>">구독</button>
+					<button id="myboard" type="button" class="btn btn-primary me-2">게시판</button>
 					</div>
 				<%} %>
 			<%} %>
@@ -158,7 +163,7 @@ try{
 			<div class="userInfo">
 				<h2 id="userid"><%=vo.getUserId() %></h2>
 				<p id="userEmail"><%=vo.getUserEmail()%></p>
-				<p id="userSub">구독자 :&nbsp;<%=vo.getUserSub() %> 명</p>
+				<p id="userSub">구독자 :&nbsp;<span id="SUB"><%=vo.getUserSub() %></span>명</p>
 			</div>
 		</div>
 	</div>
@@ -168,11 +173,12 @@ try{
 	<div class="justify-content-center">
 		<div class="col-me-10">
 			<div class="d-inline-flex me-5">
+				<%if(list.size()!=0){ %>
 				<iframe class="col me-2" id="player" width="640" height="360"
 					src="<%=list.get(0).getVidurl()%>?autoplay=1&mute=1"></iframe>
-
 				<iframe id="player" width="640" height="360"
-					src="<%=list.get(1).getVidurl()%>?autoplay=1&mute=1"></iframe>
+					src="<%=list.get(1).getVidurl()%>?autoplay=1&mute=1"></iframe> 
+				<%} %>
 			</div>
 		</div>
 	</div>
@@ -192,7 +198,10 @@ try{
 		
 		
 		$('#subscribe').click(function() {
-			
+			if(<%=session.getAttribute("userNo")%>==null){
+				return;
+			}
+			var vidGnum= $('#SUB').text();
 			if($('#subscribe').text()=='구독'){
 				$.ajax({
 	
@@ -213,6 +222,9 @@ try{
 							$(function() {
 								$('#subscribe').text('구독 취소');
 								$('#subscribe').css('background', '#dc3545');
+								
+								vidGnum++;
+								$('#SUB').text(vidGnum);
 							})
 	
 						}
@@ -229,6 +241,7 @@ try{
 					data : {
 						"userNo" : userNo,
 						"userNo2" : userNo2
+						
 					},
 	
 					success : function(data) {
@@ -239,6 +252,8 @@ try{
 							$(function() {
 								$('#subscribe').text('구독');
 								$('#subscribe').css('background', '#0d6efd');
+								vidGnum--;
+								$('#SUB').text(vidGnum);
 							})
 	
 						}
