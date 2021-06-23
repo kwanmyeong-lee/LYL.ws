@@ -12,7 +12,7 @@
 	.listBody{
 		width: 1000px;
 		height: auto;
-		margin: 10px auto;
+		margin: 10px 13%;
 		padding-top: 20px;
 		background: rgb(242, 242, 242);
 		border-radius: 30px;
