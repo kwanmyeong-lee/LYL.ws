@@ -368,10 +368,14 @@ ALTER TABLE BOARDCOMMENT
 		CONSTRAINT FK_MYBOARD_TO_BOARDCOMMENT
 		FOREIGN KEY (
 			boNo
+          
+            
 		)
 		REFERENCES MYBOARD (
-			boNo
-		);
+			boNo     
+       
+		)
+        ON DELETE CASCADE;
 
 ALTER TABLE BOARDCOMMENT
 	ADD

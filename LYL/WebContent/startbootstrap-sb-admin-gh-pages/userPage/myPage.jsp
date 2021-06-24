@@ -23,11 +23,17 @@ int subCnt=0;
 					int userNo = (int) session.getAttribute("userNo");
 					vo = myuserService.selectMyuserByVidNo(vidNo); //비디오 올린사람
 					subCnt = subscribeService.selectSubscribe(Integer.toString(vo.getUserNo()), Integer.toString(userNo));
+					if(userNo == vo.getUserNo()){
+						isMine=true;
+					}else{
+						isMine=false;
+					}
 				}else{
 					vo = myuserService.selectMyuserByVidNo(vidNo); //비디오 올린사람
 					String userid =(String) session.getAttribute("userid"); // 로그인한 사람
+					isMine = false;
 				}
-			isMine = false;
+				
 		}else{
 			String userid =(String) session.getAttribute("userid");
 			vo = myuserService.selectMyuser(userid);
