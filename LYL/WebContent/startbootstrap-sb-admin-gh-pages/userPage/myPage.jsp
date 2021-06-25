@@ -179,7 +179,10 @@ try{
 	<div class="justify-content-center">
 		<div class="col-me-10">
 			<div class="d-inline-flex me-5">
-				<%if(list.size()!=0){ %>
+				<%if(list.size()==1){ %>
+				<iframe class="col me-2" id="player" width="640" height="360"
+					src="<%=list.get(0).getVidurl()%>?autoplay=1&mute=1"></iframe>
+				<%}else if(list.size()==2){ %>
 				<iframe class="col me-2" id="player" width="640" height="360"
 					src="<%=list.get(0).getVidurl()%>?autoplay=1&mute=1"></iframe>
 				<iframe id="player" width="640" height="360"
