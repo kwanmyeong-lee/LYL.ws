@@ -10,6 +10,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/startbootstrap-sb-admin-gh-pages/inc/top.jsp"%>
 
+
 <style>
 	#player{
 		padding-top: 10px;
